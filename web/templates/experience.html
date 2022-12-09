@@ -1,0 +1,19 @@
+{% load static %}
+{% for w in work %}
+<div class="container p-1">
+<div class="p-4 bg-light border rounded-3 shadow-sm">
+     <a style="float:right;" href="{{ w.link }}"> <img src="{% static 'img/link.png' %}" width="25px;">
+     </a>
+            <div class="row">
+                <div class="col pb-2" style="max-width:65px;">
+                    <img src="{{ w.company_logo.url }}" width="50px;">
+                </div>
+                <div class="col" >
+                    <h5 style="margin-bottom:0.1rem;">{{ w.company}} </h5>
+                    <small>{{ w.start_date|date:'m/Y'}} - {{ w.end_date|date:'m/Y' }}</small>
+                </div>
+            </div>
+          <p>{{ w.description}}</p>
+</div>
+    </div>
+{% endfor %}

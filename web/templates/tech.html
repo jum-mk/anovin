@@ -1,0 +1,37 @@
+
+{% load static %}
+<section>
+            {% for i in item %}
+                <div class="accordion accordion-flush shadow bg-dark" id="accordionFlush{{ i.id }}">
+                      <div class="accordion-item">
+                        <h2 class="accordion-header " id="flush-heading{{ i.id }}"  >
+                          <button class="accordion-button collapsed"
+                                  type="button"
+                                  data-bs-toggle="collapse"
+                                  data-bs-target="#flush-collapse{{ i.id }}"
+                                  aria-expanded="false"
+                                  aria-controls="flush-collapse{{ i.id }}">
+                                    <img class="lm-4 rm-4" src="{{ i.icon.url }}" height="38" width="38">
+                                    <h6 style="margin-left:15px;">{{ i.name }}</h6>
+                          </button>
+                        </h2>
+                        <div id="flush-collapse{{ i.id }}" class="accordion-collapse collapse"
+                             aria-labelledby="flush-heading{{ i.id }}"
+                             data-bs-parent="#accordionFlush{{ i.id }}">
+                          <div class="accordion-body">
+                              <ul class="list-group">
+                                  {% for w in i.item.all %}
+                                  <li class="list-group-item">{{ w }}
+                                        {% if w.link.link is not None %}
+                                    <a href="{{ w.link.link }}"><span class="badge btn-primary">Link</span></a> </li>
+                                        {% else %}
+                                        {% endif %}
+                                  {% endfor %}
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+            {% endfor %}
+</section>
