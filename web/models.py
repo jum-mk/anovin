@@ -66,3 +66,29 @@ class Contact(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class Category(models.Model):
+    name = models.CharField(max_length=120)
+
+    def __str__(self):
+        return self.name
+
+
+class Tag(models.Model):
+    name = models.CharField(max_length=255)
+
+    def __str__(self):
+        return self.name
+
+
+class Tutorial(models.Model):
+    title = models.CharField(max_length=255)
+    meta_description = models.TextField()
+    content = models.TextField()
+    tags = models.ManyToManyField(Tag)
+    img = models.ImageField(upload_to='tutorials/images/', null=True, blank=True)
+    category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True, blank=True)
+
+    def __str__(self):
+        return self.title

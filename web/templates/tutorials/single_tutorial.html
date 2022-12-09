@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.2.0/css/bootstrap.min.css"
+          integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.2.0/js/bootstrap.min.js"
+            integrity="sha384-b0UIIxEDKe119aRaLjhsjV8MBZrVR5Gw2rJ5I1hK8ZP3MTf3Dqz6nEU8pxJkzR5G"
+            crossorigin="anonymous"></script>
+</head>
+
+<style>
+    body {
+        font-family: 'Montserrat', sans-serif;
+    }
+
+    h1, h2, h3 {
+        color: #333;
+    }
+
+    p {
+        color: #666;
+    }
+
+    a {
+        color: #0099ff;
+    }
+
+    .sidebar {
+        background-color: #f5f5f5;
+        padding: 20px;
+    }
+</style>
+<body>
+<div class="container">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+                <h1>{{ tutorial.title }}</h1>
+                {{ tutorial.content|safe }}
+            </div>
+            <div class="col-md-4">
+                <div class="sidebar">
+                    <h2>About Me</h2>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam lobortis tempor ipsum, non faucibus
+                        risus facilisis at. Duis rutrum mi quis mi iaculis, sit amet venenatis metus euismod. Nam congue
+                        velit vel orci placerat, et porttitor massa finibus. Nunc vel sapien eget nunc pretium
+                        tincidunt. Praesent vitae elit tellus.</p>
+                    <h3>Recent Posts</h3>
+                </div>
+</body>
+</html>
