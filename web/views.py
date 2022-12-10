@@ -52,8 +52,8 @@ def index(request):
 def tutorials(request):
     tags = Tag.objects.all()
     cats = Category.objects.all()
-
-    return render(request, 'tutorials.html', context={'tags': tags, 'cats': cats})
+    tuts = Tutorial.objects.all()
+    return render(request, 'tutorials.html', context={'tags': tags, 'cats': cats, 'tuts': tuts})
 
 
 def single_tutorial(request, pk=None):

@@ -16,7 +16,7 @@ Including another URLconf
 from django.urls import path
 from . import views
 from django.urls import path
-from .views import TutorialViewSet, TagViewSet
+from .views import TutorialViewSet, TagViewSet, CategoryViewSet
 
 tutorial_list = TutorialViewSet.as_view({
     'get': 'list',
@@ -40,11 +40,11 @@ tag_detail = TagViewSet.as_view({
     'delete': 'destroy'
 })
 
-cat_list = TagViewSet.as_view({
+cat_list = CategoryViewSet.as_view({
     'get': 'list',
     'post': 'create'
 })
-cat_detail = TagViewSet.as_view({
+cat_detail = CategoryViewSet.as_view({
     'get': 'retrieve',
     'put': 'update',
     'patch': 'partial_update',
@@ -62,7 +62,7 @@ urlpatterns = [
     path('tags/', tag_list, name='tag-list'),
     path('tags/<int:pk>/', tag_detail, name='tag-detail'),
 
-    path('cats/', cat_list, name='cat-list'),
+    path('cats/', cat_list, name='cat_list'),
     path('cats/<int:pk>/', cat_detail, name='cat-detail'),
 
 ]
