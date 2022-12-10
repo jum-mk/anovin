@@ -68,15 +68,15 @@
 
         {% for t in tuts %}
             <a href="" class="text-white" style="text-decoration: none;">
-                <div class="w-100 shadow-sm d-flex align-items-center hover-bg"
-                     style="color:ghostwhite; border-radius: 8px; margin: 10px; padding: 20px; border: 1px solid #0d7be4; cursor:pointer;">
+                <div class=" shadow-sm d-flex align-items-center hover-bg p-4 mb-3"
+                     style="color:ghostwhite; border-radius: 8px; border: 1px solid #0d7be4; cursor:pointer;">
 
                     <img src="{{ t.img.url }}" style="width: 30px; margin-left: 10px; margin-right: 20px;" class="d-none    d-sm-none d-md-block">
                     <div class="">
                         <h5 class="mb-3">{{ t.title }}</h5>
 
                         <div class="d-inline-flex flex-wrap align-items-center">
-                        <span class="shadow me-2 p-1 pe-2 ps-2"
+                        <span class="shadow  p-1 pe-2 ps-2 ms-2 me-2 mb-1 mt-1"
                               style="border-radius: 8px; font-size: 12px; ">Category: {{ t.category }}</span>
 
 
