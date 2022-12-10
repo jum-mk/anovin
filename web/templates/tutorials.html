@@ -51,8 +51,13 @@
             margin-top: 1rem;
         }
 
+        .hover-bg:hover {
+            background: #2182de;
+        }
+        a{width: 100%;}
+
     </style>
-<body class="d-flex align-items-center justify-content-center flex-column bg-dark p-5">
+<body class="d-flex align-items-center justify-content-center flex-column bg-dark p-2 pt-3">
 
 
 <div class="container">
@@ -62,17 +67,30 @@
         <input type="text" class="form-control form-control-color w-100 shadow-sm m-3" placeholder="Search">
 
         {% for t in tuts %}
-            <div class="w-100 shadow-sm d-flex align-items-center"
-                 style="color:ghostwhite; border-radius: 8px; margin: 10px; padding: 20px;">
+            <a href="" class="text-white" style="text-decoration: none;">
+                <div class="w-100 shadow-sm d-flex align-items-center hover-bg"
+                     style="color:ghostwhite; border-radius: 8px; margin: 10px; padding: 20px; border: 1px solid #0d7be4; cursor:pointer;">
 
-                <img src="{{ t.img.url }}" style="width: 50px; margin-left: 10px; margin-right: 20px;">
-                <div class="">
-                    <h5>{{ t.title }}</h5>
-                    <span class="shadow p-2" style="border-radius: 8px; font-size: 13px; ">In: {{ t.category }}</span>
+                    <img src="{{ t.img.url }}" style="width: 30px; margin-left: 10px; margin-right: 20px;" class="d-none    d-sm-none d-md-block">
+                    <div class="">
+                        <h5 class="mb-3">{{ t.title }}</h5>
+
+                        <div class="d-inline-flex flex-wrap align-items-center">
+                        <span class="shadow me-2 p-1 pe-2 ps-2"
+                              style="border-radius: 8px; font-size: 12px; ">Category: {{ t.category }}</span>
+
+
+                            {% for tag in t.tags.all %}
+                                <span class="shadow p-2 bg-primary ms-2 me-1 mb-1 mt-1"
+                                      style="border-radius: 8px; font-size: 12px;"> {{ tag.name }}</span>
+                            {% endfor %}
+                        </div>
+
+                    </div>
+
+
                 </div>
-
-
-            </div>
+            </a>
         {% endfor %}
         <div class="d-flex flex-wrap align-items-center justify-content-center d-none">
             {% for tag in tags %}
