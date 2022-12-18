@@ -11,11 +11,11 @@ from .ai import create_tutorial
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404
 from django.db.models import Count
-
-
+from rest_framework.permissions import IsAuthenticated
 class CustomUserViewSet(viewsets.ModelViewSet):
     queryset = CustomUser.objects.all()
     serializer_class = CustomUserSerializer
+    permission_classes = [IsAuthenticated]
 
     def create(self, request, **kwargs):
         serializer = CustomUserSerializer(data=request.data)
@@ -51,16 +51,19 @@ class CustomUserViewSet(viewsets.ModelViewSet):
 class TutorialViewSet(viewsets.ModelViewSet):
     queryset = Tutorial.objects.all()
     serializer_class = TutorialSerializer
+    permission_classes = [IsAuthenticated]
 
 
 class CategoryViewSet(viewsets.ModelViewSet):
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
+    permission_classes = [IsAuthenticated]
 
 
 class TagViewSet(viewsets.ModelViewSet):
     queryset = Tag.objects.all()
     serializer_class = TagSerializer
+    permission_classes = [IsAuthenticated]
 
 
 def index(request):
