@@ -13,6 +13,30 @@
             integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
             crossorigin="anonymous"></script>
 
+    <script src="https://cdn.jsdelivr.net/npm/@algolia/recommend-js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@algolia/recommend"></script>
+    <script>
+        const searchClient = new instantsearch('YOUR_APP_ID', 'YOUR_API_KEY');
+        const index = searchClient.initIndex('YOUR_INDEX_NAME');
+
+        const searchForm = document.getElementById('instantSearch')
+        searchForm.addEventListener('change', event => {
+            event.preventDefault();
+            const query = searchInput.value;
+            index.search(query, (error, results) => {
+                console.log(error)
+                console.log(results)
+            });
+        });
+        searchForm.addEventListener('submit', event => {
+            event.preventDefault();
+            const query = searchInput.value;
+            index.search(query, (error, results) => {
+                // handle the search results and display them in the search results container
+            });
+        });
+    </script>
+
     <style>
         form {
             max-width: 600px;
@@ -54,47 +78,51 @@
         .hover-bg:hover {
             background: #2182de;
         }
-        a{width: 100%;}
+
+        a {
+            width: 100%;
+        }
 
     </style>
-<body class="d-flex align-items-center justify-content-center flex-column bg-dark p-2 pt-3">
+<body class="d-flex align-items-center justify-content-center flex-column bg-dark p-0">
 
 
 <div class="container">
     <div class="tag-cloud d-flex align-items-center justify-content-center  flex-column w-100 h-auto p-4"
          style="border-radius: 12px; background: dodgerblue;">
 
-        <input type="text" class="form-control form-control-color w-100 shadow-sm m-3" placeholder="Search">
+        <input id='instantSearch'type="text" class="form-control form-control-color w-100 shadow-sm m-3" placeholder="Search">
 
         {% for t in tuts %}
-            <a href="" class="text-white" style="text-decoration: none;">
-                <div class=" shadow-sm d-flex align-items-center hover-bg p-4 mb-3"
-                     style="color:ghostwhite; border-radius: 8px; border: 1px solid #0d7be4; cursor:pointer;">
+        <a href="{{t.get_absolute_url}}" class="text-white" style="text-decoration: none;">
+            <div class=" shadow-sm d-flex align-items-center hover-bg p-4 mb-3"
+                 style="color:ghostwhite; border-radius: 8px; border: 1px solid #0d7be4; cursor:pointer;">
 
-                    <img src="{{ t.img.url }}" style="width: 30px; margin-left: 10px; margin-right: 20px;" class="d-none    d-sm-none d-md-block">
-                    <div class="">
-                        <h5 class="mb-3">{{ t.title }}</h5>
+                <img src="{%  if t.img.url != None %} {{t.img.url }} {% endif %}"
+                     style="width: 30px; margin-left: 10px; margin-right: 20px;" class="d-none d-sm-none d-md-block">
+                <div class="">
+                    <h5 class="mb-3">{{ t.title }}</h5>
 
-                        <div class="d-inline-flex flex-wrap align-items-center">
+                    <div class="d-inline-flex flex-wrap align-items-center">
                         <span class="shadow  p-1 pe-2 ps-2 ms-2 me-2 mb-1 mt-1"
                               style="border-radius: 8px; font-size: 12px; ">Category: {{ t.category }}</span>
 
 
-                            {% for tag in t.tags.all %}
-                                <span class="shadow p-2 bg-primary ms-2 me-1 mb-1 mt-1"
-                                      style="border-radius: 8px; font-size: 12px;"> {{ tag.name }}</span>
-                            {% endfor %}
-                        </div>
-
+                        {% for tag in t.tags.all %}
+                        <span class="shadow p-2 bg-primary ms-2 me-1 mb-1 mt-1"
+                              style="border-radius: 8px; font-size: 12px;"> {{ tag.name }}</span>
+                        {% endfor %}
                     </div>
 
-
                 </div>
-            </a>
+
+
+            </div>
+        </a>
         {% endfor %}
         <div class="d-flex flex-wrap align-items-center justify-content-center d-none">
             {% for tag in tags %}
-                <span class="badge text-bg-primary m-2 p-2" style="cursor: pointer;">{{ tag.name }}</span>
+            <span class="badge text-bg-primary m-2 p-2" style="cursor: pointer;">{{ tag.name }}</span>
             {% endfor %}
         </div>
 
@@ -150,7 +178,7 @@
             <label for="tags">Category</label>
             <select class="form-select" id="category" required name="category">
                 {% for cat in cats %}
-                    <option value="{{ cat.id }}">{{ cat.name }}</option>
+                <option value="{{ cat.id }}">{{ cat.name }}</option>
                 {% endfor %}
             </select>
         </div>
@@ -158,7 +186,7 @@
             <label for="tags">Tags</label>
             <select multiple class="form-control" id="tags" required name="tags">
                 {% for tag in tags %}
-                    <option value="{{ tag.id }}">{{ tag.name }}</option>
+                <option value="{{ tag.id }}">{{ tag.name }}</option>
                 {% endfor %}
             </select>
         </div>
@@ -189,11 +217,11 @@
     });
 </script>
 <script>
-    const formTag = document.getElementById('category-form');
-    formTag.addEventListener('submit', function (event) {
+    const formCat = document.getElementById('category-form');
+    formCat.addEventListener('submit', function (event) {
         event.preventDefault(); // Prevent the default form submission behavior
         console.log(event)
-        formTag.submit();
+        formCat.submit();
         location.reload()
     });
 </script>

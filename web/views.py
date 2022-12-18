@@ -1,9 +1,51 @@
 from django.shortcuts import render, redirect
 from .models import *
+from django.contrib.auth.models import User as CustomUser
 from django.core.mail import send_mail
 from .forms import ContactForm
 from rest_framework import viewsets
 from .serializers import *
+from rest_framework.exceptions import status
+from rest_framework.response import Response
+from .ai import create_tutorial
+from django.http import HttpResponse
+from django.shortcuts import get_object_or_404
+from django.db.models import Count
+
+
+class CustomUserViewSet(viewsets.ModelViewSet):
+    queryset = CustomUser.objects.all()
+    serializer_class = CustomUserSerializer
+
+    def create(self, request, **kwargs):
+        serializer = CustomUserSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    def retrieve(self, request, pk=None, **kwargs):
+        user = self.get_object(pk)
+        serializer = CustomUserSerializer(user)
+        return Response(serializer.data)
+
+    def update(self, request, pk=None, **kwargs):
+        user = self.get_object(pk)
+        serializer = CustomUserSerializer(user, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    def delete(self, request, pk=None):
+        user = self.get_object(pk)
+        user.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
+
+    def list(self, request, **kwargs):
+        users = CustomUser.objects.all()
+        serializer = CustomUserSerializer(users, many=True)
+        return Response(serializer.data)
 
 
 class TutorialViewSet(viewsets.ModelViewSet):
@@ -53,14 +95,137 @@ def tutorials(request):
     tags = Tag.objects.all()
     cats = Category.objects.all()
     tuts = Tutorial.objects.all()
+    # Get all Tutorial objects with duplicate titles
+
     return render(request, 'tutorials.html', context={'tags': tags, 'cats': cats, 'tuts': tuts})
 
 
-def single_tutorial(request, pk=None):
-    tutorial = Tutorial.objects.get(id=pk)
-    return render(request, 'tutorials/single_tutorial.html', context={'tutorial': tutorial})
+def single_tutorial(request, slug=None, ):
+    obj = get_object_or_404(Tutorial, slug=slug)
+    absolute_url = obj.get_absolute_url()
+    print(absolute_url)
+    return render(request, 'tutorials/single_tutorial.html', context={'tutorial': obj})
 
 
-languages = ['Java', 'C', 'C++', 'Python', 'C#', 'JavaScript', 'PHP', 'Assembly', 'Ruby', 'Swift', 'Objective-C', 'Go',
-             'Perl', 'Rust', 'Kotlin', 'Scala', 'Dart', 'Julia', 'R', 'TypeScript', 'VBA', 'Groovy', 'FORTRAN', 'Lisp',
-             'Matlab', 'Ada', 'Haskell', 'Erlang', 'Elixir', 'F#']
+def create(request):
+    titles = [
+        "How to Use Basic HTTP Authentication in Django REST framework",
+        "How to Use Session Authentication in Django REST framework",
+        "How to Customize Authentication in Django REST framework",
+        "How to Implement Permissions in Django REST framework",
+        "How to Use IsAuthenticated Permission in Django REST framework",
+        "How to Use IsAdminUser Permission in Django REST framework",
+        "How to Use IsAuthenticatedOrReadOnly Permission in Django REST framework",
+        "How to Customize Permissions in Django REST framework",
+        "How to Implement Throttling in Django REST framework",
+        "How to Use Scoped Throttling in Django REST framework",
+        "How to Use AnonRateThrottle Throttling in Django REST framework",
+        "How to Use UserRateThrottle Throttling in Django REST framework",
+        "How to Use Custom Throttling in Django REST framework",
+        "How to Use Filters in Django REST framework",
+        "How to Use SearchFilter in Django REST framework",
+        "How to Use OrderingFilter in Django REST framework",
+        "How to Use DjangoFilterBackend in Django REST framework",
+        "How to Use Custom Filters in Django REST framework",
+        "How to Use Pagination in Django REST framework",
+        "How to Use LimitOffsetPagination in Django REST framework",
+        "How to Use PageNumberPagination in Django REST framework",
+        "How to Use CursorPagination in Django REST framework",
+        "How to Use Custom Pagination in Django REST framework",
+        "How to Use Serializer Relationships in Django REST framework",
+        "How to Use PrimaryKeyRelatedField in Django REST framework",
+        "How to Use StringRelatedField in Django REST framework",
+        "How to Use HyperlinkedRelatedField in Django REST framework",
+        "How to Use HyperlinkedIdentityField in Django REST framework",
+        "How to Use SerializerMethodField in Django REST framework",
+        "How to Use ReadOnlyField in Django REST framework",
+        "How to Use ModelSerializer in Django REST framework",
+        "How to Use HyperlinkedModelSerializer in Django REST framework",
+        "How to Use Nested Serializers in Django REST framework",
+        "How to Use ManyToMany Fields in Django REST framework",
+        "How to Use FileField in Django REST framework",
+        "How to Use ImageField in Django REST framework",
+        "How to Use Validation in Django REST framework",
+        "How to Use UniqueValidator in Django REST framework",
+        "How to Use EmailValidator in Django REST framework",
+        "How to Use URLValidator in Django REST framework",
+        "How to Use Custom Validators in Django REST framework",
+        "How to Use Custom Fields in Django REST framework",
+        "How to Deploy Django on Amazon Web Services (AWS)",
+        "How to Deploy Django on Google Cloud Platform (GCP)",
+        "How to Deploy Django on Microsoft Azure",
+        "How to Deploy Django on Heroku",
+        "How to Deploy Django on DigitalOcean",
+        "How to Deploy Django on Linode",
+        "How to Deploy Django on Vultr",
+        "How to Deploy Django on IBM Cloud",
+        "How to Deploy Django on Oracle Cloud",
+        "How to Deploy Django on Oracle Cloud Exadata",
+        "How to Deploy Django on Oracle Cloud Autonomous",
+        "How to Deploy Django on Oracle Cloud ATP",
+        "How to Deploy Django on Oracle Cloud ADW",
+        "How to Deploy Django on Rackspace Cloud",
+        "How to Deploy Django on CloudSigma",
+        "How to Deploy Django on CloudSigma Cloud",
+        "How to Deploy Django on Interoute Cloud",
+        "How to Deploy Django with React",
+        "How to Deploy Django with Angular",
+        "How to Deploy Django with Vue.js",
+        "How to Deploy Django with Svelte",
+        "How to Deploy Django with Next.js",
+        "How to Deploy Django with Gatsby",
+        "How to Deploy Django with Nuxt.js",
+        "How to Deploy Django with Ember.js",
+        "How to Deploy Django with Flutter",
+        "How to Deploy Django with Xamarin",
+        "How to Deploy Django with Ionic",
+        "How to Deploy Django with Cordova",
+        "How to Deploy Django with PhoneGap",
+        "How to Deploy Django with NativeScript",
+        "How to Deploy Django with Electron",
+        "How to Deploy Django with Jest",
+        "How to Deploy Django with Mocha",
+        "How to Deploy Django with Jest",
+        "How to Deploy Django with Chai",
+        "How to Deploy Django with Enzyme",
+        "How to Use Django with React",
+        "How to Use Django with Angular",
+        "How to Use Django with Vue.js",
+        "How to Use Django with Svelte",
+        "How to Use Django with Next.js",
+        "How to Use Django with Gatsby",
+        "How to Use Django with Nuxt.js",
+        "How to Use Django with Ember.js",
+        "How to Use Django with Flutter",
+        "How to Use Django with Xamarin",
+        "How to Use Django with Ionic",
+        "How to Use Django with Cordova",
+        "How to Use Django with PhoneGap",
+        "How to Use Django with NativeScript",
+        "How to Use Django with Electron",
+        "How to Use Django with Jest",
+        "How to Use Django with Mocha",
+        "How to Use Django with Jest",
+        "How to Use Django with Chai",
+        "How to Use Django with Enzyme"]
+    for x in titles:
+        try:
+            create_tutorial(x, 'Django')
+        except:
+            print('Failed to create')
+    return HttpResponse(request, 'Done')
+
+
+def delete_duplicates():
+    tutorials = Tutorial.objects.values('title').annotate(Count('title')).order_by().filter(title__count__gt=1)
+
+    # Loop through the Tutorial objects and delete the ones that are duplicates
+    for tutorial in tutorials:
+        title = tutorial['title']
+        tutorials_with_title = Tutorial.objects.filter(title=title)
+        # Keep the first Tutorial object and delete the others
+        first_tutorial = tutorials_with_title.first()
+        tutorials_to_delete = tutorials_with_title.exclude(pk=first_tutorial.pk)
+        tutorials_to_delete.delete()
+
+    return None

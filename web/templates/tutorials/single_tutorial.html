@@ -1,28 +1,69 @@
 <!DOCTYPE html>
+{% load static %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>{{tutorial.title}}</title>
+    <meta content="{{tutorial.meta_description}}" name="description">
 
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.2.0/css/bootstrap.min.css"
-          integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    {% include 'head.html' %}
+    <!-- Vendor CSS Files -->
+    <link href="{% static 'assets/vendor/aos/aos.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/vendor/bootstrap-icons/bootstrap-icons.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/vendor/boxicons/css/boxicons.min.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/vendor/glightbox/css/glightbox.min.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/vendor/swiper/swiper-bundle.min.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/css/style.css' %}" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@700&display=swap" rel="stylesheet">
 
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.2.0/js/bootstrap.min.js"
-            integrity="sha384-b0UIIxEDKe119aRaLjhsjV8MBZrVR5Gw2rJ5I1hK8ZP3MTf3Dqz6nEU8pxJkzR5G"
-            crossorigin="anonymous"></script>
+
+    <meta property="og:site_name" content="https://www.anovin.mk"/>
+    <meta property="og:title" content="ANOVIN"/>
+    <meta property="og:url" content="https://www.anovin.mk"/>
+    <meta property="og:description"
+          content="{{tutorial.meta_description}}"/>
+    <meta property="og:image" content="{% static 'assets/img/2.png' %}"/>
+    <meta property="og:type" content="website"/>
 </head>
 
 <style>
     body {
         font-family: 'Montserrat', sans-serif;
+
     }
 
-    h1, h2, h3 {
+    pre {
+        background: #e8e8e8;
+        color: black;
+        padding: 3px;
+        border-radius: 3px;
+        margin-bottom: 30px;
+        display: block;
+    }
+
+    h1, h2, h3, h4 {
         color: #333;
+        margin-top: 10px;
+        margin-bottom: 8px;
+        font-weight: 800;
+        font-family: "Josefin Sans", sans-serif;
+    }
+
+    h2 {
+        font-size: 26px;
+        margin-top: 25px;
+    }
+
+    h1 {
+        font-size: 34px;
     }
 
     p {
+        margin-top: 10px;
+        margin-bottom: 10px;
         color: #666;
+        font-weight: 200;
     }
 
     a {
@@ -33,23 +74,59 @@
         background-color: #f5f5f5;
         padding: 20px;
     }
+
+    code {
+        max-width: 100%;
+    }
 </style>
 <body>
-<div class="container">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-8">
-                <h1>{{ tutorial.title }}</h1>
-                {{ tutorial.content|safe }}
+{% include 'menu.html' %}
+<div class="container ">
+    <div class="d-flex justify-content-center p-0 mt-3 mb-3">
+        <div class="col-12 col-md-9">
+            <div class="p-1 pe-lg-4">
+                <div style="height: 1px; background: #106ee9; width: 100%; margin-top:4px; margin-bottom: 20px;" class="d-none"></div>
+                {{tutorial.content|safe}}
             </div>
-            <div class="col-md-4">
-                <div class="sidebar">
-                    <h2>About Me</h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam lobortis tempor ipsum, non faucibus
-                        risus facilisis at. Duis rutrum mi quis mi iaculis, sit amet venenatis metus euismod. Nam congue
-                        velit vel orci placerat, et porttitor massa finibus. Nunc vel sapien eget nunc pretium
-                        tincidunt. Praesent vitae elit tellus.</p>
-                    <h3>Recent Posts</h3>
+        </div>
+        <div class="col-3 p-2 d-flex justify-content-end d-none d-md-block">
+
+            <button class="btn btn-sm btn-light d-flex p-3 shadow-sm mb-3 w-100 d-flex flex-column"
+                    style="background: #106ee9; color: black; font-weight: 100;">
+                <h3 class="w-100 pt-1 pb-1 text-light" style="font-size:15px;border-radius: 4px; font-weight: 800;">
+                    {{ tutorial.category }}
+                </h3>
+            </button>
+
+            <div class="d-flex flex-column p-3 shadow-sm" style="border-radius: 10px; background: #f1f6fe;">
+                <div class="d-flex flex-wrap justify-content-end align-items-center">{% for tag in tutorial.tags.all %}
+                    <button class="btn-sm btn-primary m-1 text-bg-primary" style="font-size:13px;"><h3
+                            style="color: whitesmoke;">{{tag}}</h3></button>
+                    {%endfor%}
                 </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+{% include 'tutorials/footer.html' %}
 </body>
+
+<script>
+
+
+    document.addEventListener('DOMContentLoaded', (event) => {
+        event.preventDefault();
+        let copyButton = document.createElement('button')
+        copyButton.className = 'pt-2 pb-2 text-light bg-dark'
+        copyButton.innerText = 'Copy code'
+
+
+        const codeTags = document.querySelectorAll('code')
+
+        codeTags.forEach(element => console.log(element))
+
+    })
+</script>
 </html>

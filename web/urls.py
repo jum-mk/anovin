@@ -13,10 +13,16 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-from django.urls import path
 from . import views
 from django.urls import path
 from .views import TutorialViewSet, TagViewSet, CategoryViewSet
+from django.contrib.sitemaps.views import sitemap
+from .sitemap import TutorialSitemap
+
+sitemaps_dict = {
+    'tutorials': TutorialSitemap,
+}
+
 
 tutorial_list = TutorialViewSet.as_view({
     'get': 'list',
@@ -53,8 +59,8 @@ cat_detail = CategoryViewSet.as_view({
 
 urlpatterns = [
     path('', views.index, name='index'),
-    path('tutorials', views.tutorials, name='tutorials'),
-    path('single_tutorial/<int:pk>/', views.single_tutorial, name='single_tutorial'),
+    path('tutorials/', views.tutorials, name='tutorials'),
+    path('tutorial/<str:slug>/', views.single_tutorial, name='single_tutorial'),
 
     path('tutorials_list/', tutorial_list, name='tutorials_list'),
     path('tutorials/<int:pk>/', tutorial_detail, name='tutorial-detail'),
@@ -65,4 +71,9 @@ urlpatterns = [
     path('cats/', cat_list, name='cat_list'),
     path('cats/<int:pk>/', cat_detail, name='cat-detail'),
 
+    path('ai/create/', views.create, name='create'),
+
+    # the sitemap
+    path('sitemap.xml', sitemap, {'sitemaps': sitemaps_dict},
+         name='django.contrib.sitemaps.views.sitemap'),
 ]

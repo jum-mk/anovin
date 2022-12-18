@@ -1,4 +1,6 @@
+from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin
 from django.db import models
+from django.urls import reverse
 
 
 class Link(models.Model):
@@ -76,6 +78,7 @@ class Category(models.Model):
 
 
 class Tag(models.Model):
+    objects = None
     name = models.CharField(max_length=255)
 
     def __str__(self):
@@ -84,11 +87,19 @@ class Tag(models.Model):
 
 class Tutorial(models.Model):
     title = models.CharField(max_length=255)
+    slug = models.CharField(max_length=225, null=True, blank=True)
     meta_description = models.TextField()
+    introduction = models.TextField()
+    steps = models.TextField()
     content = models.TextField()
-    tags = models.ManyToManyField(Tag)
+    tags = models.ManyToManyField(Tag, blank=True)
     img = models.ImageField(upload_to='tutorials/images/', null=True, blank=True)
     category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True, blank=True)
 
     def __str__(self):
         return self.title
+
+    def get_absolute_url(self):
+        return reverse('single_tutorial', kwargs={
+            'slug': self.slug
+        })
