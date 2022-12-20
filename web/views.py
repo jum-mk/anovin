@@ -149,13 +149,7 @@ def single_tutorial(request, slug=None, ):
 
 def create(request):
     titles = [
-        "How to Use IsAdminUser Permission in Django REST framework",
-        "How to Use IsAuthenticatedOrReadOnly Permission in Django REST framework",
-        "How to Customize Permissions in Django REST framework",
-        "How to Implement Throttling in Django REST framework",
-        "How to Use Scoped Throttling in Django REST framework",
-        "How to Use AnonRateThrottle Throttling in Django REST framework",
-        "How to Use UserRateThrottle Throttling in Django REST framework",
+
         "How to Use Custom Throttling in Django REST framework",
         "How to Use Filters in Django REST framework",
         "How to Use SearchFilter in Django REST framework",
