@@ -72,17 +72,27 @@ class Contact(models.Model):
 
 class Category(models.Model):
     name = models.CharField(max_length=120)
+    slug = models.CharField(max_length=120)
 
     def __str__(self):
         return self.name
 
+    def get_absolute_url(self):
+        return reverse('single_category', kwargs={
+            'name': self.name
+        })
+
 
 class Tag(models.Model):
-    objects = None
     name = models.CharField(max_length=255)
 
     def __str__(self):
         return self.name
+
+    def get_absolute_url(self):
+        return reverse('single_tag', kwargs={
+            'name': self.name
+        })
 
 
 class Tutorial(models.Model):
@@ -103,3 +113,10 @@ class Tutorial(models.Model):
         return reverse('single_tutorial', kwargs={
             'slug': self.slug
         })
+
+
+class Subscriber(models.Model):
+    email = models.EmailField(null=False, blank=False)
+
+    def __str__(self):
+        return str(self.email)

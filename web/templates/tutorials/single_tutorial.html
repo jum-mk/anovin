@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 {% load static %}
-<html lang="en">
+<html lang="en" style="filter:invert(100); ">
 <head>
     <meta charset="UTF-8">
     <title>{{tutorial.title}}</title>
@@ -21,8 +21,7 @@
     <meta property="og:site_name" content="https://www.anovin.mk"/>
     <meta property="og:title" content="ANOVIN"/>
     <meta property="og:url" content="https://www.anovin.mk"/>
-    <meta property="og:description"
-          content="{{tutorial.meta_description}}"/>
+    <meta property="og:description" content="{{tutorial.meta_description}}"/>
     <meta property="og:image" content="{% static 'assets/img/2.png' %}"/>
     <meta property="og:type" content="website"/>
 </head>
@@ -85,23 +84,29 @@
     <div class="d-flex justify-content-center p-0 mt-3 mb-3">
         <div class="col-12 col-md-9">
             <div class="p-1 pe-lg-4">
-                <div style="height: 1px; background: #106ee9; width: 100%; margin-top:4px; margin-bottom: 20px;" class="d-none"></div>
+                <div style="height: 1px; background: #106ee9; width: 100%; margin-top:4px; margin-bottom: 20px;"
+                     class="d-none"></div>
                 {{tutorial.content|safe}}
             </div>
         </div>
         <div class="col-3 p-2 d-flex justify-content-end d-none d-md-block">
 
-            <button class="btn btn-sm btn-light d-flex p-3 shadow-sm mb-3 w-100 d-flex flex-column"
-                    style="background: #106ee9; color: black; font-weight: 100;">
-                <h3 class="w-100 pt-1 pb-1 text-light" style="font-size:15px;border-radius: 4px; font-weight: 800;">
-                    {{ tutorial.category }}
-                </h3>
-            </button>
+            <a href="{{tutorial.category.get_absolute_url}}">
+                <button class="btn btn-sm btn-light d-flex p-3 shadow-sm mb-3 w-100 d-flex flex-column"
+                        style="background: #106ee9; color: black; font-weight: 100;">
+                    <h3 class="w-100 pt-1 pb-1 text-light" style="font-size:15px;border-radius: 4px; font-weight: 800;">
+                        {{ tutorial.category }}
+                    </h3>
+                </button>
+            </a>
 
             <div class="d-flex flex-column p-3 shadow-sm" style="border-radius: 10px; background: #f1f6fe;">
                 <div class="d-flex flex-wrap justify-content-end align-items-center">{% for tag in tutorial.tags.all %}
-                    <button class="btn-sm btn-primary m-1 text-bg-primary" style="font-size:13px;"><h3
-                            style="color: whitesmoke;">{{tag}}</h3></button>
+                    <a href="{{tag.get_absolute_url}}">
+                        <button class="btn-sm btn-primary m-1 text-bg-primary" style="font-size:13px;">
+                            <h3 style="color: whitesmoke;">{{tag}}</h3>
+                        </button>
+                    </a>
                     {%endfor%}
                 </div>
             </div>
@@ -111,13 +116,16 @@
 </div>
 
 {% include 'tutorials/footer.html' %}
-</body>
-
 <script>
 
 
     document.addEventListener('DOMContentLoaded', (event) => {
         event.preventDefault();
+
+        let img = document.querySelector('img')
+        img.className = 'd-none'
+
+
         let copyButton = document.createElement('button')
         copyButton.className = 'pt-2 pb-2 text-light bg-dark'
         copyButton.innerText = 'Copy code'
@@ -129,4 +137,21 @@
 
     })
 </script>
+<script>
+
+    function setTheme() {
+        if (localStorage.getItem('anovin_theme') === 'dark') {
+            document.querySelector('html').style = 'filter:invert(100);'
+            mode.checked = true
+        } else {
+            document.querySelector('html').style = 'filter:invert(0);'
+            mode.checked = false
+
+        }
+    }
+
+    window.addEventListener('DOMContentLoaded', setTheme)
+
+</script>
+</body>
 </html>

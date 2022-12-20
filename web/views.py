@@ -12,6 +12,10 @@ from django.http import HttpResponse
 from django.shortcuts import get_object_or_404
 from django.db.models import Count
 from rest_framework.permissions import IsAuthenticated
+from django.http import JsonResponse
+import json
+
+
 class CustomUserViewSet(viewsets.ModelViewSet):
     queryset = CustomUser.objects.all()
     serializer_class = CustomUserSerializer
@@ -46,6 +50,16 @@ class CustomUserViewSet(viewsets.ModelViewSet):
         users = CustomUser.objects.all()
         serializer = CustomUserSerializer(users, many=True)
         return Response(serializer.data)
+
+
+def subscribe(request):
+    if request.method == "POST":
+        data = json.loads(request.body)
+        print(data)
+        email = data['email']
+        s = Subscriber.objects.create(email=email)
+        s.save()
+        return JsonResponse({"subscribed": 'true'})
 
 
 class TutorialViewSet(viewsets.ModelViewSet):
@@ -95,12 +109,35 @@ def index(request):
 
 
 def tutorials(request):
-    tags = Tag.objects.all()
-    cats = Category.objects.all()
-    tuts = Tutorial.objects.all()
-    # Get all Tutorial objects with duplicate titles
+    if request.method == 'GET' and 'instant_search' in request.GET:
+        tuts = Tutorial.objects.filter(title__contains=request.GET['instant_search'])
+        return render(request, 'tutorials.html', context={'tuts': tuts})
 
-    return render(request, 'tutorials.html', context={'tags': tags, 'cats': cats, 'tuts': tuts})
+    # Get all Tutorial objects with duplicate titles
+    else:
+        tuts = Tutorial.objects.all()
+
+        return render(request, 'tutorials.html', context={'tuts': tuts})
+
+
+def single_tag(request, name=None):
+    if request.method == 'GET' and 'instant_search' in request.GET:
+        tuts = Tutorial.objects.filter(title__contains=request.GET['instant_search'])
+        return render(request, 'tutorials.html', context={'tuts': tuts})
+    else:
+        tuts = Tutorial.objects.filter(tags__name__iexact=name)
+
+        return render(request, 'tutorials/single_tag.html', context={'tuts': tuts, 'tag': name})
+
+
+def single_category(request, name=None):
+    if request.method == 'GET' and 'instant_search' in request.GET:
+        tuts = Tutorial.objects.filter(title__contains=request.GET['instant_search'])
+        return render(request, 'tutorials.html', context={'tuts': tuts})
+    else:
+        tuts = Tutorial.objects.filter(category__name=name)
+
+        return render(request, 'tutorials/single_category.html', context={'tuts': tuts, 'cat': name})
 
 
 def single_tutorial(request, slug=None, ):
@@ -112,11 +149,6 @@ def single_tutorial(request, slug=None, ):
 
 def create(request):
     titles = [
-        "How to Use Basic HTTP Authentication in Django REST framework",
-        "How to Use Session Authentication in Django REST framework",
-        "How to Customize Authentication in Django REST framework",
-        "How to Implement Permissions in Django REST framework",
-        "How to Use IsAuthenticated Permission in Django REST framework",
         "How to Use IsAdminUser Permission in Django REST framework",
         "How to Use IsAuthenticatedOrReadOnly Permission in Django REST framework",
         "How to Customize Permissions in Django REST framework",

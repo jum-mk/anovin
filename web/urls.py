@@ -20,7 +20,7 @@ from django.contrib.sitemaps.views import sitemap
 from .sitemap import TutorialSitemap
 
 sitemaps_dict = {
-    'tutorials': TutorialSitemap,
+    'tutorial': TutorialSitemap,
 }
 
 
@@ -62,6 +62,10 @@ urlpatterns = [
     path('tutorials/', views.tutorials, name='tutorials'),
     path('tutorial/<str:slug>/', views.single_tutorial, name='single_tutorial'),
 
+    path('tag/<str:name>/', views.single_tag, name='single_tag'),
+
+    path('category/<str:name>/', views.single_category, name='single_category'),
+
     path('tutorials_list/', tutorial_list, name='tutorials_list'),
     path('tutorials/<int:pk>/', tutorial_detail, name='tutorial-detail'),
 
@@ -72,6 +76,8 @@ urlpatterns = [
     path('cats/<int:pk>/', cat_detail, name='cat-detail'),
 
     path('ai/create/', views.create, name='create'),
+
+    path('subscribe/', views.subscribe, name='subscribe'),
 
     # the sitemap
     path('sitemap.xml', sitemap, {'sitemaps': sitemaps_dict},

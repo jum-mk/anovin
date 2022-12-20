@@ -67,7 +67,7 @@
         <div class="container" data-aos="fade-up">
             <div class="row">
                 <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0">
-                    <div class="icon-box" data-aos="fade-up" data-aos-delay="100">
+                    <div class="icon-box" data-aos="fade-up" data-aos-delay="100" style="cursor:pointer;">
                         <div class="icon"><i class="bi bi-bricks"></i></div>
                         <h4 class="title"><a href="">Web development</a></h4>
                         <p class="description">With the exponential web development trend the use of progressive
@@ -76,7 +76,7 @@
                 </div>
 
                 <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0">
-                    <div class="icon-box" data-aos="fade-up" data-aos-delay="200">
+                    <div class="icon-box" data-aos="fade-up" data-aos-delay="200" style="cursor:pointer;">
                         <div class="icon"><i class="bi bi-ladder"></i></div>
                         <h4 class="title"><a href="">Hardware maintenance</a></h4>
                         <p class="description">It is essential that our team uses best practices to help your business
@@ -84,7 +84,7 @@
                     </div>
                 </div>
 
-                <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0">
+                <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0" style="cursor:pointer;">
                     <div class="icon-box" data-aos="fade-up" data-aos-delay="300">
                         <div class="icon"><i class="bi bi-columns-gap"></i></div>
                         <h4 class="title"><a href="">PWA</a></h4>
@@ -94,7 +94,7 @@
                     </div>
                 </div>
 
-                <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0">
+                <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0" style="cursor:pointer;">
                     <div class="icon-box" data-aos="fade-up" data-aos-delay="400">
                         <div class="icon"><i class="bi bi-box-seam"></i></div>
                         <h4 class="title"><a href="">Custom software</a></h4>
@@ -259,16 +259,16 @@
             <div class="row align-items-center portfolio-container " data-aos="fade-up" data-aos-delay="200">
                 {% for i in items %}
 
-                    <div class="col-lg-3 col-md-6 portfolio-item filter-app align-items-center"
-                         style="text-align:center;">
+                <div class="col-lg-3 col-md-6 portfolio-item filter-app align-items-center"
+                     style="text-align:center;">
 
-                        <img src="{{ i.image.url }}" class="img-fluid center" alt="" width="230" height="230">
-                        <div class="portfolio-info">
-                            <h4>{{ i.name }}</h4>
-                            <p>{{ i.name_2 }}</p>
-                            <a href="{{ i.link }}" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
-                        </div>
+                    <img src="{{ i.image.url }}" class="img-fluid center" alt="" width="230" height="230">
+                    <div class="portfolio-info">
+                        <h4>{{ i.name }}</h4>
+                        <p>{{ i.name_2 }}</p>
+                        <a href="{{ i.link }}" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
                     </div>
+                </div>
                 {% endfor %}
 
             </div>
@@ -403,6 +403,8 @@
                                 class="bx bxl-github"></i></a>
                         <a href="https://www.linkedin.com/in/aleksej-anovski-50aaab21a/" class="linkedin"><i
                                 class="bx bxl-linkedin"></i></a>
+                        <a href="https://twitter.com/anovin_/" class="linkedin"><i
+                                class="bx bxl-twitter"></i></a>
                     </div>
                 </div>
 
@@ -453,6 +455,24 @@
     window.addEventListener("DOMContentLoaded", function () {
         createTooltip();
     });
+</script>
+
+
+<script>
+
+    function setTheme() {
+        if (localStorage.getItem('anovin_theme') === 'dark') {
+            document.querySelector('html').style = 'filter:invert(100);'
+            mode.checked = true
+        } else {
+            document.querySelector('html').style = 'filter:invert(0);'
+            mode.checked = false
+
+        }
+    }
+
+    window.addEventListener('DOMContentLoaded', setTheme)
+
 </script>
 </body>
 

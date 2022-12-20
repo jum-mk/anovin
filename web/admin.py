@@ -6,5 +6,4 @@ admin.site.register(Tag)
 admin.site.register(Tutorial)
 admin.site.register(Category)
 
-admin.site.register(WorkExperience)
-admin.site.register(Item)
+admin.site.register(Subscriber)

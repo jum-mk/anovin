@@ -3,11 +3,57 @@
 <footer id="footer">
 
     <div class="footer-newsletter d-flex flex-column align-items-center justify-content-center">
-        <h4>Subscribe to our newsletter</h4>
+        <h5 class="mb-3">Subscribe for our newsletter</h5>
         <div class="newsletter d-flex align-items-center justify-content-center">
-            <input type="email" class="form-control">
-            <button class="p-1 btn-primary" style="height: 38px; border-radius: 3px;">Join</button>
+            {% csrf_token %}
+            <input type="email" class="form-control" placeholder="e-mail address" id="subscribe-input">
+            <button class="p-1 btn-primary ps-3 pe-3" style="height: 37px; border-radius: 3px; margin-left:-5px;"
+                    id="join">Join
+            </button>
         </div>
+        <script>
+
+            const button = document.getElementById('join')
+
+
+            button.addEventListener('click', (event) => {
+                function validateEmail(email) {
+                    const emailRegex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+                    return emailRegex.test(email);
+                }
+
+                let subscribeInput = document.getElementById('subscribe-input').value;
+                const csrfToken = document.querySelector('input[name="csrfmiddlewaretoken"]').value;
+
+                const isValid = validateEmail(subscribeInput);
+                const data = {email: subscribeInput, csrfmiddlewaretoken: csrfToken};
+                event.preventDefault();
+                console.log("clicked")
+                if (isValid) {
+                    console.log("email is valid")
+                    fetch('/subscribe/', {
+                        method: 'POST', headers: {
+                            'Content-Type': 'application/json',
+                            'X-CSRFToken': csrfToken,
+                        },
+                        body: JSON.stringify(data),
+                    }).then((response) => response.json())
+                        .then((data) => {
+                            // Handle the response from the server
+                            console.log(data)
+                            document.getElementById('subscribe-input').setAttribute('disabled', '')
+                            button.innerText = 'Done'
+                            button.setAttribute('disabled', '')
+                        })
+                        .catch((error) => {
+                            console.error('Error:', error);
+                        });
+
+                }
+            })
+
+
+        </script>
     </div>
 
     <div class="footer-top">

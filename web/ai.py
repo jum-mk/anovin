@@ -3,10 +3,7 @@ import json
 from ast import literal_eval
 from . import models
 
-openai.api_key = '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'
-
-meta_description = 'response text based on your SEO knowledge for articles, ' \
-                   'consider the title "Kali Linux for Wireless Pentesting" value when writing.'
+openai.api_key = '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'
 
 
 def get_ai_text(prompt, max_tokens):
@@ -71,19 +68,8 @@ def create_tutorial(title, category):
 
     content += get_ai_text(content_query, 3800)
 
-
     category_input = category
 
-    obj = {
-        'title': title,
-        'meta_description': meta_description,
-        'introduction': meta_description,
-        'steps': steps,
-        'python_step_list': python_step_list,
-        'python_tag_list': python_tag_list,
-        'content': content,
-        'category': category
-    }
     print('AI FINISHED')
 
     tut = models.Tutorial()
@@ -112,5 +98,6 @@ def create_tutorial(title, category):
         category.save()
         tut.category = category
         tut.save()
+    print('TUTORIAL SAVED')
 
-    return obj
+    return tut
