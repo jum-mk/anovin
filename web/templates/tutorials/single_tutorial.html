@@ -7,20 +7,10 @@
     <meta content="{{tutorial.meta_description}}" name="description">
 
     {% include 'head.html' %}
-    <!-- Vendor CSS Files -->
-    <link href="{% static 'assets/vendor/aos/aos.css' %}" rel="stylesheet">
-    <link href="{% static 'assets/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
-    <link href="{% static 'assets/vendor/bootstrap-icons/bootstrap-icons.css' %}" rel="stylesheet">
-    <link href="{% static 'assets/vendor/boxicons/css/boxicons.min.css' %}" rel="stylesheet">
-    <link href="{% static 'assets/vendor/glightbox/css/glightbox.min.css' %}" rel="stylesheet">
-    <link href="{% static 'assets/vendor/swiper/swiper-bundle.min.css' %}" rel="stylesheet">
-    <link href="{% static 'assets/css/style.css' %}" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@700&display=swap" rel="stylesheet">
-
 
     <meta property="og:site_name" content="https://www.anovin.mk"/>
-    <meta property="og:title" content="ANOVIN"/>
-    <meta property="og:url" content="https://www.anovin.mk"/>
+    <meta property="og:title" content="{{tutorial.title}}"/>
+    <meta property="og:url" content="{{tutorial.get_absolute_url}}"/>
     <meta property="og:description" content="{{tutorial.meta_description}}"/>
     <meta property="og:image" content="{% static 'assets/img/2.png' %}"/>
     <meta property="og:type" content="website"/>
@@ -118,6 +108,8 @@
 </div>
 
 {% include 'tutorials/footer.html' %}
+
+{% include 'main_scripts.html' %}
 <script>
 
 
@@ -139,21 +131,6 @@
 
     })
 </script>
-<script>
 
-    function setTheme() {
-        if (localStorage.getItem('anovin_theme') === 'dark') {
-            document.querySelector('html').style = 'filter:invert(100);'
-            mode.checked = true
-        } else {
-            document.querySelector('html').style = 'filter:invert(0);'
-            mode.checked = false
-
-        }
-    }
-
-    window.addEventListener('DOMContentLoaded', setTheme)
-
-</script>
 </body>
 </html>

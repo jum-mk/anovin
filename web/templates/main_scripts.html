@@ -1,0 +1,31 @@
+{% load static %}
+
+<!-- Vendor JS Files -->
+<script src="{% static 'assets/vendor/aos/aos.js' %}"></script>
+<script src="{% static 'assets/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+<script src="{% static 'assets/vendor/glightbox/js/glightbox.min.js' %}"></script>
+<script src="{% static 'assets/vendor/isotope-layout/isotope.pkgd.min.js' %}"></script>
+<script src="{% static 'assets/vendor/purecounter/purecounter.js' %}"></script>
+<script src="{% static 'assets/vendor/swiper/swiper-bundle.min.js' %}"></script>
+<script src="{% static 'assets/vendor/waypoints/noframework.waypoints.js' %}"></script>
+
+<!-- Template Main JS File -->
+<script src="{% static 'assets/js/main.js' %}"></script>
+
+
+<script>
+
+    function setTheme() {
+        if (localStorage.getItem('anovin_theme') === 'dark') {
+            document.querySelector('html').style = 'filter:invert(100);'
+            mode.checked = true
+        } else {
+            document.querySelector('html').style = 'filter:invert(0);'
+            mode.checked = false
+
+        }
+    }
+
+    window.addEventListener('DOMContentLoaded', setTheme)
+
+</script>

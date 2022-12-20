@@ -115,7 +115,7 @@ def tutorials(request):
 
     # Get all Tutorial objects with duplicate titles
     else:
-        tuts = Tutorial.objects.all()
+        tuts = Tutorial.objects.all()[::-1]
 
         return render(request, 'tutorials.html', context={'tuts': tuts})
 
@@ -149,37 +149,6 @@ def single_tutorial(request, slug=None, ):
 
 def create(request):
     titles = [
-
-        "How to Use Custom Throttling in Django REST framework",
-        "How to Use Filters in Django REST framework",
-        "How to Use SearchFilter in Django REST framework",
-        "How to Use OrderingFilter in Django REST framework",
-        "How to Use DjangoFilterBackend in Django REST framework",
-        "How to Use Custom Filters in Django REST framework",
-        "How to Use Pagination in Django REST framework",
-        "How to Use LimitOffsetPagination in Django REST framework",
-        "How to Use PageNumberPagination in Django REST framework",
-        "How to Use CursorPagination in Django REST framework",
-        "How to Use Custom Pagination in Django REST framework",
-        "How to Use Serializer Relationships in Django REST framework",
-        "How to Use PrimaryKeyRelatedField in Django REST framework",
-        "How to Use StringRelatedField in Django REST framework",
-        "How to Use HyperlinkedRelatedField in Django REST framework",
-        "How to Use HyperlinkedIdentityField in Django REST framework",
-        "How to Use SerializerMethodField in Django REST framework",
-        "How to Use ReadOnlyField in Django REST framework",
-        "How to Use ModelSerializer in Django REST framework",
-        "How to Use HyperlinkedModelSerializer in Django REST framework",
-        "How to Use Nested Serializers in Django REST framework",
-        "How to Use ManyToMany Fields in Django REST framework",
-        "How to Use FileField in Django REST framework",
-        "How to Use ImageField in Django REST framework",
-        "How to Use Validation in Django REST framework",
-        "How to Use UniqueValidator in Django REST framework",
-        "How to Use EmailValidator in Django REST framework",
-        "How to Use URLValidator in Django REST framework",
-        "How to Use Custom Validators in Django REST framework",
-        "How to Use Custom Fields in Django REST framework",
         "How to Deploy Django on Amazon Web Services (AWS)",
         "How to Deploy Django on Google Cloud Platform (GCP)",
         "How to Deploy Django on Microsoft Azure",
