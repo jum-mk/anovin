@@ -116,10 +116,6 @@ def tutorials(request):
     # Get all Tutorial objects with duplicate titles
     else:
         tuts = Tutorial.objects.all()[::-1]
-        cats = Category.objects.all()
-        for x in cats:
-            x.slug = str(x.slug).replace('%0A%0', '')
-            x.save()
         return render(request, 'tutorials.html', context={'tuts': tuts})
 
 
@@ -145,7 +141,7 @@ def single_category(request, slug=None):
 
 def single_tutorial(request, slug=None):
     obj = get_object_or_404(Tutorial, slug=slug)
-    related_articles = Tutorial.objects.filter(category=obj.category)
+    related_articles = Tutorial.objects.filter(category=obj.category)[:10]
     return render(request, 'tutorials/single_tutorial.html',
                   context={'tutorial': obj, 'related_tutorials': related_articles})
 
