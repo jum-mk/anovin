@@ -3,24 +3,29 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <title>Tutorials | {{cat.name}} | Anovin</title>
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta charset="UTF-8">
-    <meta content="{{tutorial.meta_description}}" name="description">
-    <title>Tutorials | Python, Javascript, PWA</title>
+    <meta content="Welcome to ANOVIN, your one-stop destination for technology and programming tutorials. Our expert AI instructor and
+          comprehensive tutorials will help you learn the latest technologies and programming languages. Whether you are
+          a beginner or an experienced developer, ANOVIN has something for everyone. Start learning today and take your
+    skills to the next level!" name="description">
 
-    {% include 'head.html' %}
-
-
-    <meta property="og:site_name" content="https://www.anovin.mk"/>
-    <meta property="og:title" content="ANOVIN"/>
-    <meta property="og:url" content="https://www.anovin.mk"/>
+    <meta property="og:site_name" content="https://anovin.mk"/>
+    <meta property="og:title" content="{{cat.name}}"/>
+    <meta property="og:url" content="https://anovin.mk{{cat.get_absolute_url}}"/>
     <meta property="og:description"
-          content="{{tutorial.meta_description}}"/>
-    <meta property="og:image" content="{% static 'assets/img/2.png' %}"/>
+          content="Welcome to ANOVIN, your one-stop destination for technology and programming tutorials. Our expert AI instructor and
+          comprehensive tutorials will help you learn the latest technologies and programming languages. Whether you are
+          a beginner or an experienced developer, ANOVIN has something for everyone. Start learning today and take your
+    skills to the next level!"/>
+    <meta property="og:image" content="{% static 'img/anovin.png' %}"/>
     <meta property="og:type" content="website"/>
 
     {% include 'tutorials/g_tag.html' %}
+    {% include 'head.html' %}
+
     <style>
         form {
             max-width: 600px;

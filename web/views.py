@@ -113,83 +113,45 @@ def tutorials(request):
     if request.method == 'GET' and 'instant_search' in request.GET:
         tuts = Tutorial.objects.filter(title__contains=request.GET['instant_search'])
         return render(request, 'tutorials.html', context={'tuts': tuts})
-
     # Get all Tutorial objects with duplicate titles
     else:
         tuts = Tutorial.objects.all()[::-1]
-
+        cats = Category.objects.all()
+        for x in cats:
+            x.slug = str(x.slug).replace('%0A%0', '')
+            x.save()
         return render(request, 'tutorials.html', context={'tuts': tuts})
 
 
-def single_tag(request, name=None):
+def single_tag(request, slug=None):
     if request.method == 'GET' and 'instant_search' in request.GET:
         tuts = Tutorial.objects.filter(title__contains=request.GET['instant_search'])
         return render(request, 'tutorials.html', context={'tuts': tuts})
     else:
-        tuts = Tutorial.objects.filter(tags__name__iexact=name)
+        tuts = Tutorial.objects.filter(tags__slug__iexact=slug)
+        tag = Tag.objects.filter(slug=slug)[0]
+        return render(request, 'tutorials/single_tag.html', context={'tuts': tuts, 'tag': tag, 'slug': slug})
 
-        return render(request, 'tutorials/single_tag.html', context={'tuts': tuts, 'tag': name})
 
-
-def single_category(request, name=None):
+def single_category(request, slug=None):
     if request.method == 'GET' and 'instant_search' in request.GET:
         tuts = Tutorial.objects.filter(title__contains=request.GET['instant_search'])
         return render(request, 'tutorials.html', context={'tuts': tuts})
     else:
-        tuts = Tutorial.objects.filter(category__name=name)
+        tuts = Tutorial.objects.filter(category__slug=slug)
+        cat = Category.objects.filter(slug=slug)[0]
+        return render(request, 'tutorials/single_category.html', context={'tuts': tuts, 'slug': slug, 'cat': cat})
 
-        return render(request, 'tutorials/single_category.html', context={'tuts': tuts, 'cat': name})
 
-
-def single_tutorial(request, slug=None, ):
+def single_tutorial(request, slug=None):
     obj = get_object_or_404(Tutorial, slug=slug)
-
     related_articles = Tutorial.objects.filter(category=obj.category)
     return render(request, 'tutorials/single_tutorial.html',
                   context={'tutorial': obj, 'related_tutorials': related_articles})
 
 
 def create(request):
-    titles = ["How to center an element horizontally and vertically",
-              "How to create a responsive navbar",
-              "How to create a gradient background",
-              "How to create a dropdown menu",
-              "How to change the cursor style",
-              "How to create a sticky footer",
-              "How to create a parallax scrolling effect",
-              "How to animate elements on scroll",
-              "How to create a modal window",
-              "How to create a responsive grid layout",
-              "How to center an element horizontally and vertically",
-              "How to create a responsive navbar",
-              "How to create a gradient background",
-              "How to create a dropdown menu",
-              "How to change the cursor style",
-              "How to create a sticky footer",
-              "How to create a parallax scrolling effect",
-              "How to animate elements on scroll",
-              "How to create a modal window",
-              "How to create a responsive grid layout",
-              "How to create a hover effect",
-              "How to create a loading spinner",
-              "How to create a fullscreen background image",
-              "How to create a flip effect",
-              "How to create a carousel",
-              "How to create a slide-out navigation menu",
-              "How to create a responsive video",
-              "How to create a 3D transform effect",
-              "How to create a pop-up window",
-              "How to create a tabbed content area",
-              "How to create a tool tip",
-              "How to create a fixed header",
-              "How to create a responsive table",
-              "How to create a custom checkbox or radio button",
-              "How to create a smooth scroll effect",
-              "How to create a scrolling text effect",
-              "How to create a filtering or sorting effect",
-              "How to create a image lightbox",
-              "How to create a customizable scrollbar"
-              ]
+    titles = []
     for x in titles:
         try:
             c_tut(x, 'CSS Tips')

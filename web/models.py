@@ -71,27 +71,28 @@ class Contact(models.Model):
 
 
 class Category(models.Model):
-    name = models.CharField(max_length=120)
-    slug = models.CharField(max_length=120)
+    name = models.CharField(max_length=250)
+    slug = models.CharField(max_length=250)
 
     def __str__(self):
         return self.name
 
     def get_absolute_url(self):
         return reverse('single_category', kwargs={
-            'name': self.name
+            'slug': self.slug
         })
 
 
 class Tag(models.Model):
     name = models.CharField(max_length=255)
+    slug = models.CharField(max_length=255)
 
     def __str__(self):
         return self.name
 
     def get_absolute_url(self):
         return reverse('single_tag', kwargs={
-            'name': self.name
+            'slug': self.slug
         })
 
 

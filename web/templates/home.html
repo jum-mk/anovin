@@ -3,7 +3,8 @@
 {% load static %}
 <head>
     <title>ANOVIN</title>
-
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
     <meta content="Professional web development company." name="description">
     <meta content="web, development, python, django, javascript, html, css, bootstrap 5" name="keywords">
 
@@ -12,12 +13,22 @@
     <meta property="og:url" content="https://www.anovin.mk"/>
     <meta property="og:description"
           content="Creating Progressive Web Applications(PWA). We plan, create and assemble your solution"/>
-    <meta property="og:image" content="{% static 'assets/img/2.png' %}"/>
+    <meta property="og:image" content="{% static 'img/anovin.png' %}"/>
     <meta property="og:type" content="website"/>
 
     {% include 'head.html' %}
 
     {% include 'tutorials/g_tag.html' %}
+
+    <style>
+        .icon-box {
+            border-radius: 8px;
+        }
+
+        .info-box {
+            border-radius: 8px;
+        }
+    </style>
 </head>
 
 <body>
@@ -95,7 +106,7 @@
             <div class="row align-items-center">
                 <div class="col-lg-6 d-flex justify-content-center" data-aos="fade-right" data-aos-delay="100">
                     <lottie-player src="https://assets3.lottiefiles.com/packages/lf20_6ng4dkcl.json"
-                                   background="transparent" speed="0.35" style="width:400px; height: 400px;" loop
+                                   background="transparent" speed="0.35" style="width:100%; height: auto;" loop
                                    autoplay></lottie-player>
                 </div>
                 <div class="col-lg-6 pt-2 pt-lg-0 content d-flex flex-column justify-content-center" data-aos="fade-up"
@@ -145,7 +156,7 @@
         <div class="container" data-aos="fade-up">
 
             <div class="section-title">
-                <h2>Stack</h2>
+                <h2>We usually use</h2>
             </div>
 
             <div class="row">
@@ -220,7 +231,7 @@
     <section id="portfolio" class="portfolio">
         <div class="container" data-aos="fade-up">
             <div class="section-title">
-                <h2>Clients</h2>
+                <h2>Recent projects</h2>
             </div>
 
             <div class="row" data-aos="fade-up" data-aos-delay="100">
@@ -293,12 +304,12 @@
 
                 <div class="col-lg-6 align-items-center ">
                     <lottie-player src="https://assets2.lottiefiles.com/packages/lf20_u25cckyh.json"
-                                   background="transparent" speed="0.35" style="width: 425px; height: 400px;" loop
+                                   background="transparent" speed="0.35" style="width: 100%; height: auto;" loop
                                    autoplay></lottie-player>
                 </div>
 
                 <div class="col-lg-6">
-                    <form action="/" method="post" role="form" class="php-email-form">
+                    <form action="/" method="post" role="form" class="php-email-form" style="border-radius: 8px;">
                         {% csrf_token %}
                         <div class="row">
                             <div class="col form-group">

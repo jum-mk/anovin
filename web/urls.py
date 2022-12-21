@@ -17,12 +17,13 @@ from . import views
 from django.urls import path
 from .views import TutorialViewSet, TagViewSet, CategoryViewSet
 from django.contrib.sitemaps.views import sitemap
-from .sitemap import TutorialSitemap
+from .sitemap import TutorialSitemap, CategorySitemap, TagSitemap
 
 sitemaps_dict = {
     'tutorial': TutorialSitemap,
+    'tags': TagSitemap,
+    'category': CategorySitemap
 }
-
 
 tutorial_list = TutorialViewSet.as_view({
     'get': 'list',
@@ -62,9 +63,9 @@ urlpatterns = [
     path('tutorials/', views.tutorials, name='tutorials'),
     path('tutorial/<str:slug>/', views.single_tutorial, name='single_tutorial'),
 
-    path('tag/<str:name>/', views.single_tag, name='single_tag'),
+    path('tag/<str:slug>/', views.single_tag, name='single_tag'),
 
-    path('category/<str:name>/', views.single_category, name='single_category'),
+    path('category/<str:slug>/', views.single_category, name='single_category'),
 
     path('tutorials_list/', tutorial_list, name='tutorials_list'),
     path('tutorials/<int:pk>/', tutorial_detail, name='tutorial-detail'),
@@ -82,4 +83,5 @@ urlpatterns = [
     # the sitemap
     path('sitemap.xml', sitemap, {'sitemaps': sitemaps_dict},
          name='django.contrib.sitemaps.views.sitemap'),
+
 ]
