@@ -7,7 +7,7 @@ class TutorialSitemap(Sitemap):
         return Tutorial.objects.all()
 
     def location(self, obj):
-        return '/tutorials/' + str(obj.slug)
+        return '/tutorial/' + str(obj.slug)
 
 
 class TagSitemap(Sitemap):

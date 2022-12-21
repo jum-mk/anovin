@@ -142,17 +142,12 @@ def single_category(request, slug=None):
 def single_tutorial(request, slug=None):
     obj = get_object_or_404(Tutorial, slug=slug)
     related_articles = Tutorial.objects.filter(category=obj.category)[:10]
+
     return render(request, 'tutorials/single_tutorial.html',
                   context={'tutorial': obj, 'related_tutorials': related_articles})
 
 
 def create(request):
-    titles = []
-    for x in titles:
-        try:
-            c_tut(x, 'CSS Tips')
-        except:
-            print('Failed to create')
     return HttpResponse(request, 'Done')
 
 

@@ -2,7 +2,7 @@ import openai
 from ast import literal_eval
 from . import models
 
-openai.api_key = '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'
+openai.api_key = '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'
 
 
 def get_ai_text(prompt, max_tokens):
@@ -84,7 +84,6 @@ def create_tutorial(title, category):
 
             content += get_ai_text(content_query, 2600)
 
-
         content = '<h1>' + title + '</h1>' + content
         useful_links = get_ai_text(
             'Write HTML list of useful links for the tutorial with title: ' + title + ' . The title of the useful links is h3.',
@@ -97,7 +96,7 @@ def create_tutorial(title, category):
         tut = models.Tutorial()
 
         tut.title = title
-        tut.meta_description = meta_description
+        tut.meta_description = str(meta_description).strip(' ').replace('\n', '')
         tut.content = content
 
         tut.slug = str(tut.title).strip(' ').replace(' ', '-').lower()
@@ -109,6 +108,7 @@ def create_tutorial(title, category):
                 tut.save()
             except:
                 tag = models.Tag.objects.create(name=item)
+                tag.slug = str(tag.name).strip(' ').replace('\n', '').replace(' ', '-').lower()
                 tag.save()
                 tut.tags.add(tag)
 
@@ -118,6 +118,8 @@ def create_tutorial(title, category):
             tut.save()
         except:
             category = models.Category.objects.create(name=category_input)
+            category.slug = str(category.name).strip(' ').replace('\n', '').replace(' ', '-').lower()
+
             category.save()
             tut.category = category
             tut.save()
