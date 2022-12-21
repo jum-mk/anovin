@@ -140,7 +140,6 @@ h1, h2, h3, h4, h5, h6 {
 #topbar .contact-info i a {
     line-height: 0;
     transition: 0.3s;
-    transition: 0.3s;
 }
 
 #topbar .contact-info i a:hover {
@@ -194,9 +193,6 @@ h1, h2, h3, h4, h5, h6 {
     letter-spacing: 0.05px;
     font-family: "Josefin Sans", sans-serif;
 }
-
-!important
-
 
 #header .logo a {
     color: #222222;
@@ -1447,7 +1443,6 @@ section {
 .faq .faq-list .question {
     display: block;
     position: relative;
-    font-family: #106eea;
     font-size: 18px;
     line-height: 24px;
     font-weight: 400;
@@ -1696,7 +1691,6 @@ section {
 !important
 }
 
-!important
 
 #footer .footer-top .footer-contact h3 {
     font-size: 24px;
