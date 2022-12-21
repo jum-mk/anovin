@@ -9,10 +9,10 @@ def get_ai_text(prompt, max_tokens):
     response = openai.Completion.create(
         model="text-davinci-003",
         prompt=prompt,
-        temperature=0.3,
+        temperature=0.1,
         max_tokens=max_tokens,
-        top_p=0.3,
-        frequency_penalty=0.2,
+        top_p=0.1,
+        frequency_penalty=0.1,
         presence_penalty=0.1,
     )
 
@@ -34,7 +34,7 @@ def create_tutorial(title, category):
 
         title = title
         print(title)
-        meta_description = get_ai_text(meta_description, 356)
+        meta_description = get_ai_text(meta_description, 512)
 
         print('meta_description -DONE')
 

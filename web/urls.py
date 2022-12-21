@@ -21,7 +21,6 @@ from .sitemap import TutorialSitemap, CategorySitemap, TagSitemap
 
 sitemaps_dict = {
     'tutorial': TutorialSitemap,
-    'tags': TagSitemap,
     'category': CategorySitemap
 }
 

@@ -2,7 +2,7 @@ import openai
 from ast import literal_eval
 from . import models
 
-openai.api_key = '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'
+openai.api_key = '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'
 
 
 def get_ai_text(prompt, max_tokens):
@@ -43,15 +43,15 @@ def create_tutorial(title, category):
                 'write in plain text, make it seo friendly'.format(title)
 
         steps = get_ai_text(steps, 512)
-        python_step_list = "write python list for the tutorial steps in '{0}'. Output only the value of the variable!".format(
+        python_step_list = "write python list of strings for the tutorial step parts in '{0}'. Output only the value of the variable!".format(
             steps)
 
         python_step_list = literal_eval(get_ai_text(python_step_list, 256))
         print(python_step_list)
         print('step list -DONE')
 
-        python_tag_list = "write python list of a maximum 8 tags considering it is a blog post with title {0} and introduction '{1}'" \
-                          " write the tags in a python list in plain text. Output only the value!".format(
+        python_tag_list = "write python list of a maximum 8 tags for the blog post with title {0} and introduction '{1}'" \
+                          " write the tags in a python list of strings in plain text. Output only the value!".format(
             title, meta_description)
 
         tags = get_ai_text(python_tag_list, 256)
@@ -63,9 +63,9 @@ def create_tutorial(title, category):
         content = ''
 
         for step in python_step_list:
-            content_query = 'Write <p> tutorial part of minimum 200 words in the context and title of ' + str(
-                title) + ' The steps in the tutorial are: ' + str(python_step_list) + \
-                            'You are writing for the step:' + str(step) + \
+            content_query = 'Write <p> tutorial part of minimum 150 words in the context and title of ' + str(
+                title) + ' The step parts of the tutorial are: ' + str(python_step_list) + \
+                            'You are writing for the step part:' + str(step) + \
                             'the h2 title is {0}'.format(step) + \
                             'The tutorial belongs to the category: ' + category + '.' + \
                             ' Do it in HTML5, write an SEO friendly paragraph.' \
@@ -79,7 +79,7 @@ def create_tutorial(title, category):
                             'output only the HTML. Use  the <pre> tag whenever you can, ' \
                             ' Write in UTF-8 all the time. ' \
                             ' Write code examples. ' \
-                            'Do not style the HTML inline! '
+                            'Do not style the HTML inline! Provide examples inside <pre> tags.! Do not repeat sentences from the previous step!'
             print(len(content_query))
 
             content += get_ai_text(content_query, 2600)
