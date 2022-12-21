@@ -42,7 +42,7 @@
                             // Handle the response from the server
                             console.log(data)
                             document.getElementById('subscribe-input').setAttribute('disabled', '')
-                            button.innerText = 'Done'
+                            button.innerHTML = '&#10003;'
                             button.setAttribute('disabled', '')
                         })
                         .catch((error) => {

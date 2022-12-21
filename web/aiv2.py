@@ -22,6 +22,7 @@ def get_ai_text(prompt, max_tokens):
 
 def create_tutorial(title, category):
     try:
+        title = title.strip()
         models.Tutorial.objects.get(title=title)
         print('Tutorial already exists')
 
@@ -61,24 +62,34 @@ def create_tutorial(title, category):
 
         content = ''
 
-        content_query = 'Write about tutorial article of minimum 900 words in the context and title of ' + str(title) + \
-                        'for the steps in this list: ' + str(python_step_list) + \
-                        'The tutorial belongs to the category: ' + category + '.' \
-                         ' Do it in HTML5, write an SEO frieldy article.' + \
-                        ' Try to write code when you can. Format the code in the HTML.' + \
-                        ' Use <pre> tag instead of <code> tags when you write code and always add <br> before and after the <pre> tag,' \
-                        ' Format the code lines appropriately, like in IDE according to the programming language' \
-                        ' use <a> tags to link to external websites in the context of the tutorial blog post.' \
-                        ' When using <a> tags make sure the href (url) is accessible and striped.' \
-                        ' Try to use <a> as much as you can, seo wise.' \
-                        'output only the HTML.Use  the <pre> tag whenever you can, .  Write in UTF-8 all the time. Start with h1 title.' \
-                        ' At the end add list useful links for the post. Write many code examples. Do not style the HTML inline! ' \
-                        ' It is very important that you beautify and style the code inside the <code> tag.'
+        for step in python_step_list:
+            content_query = 'Write <p> tutorial part of minimum 200 words in the context and title of ' + str(
+                title) + ' The steps in the tutorial are: ' + str(python_step_list) + \
+                            'You are writing for the step:' + str(step) + \
+                            'the h2 title is {0}'.format(step) + \
+                            'The tutorial belongs to the category: ' + category + '.' + \
+                            ' Do it in HTML5, write an SEO friendly paragraph.' \
+                            ' Try to write code when you can. Format the code in the HTML.' + \
+                            ' Use <pre> tag instead of <code> tags when you write code and always add' \
+                            ' <br> before and after the <pre> tag.' \
+                            ' Format the code lines appropriately, like in IDE according to the programming language' \
+                            ' use <a> tags to link to external websites in the context of the step.' \
+                            ' When using <a> tags make sure the href (url) is accessible and striped.' \
+                            ' Try to use <a> as much as you can, seo wise.' \
+                            'output only the HTML. Use  the <pre> tag whenever you can, ' \
+                            ' Write in UTF-8 all the time. ' \
+                            ' Write code examples. ' \
+                            'Do not style the HTML inline! '
+            print(len(content_query))
 
-        print(len(content_query))
+            content += get_ai_text(content_query, 2600)
 
-        content += get_ai_text(content_query, 3300)
 
+        content = '<h1>' + title + '</h1>' + content
+        useful_links = get_ai_text(
+            'Write HTML list of useful links for the tutorial with title: ' + title + ' . The title of the useful links is h3.',
+            512)
+        content += useful_links
         category_input = category
 
         print('AI FINISHED')

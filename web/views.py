@@ -14,6 +14,7 @@ from django.db.models import Count
 from rest_framework.permissions import IsAuthenticated
 from django.http import JsonResponse
 import json
+from .aiv2 import create_tutorial as c_tut
 
 
 class CustomUserViewSet(viewsets.ModelViewSet):
@@ -142,73 +143,56 @@ def single_category(request, name=None):
 
 def single_tutorial(request, slug=None, ):
     obj = get_object_or_404(Tutorial, slug=slug)
-    absolute_url = obj.get_absolute_url()
-    print(absolute_url)
-    return render(request, 'tutorials/single_tutorial.html', context={'tutorial': obj})
+
+    related_articles = Tutorial.objects.filter(category=obj.category)
+    return render(request, 'tutorials/single_tutorial.html',
+                  context={'tutorial': obj, 'related_tutorials': related_articles})
 
 
 def create(request):
-    titles = [
-        "How to Deploy Django on Amazon Web Services (AWS)",
-        "How to Deploy Django on Google Cloud Platform (GCP)",
-        "How to Deploy Django on Microsoft Azure",
-        "How to Deploy Django on Heroku",
-        "How to Deploy Django on DigitalOcean",
-        "How to Deploy Django on Linode",
-        "How to Deploy Django on Vultr",
-        "How to Deploy Django on IBM Cloud",
-        "How to Deploy Django on Oracle Cloud",
-        "How to Deploy Django on Oracle Cloud Exadata",
-        "How to Deploy Django on Oracle Cloud Autonomous",
-        "How to Deploy Django on Oracle Cloud ATP",
-        "How to Deploy Django on Oracle Cloud ADW",
-        "How to Deploy Django on Rackspace Cloud",
-        "How to Deploy Django on CloudSigma",
-        "How to Deploy Django on CloudSigma Cloud",
-        "How to Deploy Django on Interoute Cloud",
-        "How to Deploy Django with React",
-        "How to Deploy Django with Angular",
-        "How to Deploy Django with Vue.js",
-        "How to Deploy Django with Svelte",
-        "How to Deploy Django with Next.js",
-        "How to Deploy Django with Gatsby",
-        "How to Deploy Django with Nuxt.js",
-        "How to Deploy Django with Ember.js",
-        "How to Deploy Django with Flutter",
-        "How to Deploy Django with Xamarin",
-        "How to Deploy Django with Ionic",
-        "How to Deploy Django with Cordova",
-        "How to Deploy Django with PhoneGap",
-        "How to Deploy Django with NativeScript",
-        "How to Deploy Django with Electron",
-        "How to Deploy Django with Jest",
-        "How to Deploy Django with Mocha",
-        "How to Deploy Django with Jest",
-        "How to Deploy Django with Chai",
-        "How to Deploy Django with Enzyme",
-        "How to Use Django with React",
-        "How to Use Django with Angular",
-        "How to Use Django with Vue.js",
-        "How to Use Django with Svelte",
-        "How to Use Django with Next.js",
-        "How to Use Django with Gatsby",
-        "How to Use Django with Nuxt.js",
-        "How to Use Django with Ember.js",
-        "How to Use Django with Flutter",
-        "How to Use Django with Xamarin",
-        "How to Use Django with Ionic",
-        "How to Use Django with Cordova",
-        "How to Use Django with PhoneGap",
-        "How to Use Django with NativeScript",
-        "How to Use Django with Electron",
-        "How to Use Django with Jest",
-        "How to Use Django with Mocha",
-        "How to Use Django with Jest",
-        "How to Use Django with Chai",
-        "How to Use Django with Enzyme"]
+    titles = ["How to center an element horizontally and vertically",
+              "How to create a responsive navbar",
+              "How to create a gradient background",
+              "How to create a dropdown menu",
+              "How to change the cursor style",
+              "How to create a sticky footer",
+              "How to create a parallax scrolling effect",
+              "How to animate elements on scroll",
+              "How to create a modal window",
+              "How to create a responsive grid layout",
+              "How to center an element horizontally and vertically",
+              "How to create a responsive navbar",
+              "How to create a gradient background",
+              "How to create a dropdown menu",
+              "How to change the cursor style",
+              "How to create a sticky footer",
+              "How to create a parallax scrolling effect",
+              "How to animate elements on scroll",
+              "How to create a modal window",
+              "How to create a responsive grid layout",
+              "How to create a hover effect",
+              "How to create a loading spinner",
+              "How to create a fullscreen background image",
+              "How to create a flip effect",
+              "How to create a carousel",
+              "How to create a slide-out navigation menu",
+              "How to create a responsive video",
+              "How to create a 3D transform effect",
+              "How to create a pop-up window",
+              "How to create a tabbed content area",
+              "How to create a tool tip",
+              "How to create a fixed header",
+              "How to create a responsive table",
+              "How to create a custom checkbox or radio button",
+              "How to create a smooth scroll effect",
+              "How to create a scrolling text effect",
+              "How to create a filtering or sorting effect",
+              "How to create a image lightbox",
+              "How to create a customizable scrollbar"
+              ]
     for x in titles:
         try:
-            create_tutorial(x, 'Django')
+            c_tut(x, 'CSS Tips')
         except:
             print('Failed to create')
     return HttpResponse(request, 'Done')
