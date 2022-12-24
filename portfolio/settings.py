@@ -39,7 +39,6 @@ INSTALLED_APPS = [
     'django.contrib.sitemaps',
     'web',
     'rest_framework',
-    'pymemcache'
 ]
 SITE_ID = 1
 MIDDLEWARE = [
@@ -140,10 +139,3 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # SECURE_HSTS_INCLUDE_SUBDOMAINS = True
 # SECURE_HSTS_PRELOAD = True
 
-
-CACHES = {
-    'default': {
-        'BACKEND': 'django.core.cache.backends.dummy.DummyCache',
-        'LOCATION': '127.0.0.1:11211',
-    }
-}

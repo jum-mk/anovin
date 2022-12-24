@@ -16,9 +16,6 @@ from django.http import JsonResponse
 import json
 from .aiv2 import create_tutorial as c_tut
 from django.core.cache import cache
-import memcache
-import tweepy
-from openai.error import ServiceUnavailableError
 
 
 class CustomUserViewSet(viewsets.ModelViewSet):
