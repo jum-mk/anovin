@@ -116,10 +116,7 @@ def tutorials(request):
         return render(request, 'tutorials.html', context={'tuts': tuts})
     # Get all Tutorial objects with duplicate titles
     else:
-        tuts = cache.get('tutorials')
-        if tuts is None:
-            tuts = Tutorial.objects.all()[::-1]
-            cache.set('tutorials', tutorials)
+        tuts = Tutorial.objects.all()[:100:-1]
         return render(request, 'tutorials.html', context={'tuts': tuts})
 
 
