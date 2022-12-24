@@ -20,8 +20,6 @@ import memcache
 import tweepy
 from openai.error import ServiceUnavailableError
 
-server = memcache.Client(['127.0.0.1:11211'])
-
 
 class CustomUserViewSet(viewsets.ModelViewSet):
     queryset = CustomUser.objects.all()
