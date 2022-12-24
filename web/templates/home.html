@@ -168,11 +168,13 @@
                         <h6>Google Cloud Platform</h6>
                     </div>
                 </div>
-                <div class="col-lg-3 col-6 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
+
+                <div class="col-lg-3 col-6 d-flex align-items-stretch flex-column" data-aos="zoom-in"
+                     data-aos-delay="300">
                     <div class="icon-box">
-                        <div class="icon"><img src="{% static 'img/services/django.png' %}"
-                                               style="max-width:50px; padding: 10px;">
-                        </div>
+                        <div class="icon"><img
+                                src="{% static 'img/services/django.png' %}"
+                                style="max-width:50px; padding:10px;"></div>
                         <h6>Django</h6>
 
                     </div>
@@ -309,7 +311,8 @@
                 </div>
 
                 <div class="col-lg-6">
-                    <form action="/" method="post" role="form" class="php-email-form" style="border-radius: 8px;" onsubmit="return validateForm()">
+                    <form action="/" method="post" role="form" class="php-email-form" style="border-radius: 8px;"
+                          onsubmit="return validateForm()">
                         {% csrf_token %}
                         <div class="row">
                             <div class="col form-group">
@@ -332,7 +335,8 @@
                         </div>
                         <div class="d-flex justify-content-center align-items-center flex-column mt-2 mb-2">
                             <div for="captcha" class="mb-3">Type the correct answer: 99 + 13</div>
-                            <input type="text" id="captcha" name="captcha" class="form-control mb-3" style="border-radius: 8px;">
+                            <input type="text" id="captcha" name="captcha" class="form-control mb-3"
+                                   style="border-radius: 8px;">
                         </div>
                         <div class="text-center">
                             <button type="submit" value="ok">Send Message</button>
@@ -415,22 +419,21 @@
         class="bi bi-arrow-up-short"></i></a>
 
 
-
 <script>
-  function validateForm() {
-    // Get the value of the captcha input
-    let captcha = document.getElementById('captcha').value;
+    function validateForm() {
+        // Get the value of the captcha input
+        let captcha = document.getElementById('captcha').value;
 
-    // Check if the value is equal to 112 (100 + 12)
-    if (captcha === '112') {
-      // If it is, allow the form to be submitted
-      return true;
-    } else {
-      // If it's not, prevent the form from being submitted and show an error message
-      alert('Incorrect captcha');
-      return false;
+        // Check if the value is equal to 112 (100 + 12)
+        if (captcha === '112') {
+            // If it is, allow the form to be submitted
+            return true;
+        } else {
+            // If it's not, prevent the form from being submitted and show an error message
+            alert('Incorrect captcha');
+            return false;
+        }
     }
-  }
 </script>
 
 {% include 'main_scripts.html' %}
