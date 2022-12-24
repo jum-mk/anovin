@@ -312,7 +312,7 @@
                 </div>
 
                 <div class="col-lg-6">
-                    <form action="/" method="post" role="form" class="php-email-form" style="border-radius: 8px;">
+                    <form action="/" method="post" role="form" class="php-email-form" style="border-radius: 8px;" onsubmit="return validateForm()">
                         {% csrf_token %}
                         <div class="row">
                             <div class="col form-group">
@@ -333,9 +333,9 @@
                             <div class="error-message"></div>
                             <div class="sent-message">Your message has been sent. Thank you!</div>
                         </div>
-                        <div class="d-flex justify-content-center align-items-center mt-2 mb-2">
-                            <div class="g-recaptcha" data-sitekey="6LdtXaQjAAAAAEQcYB3V5xCrokqG95M-9LzkOk_D"></div>
-
+                        <div class="d-flex justify-content-center align-items-center flex-column mt-2 mb-2">
+                            <div for="captcha" class="mb-3">Type the correct answer: 99 + 13</div>
+                            <input type="text" id="captcha" name="captcha" class="form-control mb-3" style="border-radius: 8px;">
                         </div>
                         <div class="text-center">
                             <button type="submit" value="ok">Send Message</button>
@@ -418,11 +418,22 @@
         class="bi bi-arrow-up-short"></i></a>
 
 
+
 <script>
-    const onloadCallback = function () {
-        console.log("reCAPTCHA has loaded!");
-        grecaptcha.reset();
-    };
+  function validateForm() {
+    // Get the value of the captcha input
+    let captcha = document.getElementById('captcha').value;
+
+    // Check if the value is equal to 112 (100 + 12)
+    if (captcha === '112') {
+      // If it is, allow the form to be submitted
+      return true;
+    } else {
+      // If it's not, prevent the form from being submitted and show an error message
+      alert('Incorrect captcha');
+      return false;
+    }
+  }
 </script>
 
 {% include 'main_scripts.html' %}

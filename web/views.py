@@ -101,7 +101,7 @@ def index(request):
                 content,
                 from_email,
                 ['anovski3@gmail.com'],
-                fail_silently=True,
+                fail_silently=False,
             )
             return redirect('index')
     else:
