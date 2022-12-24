@@ -106,6 +106,7 @@ class Tutorial(models.Model):
     tags = models.ManyToManyField(Tag, blank=True)
     img = models.ImageField(upload_to='tutorials/images/', null=True, blank=True)
     category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True, blank=True)
+    hashtags = models.CharField(max_length=300, null=True, blank=True)
 
     def __str__(self):
         return self.title

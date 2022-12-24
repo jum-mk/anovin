@@ -2,7 +2,7 @@ import openai
 from ast import literal_eval
 from . import models
 
-openai.api_key = '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'
+openai.api_key = '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'
 
 
 def get_ai_text(prompt, max_tokens):
@@ -24,10 +24,10 @@ def create_tutorial(title, category):
     try:
         models.Tutorial.objects.get(title=title)
     except:
-        meta_description = 'response text based on your SEO knowledge for articles, ' \
-                           'consider the title "{0}" value when writing. ' \
-                           'Output maximum of 300 characters in plain text. Consider that this needs to be placed inside' \
-                           'html meta description tag. Escape adding the content in new lines. Use only plain text without formatting'.format(
+        meta_description = 'response one sentence text based on your SEO knowledge for articles. ' \
+                           ' Consider the title "{0}" value when writing. ' \
+                           'Output maximum of 160 characters in plain text. Consider that this needs to be placed inside' \
+                           'html meta description tag. Use only plain text without formatting.'.format(
             title)
 
         title = title

@@ -7,7 +7,6 @@ from rest_framework import viewsets
 from .serializers import *
 from rest_framework.exceptions import status
 from rest_framework.response import Response
-from .ai import create_tutorial
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404
 from django.db.models import Count
@@ -15,7 +14,8 @@ from rest_framework.permissions import IsAuthenticated
 from django.http import JsonResponse
 import json
 from .aiv2 import create_tutorial as c_tut
-from django.core.cache import cache
+from .aiv2 import get_ai_text
+from openai.error import ServiceUnavailableError
 
 
 class CustomUserViewSet(viewsets.ModelViewSet):
@@ -150,17 +150,32 @@ def single_tutorial(request, slug=None):
 
 def create(request):
     titles = []
+    tutorials = Tutorial.objects.filter(hashtags=None)
+    for t in tutorials:
+        print(t.hashtags)
+        while True:
+            try:
+                title = str(t.title)
+                hashtags = str(get_ai_text('Give me 8 hashtags for my blog post with title: {0}.'.format(title), 512))
+                t.hashtags = hashtags
+                print(t.hashtags)
+                t.save()
+
+            except ServiceUnavailableError:
+                continue
+            break
     for title in titles:
+
         try:
             Tutorial.objects.get(title=title.replace('?', ''))
             print('Tutorial already exists')
         except:
             c_tut(title.replace('?', '  '), 'DevOps')
 
-    consumer_key = "9kVtqWzkL6YN2vBHpRGzgYRDF"
-    consumer_secret = "foNH1CuPH7OJZPjpmlWGkK88XTPYJmLiXwQoTpmnwha0rUFjg4"
-    access_token = "792894589514485760-M8rkmQicexNh1BRdRtyrEQd5mtI2ScQ"
-    access_token_secret = "vtVZxmQPC7uhJJYT0fCzU8zhNDthVgRJZzJlYu6aBWpys"
+    # consumer_key = "9kVtqWzkL6YN2vBHpRGzgYRDF"
+    # consumer_secret = "foNH1CuPH7OJZPjpmlWGkK88XTPYJmLiXwQoTpmnwha0rUFjg4"
+    # access_token = "792894589514485760-M8rkmQicexNh1BRdRtyrEQd5mtI2ScQ"
+    # access_token_secret = "vtVZxmQPC7uhJJYT0fCzU8zhNDthVgRJZzJlYu6aBWpys"
 
     # auth = tweepy.OAuth1UserHandler(consumer_key, consumer_secret, access_token, access_token_secret)
     # api = tweepy.API(auth)

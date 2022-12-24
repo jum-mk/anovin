@@ -18,6 +18,7 @@ from django.urls import path
 from .views import TutorialViewSet, TagViewSet, CategoryViewSet
 from django.contrib.sitemaps.views import sitemap
 from .sitemap import TutorialSitemap, CategorySitemap, TagSitemap
+from .social_post_ai import get_social_media_posts
 
 sitemaps_dict = {
     'tutorial': TutorialSitemap,
@@ -84,7 +85,6 @@ urlpatterns = [
          name='django.contrib.sitemaps.views.sitemap'),
 
     path('delete_duplicates/', views.delete_duplicates, name='delete_duplicates'),
-
-
+    path('get_social_media_posts/', get_social_media_posts, name='get_social_media_posts'),
 
 ]
