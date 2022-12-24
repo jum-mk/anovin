@@ -93,14 +93,14 @@ def index(request):
         if form.is_valid():
             form.save()
             subject = 'You have a contact'
-            from_email = 'dev.jum.mk'
+            from_email = 'anovski3@gmail.com'
             content = form.cleaned_data['name'] + '\n' + form.cleaned_data['email'] + '\n' + form.cleaned_data[
                 'content']
             send_mail(
                 subject,
                 content,
                 from_email,
-                ['anovski3@gmail.com', 'dev.jum.mk'],
+                ['anovski3@gmail.com'],
                 fail_silently=True,
             )
             return redirect('index')
