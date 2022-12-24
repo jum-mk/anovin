@@ -62,6 +62,18 @@
         color: #0099ff;
     }
 
+    h6 {
+        color: #0099ff;
+    }
+
+    a:hover {
+        color: black;
+    }
+
+    h6:hover {
+        color: black;
+    }
+
     .sidebar {
         background-color: #f5f5f5;
         padding: 20px;
@@ -92,6 +104,14 @@
 
 
             <div class="d-flex flex-column p-2 shadow-sm border" style="border-radius: 8px; background: #f1f6fe;">
+                {% if request.user.is_superuser %}
+                <a href="http://127.0.0.1:8002/admin/web/tutorial/{{tutorial.id}}/change/" target="_blank" class="mb-4 ">
+                    <button class="btn btn-success w-100 mb">
+                        <h4 class="text-light">Edit tutorial</h4>
+                    </button>
+                </a>
+                {% else %}
+                {% endif %}
                 <a href="{{tutorial.category.get_absolute_url}}">
                     <button class="btn btn-sm btn-light d-flex p-3 shadow-sm mb-3 w-100 d-flex flex-column border"
                             style="background: #106ee9; color: black; font-weight: 100; border-radius: 8px;">
@@ -125,7 +145,7 @@
                 <div class="d-flex flex-column  ">{% for tut in related_tutorials %}
                     <a href="{{tut.get_absolute_url}}">
                         <p class=" m-1 " style="font-size:13px; color: black;">
-                        <h6 class="text-primary">{{tut.title}}</h6>
+                        <h6 class=" ps-2 pe-2">{{tut.title}}</h6>
                         </p>
                     </a>
                     {%endfor%}

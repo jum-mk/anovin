@@ -15,6 +15,12 @@ from rest_framework.permissions import IsAuthenticated
 from django.http import JsonResponse
 import json
 from .aiv2 import create_tutorial as c_tut
+from django.core.cache import cache
+import memcache
+import tweepy
+from openai.error import ServiceUnavailableError
+
+server = memcache.Client(['127.0.0.1:11211'])
 
 
 class CustomUserViewSet(viewsets.ModelViewSet):
@@ -115,7 +121,10 @@ def tutorials(request):
         return render(request, 'tutorials.html', context={'tuts': tuts})
     # Get all Tutorial objects with duplicate titles
     else:
-        tuts = Tutorial.objects.all()[::-1]
+        tuts = cache.get('tutorials')
+        if tuts is None:
+            tuts = Tutorial.objects.all()[::-1]
+            cache.set('tutorials', tutorials)
         return render(request, 'tutorials.html', context={'tuts': tuts})
 
 
@@ -148,126 +157,36 @@ def single_tutorial(request, slug=None):
 
 
 def create(request):
-    titles = ["How do I use the Web Audio API to add audio capabilities to my web application?",
-              "How do I create and use custom templates in a Django application?",
-              "How do I use the Fetch API to make HTTP requests in my web application?",
-              "How do I use the WebGL API to add 3D graphics to my web application?",
-              "How do I create and use custom modules in a Node.js application?",
-              "How do I use the WebRTC API to add real-time audio and video capabilities to my web application?",
-              "How do I create and use custom widgets in a PyQt application?",
-              "How do I use the Web Bluetooth API to connect to and interact with Bluetooth devices from my web application?",
-              "How do I create and use custom skins in a DotNetNuke application?",
-              "How do I use the WebHID API to interact with human interface devices (HIDs) from my web application?",
-              "How do I create and use custom plugins in a Joomla application?",
-              "How do I use the WebXR API to build virtual reality (VR) and augmented reality (AR) experiences in my web application?",
-              "How do I create and use custom modules in a Drupal application?",
-              "How do I use the Payment Request API to streamline the checkout process in my web application?",
-              "How do I create and use custom components in a Svelte application?",
-              "How do I use the Web Animations API to add rich animation effects to my web application?",
-              "How do I create and use custom extensions in a Joomla application?",
-              "How do I use the Web Speech API to add voice recognition and synthesis capabilities to my web application?",
-              "How do I create and use custom add-ons in a ExpressionEngine application?",
-              "How do I use the Web NFC API to read and write NFC tags from my web application?",
-              "How do I create and use custom plugins in a Magento application?",
-              "How do I use the Resize Observer API to track element size changes in my web application?",
-              "How do I use the Push API to send push notifications to users of my web application?",
-              "How do I create and use custom templates in a Kirby application?",
-              "How do I use the Server-Timing API to add performance metrics to my web application?",
-              "How do I create and use custom modules in a Concrete5 application?",
-              "How do I use the WebAuthn API to add strong authentication capabilities to my web application?",
-              "How do I create and use custom plugins in a Shopify application?",
-              "How do I use the Web Assembly System Interface (WASI) to access system functions from my web application?",
-              "How do I create and use custom extensions in a VirtueMart application?",
-              "How do I use the WebAssembly Threads API to add multithreading capabilities to my web application?",
-              "How do I create and use custom templates in a Textpattern application?",
-              "How do I use the WebAssembly SIMD API to add single instruction, multiple data (SIMD) capabilities to my web application?",
-              "How do I create and use custom widgets in a Zend Framework application?",
-              "How do I use the WebAssembly Reference Types API to add references and pointers to my web assembly code?",
-              "How do I create and use custom modules in a MODX application?",
-              "How do I use the WebAssembly GC API to add garbage collection capabilities to my web assembly code?",
-              "How do I create and use custom plugins in a WooCommerce application?",
-              "How do I use the WebAssembly Exceptions API to add exception handling capabilities to my web assembly code?",
-              "How do I create and use custom extensions in an OpenCart application?",
-              "How do I use the WebAssembly Table API to add tables and arrays to my web assembly code?",
-              "How do I create and use custom modules in a BigCommerce application?",
-              "How do I use the WebAssembly Multi-Value API to return multiple values from functions in my web assembly code?",
-              "How do I create and use custom plugins in a PrestaShop application?",
-              "How do I use the WebAssembly Memory API to add dynamic memory allocation capabilities to my web assembly code?",
-              "How do I create and use custom extensions in a Magento 2 application?",
-              "How do I use the WebAssembly Text Decoding API to decode text from different encoding formats in my web assembly code?",
-              'How do I use the Push API to send push notifications to users of my web application?',
-              'How do I create and use custom templates in a Kirby application?',
-              'How do I use the Server-Timing API to add performance metrics to my web application?',
-              'How do I create and use custom modules in a Concrete5 application?',
-              'How do I use the WebAuthn API to add strong authentication capabilities to my web application?',
-              'How do I create and use custom plugins in a Shopify application?',
-              'How do I use the Web Assembly System Interface (WASI) to access system functions from my web application?',
-              'How do I create and use custom extensions in a VirtueMart application?',
-              'How do I use the WebAssembly Threads API to add multithreading capabilities to my web application?',
-              'How do I create and use custom templates in a Textpattern application?',
-              'How do I use the WebAssembly SIMD API to add single instruction, multiple data (SIMD) capabilities to my web application?',
-              'How do I create and use custom widgets in a Zend Framework application?',
-              'How do I use the WebAssembly Reference Types API to add references and pointers to my web assembly code?',
-              'How do I create and use custom modules in a MODX application?',
-              'How do I use the WebAssembly GC API to add garbage collection capabilities to my web assembly code?',
-              'How do I create and use custom plugins in a WooCommerce application?',
-              'How do I use the WebAssembly Exceptions API to add exception handling capabilities to my web assembly code?',
-              'How do I create and use custom extensions in an OpenCart application?',
-              'How do I use the WebAssembly Table API to add tables and arrays to my web assembly code?',
-              'How do I create and use custom modules in a BigCommerce application?',
-              'How do I use the WebAssembly Multi-Value API to return multiple values from functions in my web assembly code?',
-              'How do I create and use custom plugins in a PrestaShop application?',
-              'How do I use the WebAssembly Memory API to add dynamic memory allocation capabilities to my web assembly code?',
-              'How do I create and use custom extensions in a Magento 2 application?',
-              'How do I use the WebAssembly Text Decoding API to decode text from different encoding formats in my web assembly code?',
-              'How do I use version control effectively for web development projects?',
-              'How do I set up a staging environment for testing new features and changes before deploying them to production?',
-              'How do I use Git efficiently for web development projects?',
-              'How do I integrate third-party APIs into my web application?',
-              'How do I set up a load balancer to improve the scalability of my web application?',
-              'How do I use npm effectively for managing dependencies in my web project?',
-              'How do I set up a continuous integration and delivery pipeline for a serverless application?',
-              'How do I implement passwordless authentication in my web application?',
-              'How do I create and use custom middleware in a Express.js application?',
-              'How do I set up and use a database for my web application?',
-              'How do I use JSON Web Tokens (JWTs) to handle authentication in my web application?',
-              'How do I create and use custom directives in a Angular application?',
-              'How do I use Webpack effectively to bundle and optimize my web application?',
-              'How do I implement real-time updates using Server-Sent Events (SSE)?',
-              'How do I create and use custom plugins in a WordPress application?',
-              'How do I set up and use a content delivery network (CDN) for my web application?',
-              'How do I use Firebase to add real-time capabilities to my web application?',
-              'How do I create and use custom filters in a Vue.js application?',
-              'How do I use GraphQL to build a flexible and efficient API for my web application?',
-              'How do I set up and use a object storage service, such as Amazon S3, for my web application?',
-              'How do I use WebAssembly to improve the performance of my web application?',
-              'How do I create and use custom elements in a Polymer application?',
-              'How do I use the Service Worker API to build a progressive web application (PWA)?',
-              'How do I create and use custom behaviors in a Riot application?',
-              'How do I use the IndexedDB API to store data in the browser for offline use?',
-              'How do I create and use custom macros in a Blade application?']
-
+    titles = []
     for title in titles:
         try:
-            Tutorial.objects.get(title=x)
-            print('Already exists')
+            Tutorial.objects.get(title=title.replace('?', ''))
+            print('Tutorial already exists')
         except:
-            c_tut(title, 'WEB APIs')
-            print('FINISH --------------------- FINISH ---------------------')
+            c_tut(title.replace('?', '  '), 'DevOps')
 
+    consumer_key = "9kVtqWzkL6YN2vBHpRGzgYRDF"
+    consumer_secret = "foNH1CuPH7OJZPjpmlWGkK88XTPYJmLiXwQoTpmnwha0rUFjg4"
+    access_token = "792894589514485760-M8rkmQicexNh1BRdRtyrEQd5mtI2ScQ"
+    access_token_secret = "vtVZxmQPC7uhJJYT0fCzU8zhNDthVgRJZzJlYu6aBWpys"
+
+    # auth = tweepy.OAuth1UserHandler(consumer_key, consumer_secret, access_token, access_token_secret)
+    # api = tweepy.API(auth)
+
+    # api.update_status('This is a tweet posted using Python and the tweepy library!')
     return HttpResponse(request, 'Done')
 
 
-def delete_duplicates():
-    tutorials = Tutorial.objects.values('title').annotate(Count('title')).order_by().filter(title__count__gt=1)
+def delete_duplicates(request):
+    tutorials = Tutorial.objects.values('slug').annotate(Count('slug')).order_by().filter(slug__count__gt=1)
 
     # Loop through the Tutorial objects and delete the ones that are duplicates
     for tutorial in tutorials:
-        title = tutorial['title']
-        tutorials_with_title = Tutorial.objects.filter(title=title)
+        title = tutorial['slug']
+        tutorials_with_title = Tutorial.objects.filter(slug=title)
         # Keep the first Tutorial object and delete the others
         first_tutorial = tutorials_with_title.first()
         tutorials_to_delete = tutorials_with_title.exclude(pk=first_tutorial.pk)
         tutorials_to_delete.delete()
 
-    return None
+    return HttpResponse('ok')

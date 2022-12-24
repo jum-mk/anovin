@@ -83,4 +83,8 @@ urlpatterns = [
     path('sitemap.xml', sitemap, {'sitemaps': sitemaps_dict},
          name='django.contrib.sitemaps.views.sitemap'),
 
+    path('delete_duplicates/', views.delete_duplicates, name='delete_duplicates'),
+
+
+
 ]
