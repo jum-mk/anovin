@@ -386,7 +386,7 @@ https://anovin.mk/tutorial/how-to-insert,-update,-and-delete-data-in-a-nosql-dat
 How to scale and distribute a NoSQL database across multiple servers and regions
 
 #NoSQL #Database #Scaling #Distribution #Servers #Regions #DataManagement #CloudComputing
-https://anovin.mk/tutorial/how-to-scale-and-distribute-a-nosql-database-across-multiple-servers-and-regions/
+How to Secure and Manage a NoSQL Database
 ------------------------------------------------------------------
 How to secure and manage a NoSQL database, including configuring access control, backup and recovery, and monitoring and performance tuning
 

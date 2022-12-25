@@ -14,7 +14,6 @@ from rest_framework.permissions import IsAuthenticated
 from django.http import JsonResponse
 import json
 from .aiv2 import create_tutorial as c_tut
-from .aiv2 import get_ai_text
 from openai.error import ServiceUnavailableError
 
 
@@ -116,7 +115,7 @@ def tutorials(request):
         return render(request, 'tutorials.html', context={'tuts': tuts})
     # Get all Tutorial objects with duplicate titles
     else:
-        tuts = Tutorial.objects.all()[:12:-1]
+        tuts = Tutorial.objects.all()[::-1]
         return render(request, 'tutorials.html', context={'tuts': tuts})
 
 
@@ -149,28 +148,81 @@ def single_tutorial(request, slug=None):
 
 
 def create(request):
-    titles = []
-    tutorials = Tutorial.objects.filter(hashtags=None)
-    for t in tutorials:
-        print(t.hashtags)
-        while True:
-            try:
-                title = str(t.title)
-                hashtags = str(get_ai_text('Give me 8 hashtags for my blog post with title: {0}.'.format(title), 512))
-                t.hashtags = hashtags
-                print(t.hashtags)
-                t.save()
-
-            except ServiceUnavailableError:
-                continue
-            break
+    # djuma = [
+    #     "How to Use Best Practices in Software Security",
+    #     "How to Implement Secure Software Development Practices",
+    #     "How to Follow Best Practices for Software Security",
+    #     "How to Secure Your Software Development Process",
+    #     "How to Improve Your Software Security Skills",
+    #     "How to Master Software Security Principles",
+    #     "How to Enhance Your Software Security Workflow",
+    #     "How to Adhere to Best Practices in Software Security",
+    #     "How to Apply Software Security Best Practices",
+    #     "How to Become a Software Security Best Practices Expert"
+    # ]
+    titles = [
+        "How to Install HTMX",
+        "How to Use HTMX for Web Development",
+        "How to Use HTMX for HTML Templates",
+        "How to Use HTMX for Component-Based Development",
+        "How to Use HTMX for Reusable Components",
+        "How to Use HTMX for HTML Imports",
+        "How to Use HTMX for Data Binding",
+        "How to Use HTMX for Event Handling",
+        "How to Use HTMX for Form Validation",
+        "How to Use HTMX for Responsive Design",
+        "How to Use HTMX for Accessibility",
+        "How to Use HTMX for Internationalization",
+        "How to Use HTMX for Server-Side Rendering",
+        "How to Use HTMX for Progressive Web Apps",
+        "How to Use HTMX for Hybrid Mobile Apps",
+        "How to Use HTMX for Web Components",
+        "How to Use HTMX for Custom Elements",
+        "How to Use HTMX for Shadow DOM",
+        "How to Use HTMX for Templates and Slots",
+        "How to Use HTMX for HTML Parsing and Serialization",
+        "How to Use HTMX for DOM Manipulation",
+        "How to Use HTMX for Polyfills and Fallbacks",
+        "How to Use HTMX for Compatibility and Interoperability",
+        "How to Use HTMX for Debugging and Testing",
+        "How to Use HTMX for Performance Optimization",
+        "How to Use HTMX for Security Best Practices",
+        "How to Use HTMX for Deployment and Hosting",
+        "How to Use HTMX for Collaboration and Version Control",
+        "How to Use HTMX for Continuous Integration and Deployment",
+        "How to Use HTMX for Documentation and Tutorials",
+        "How to Use HTMX for Community and Support",
+        "How to Use HTMX for Code Reuse and Sharing",
+        "How to Use HTMX for Package Management and Dependencies",
+        "How to Use HTMX for Build Tools and Task Automation",
+        "How to Use HTMX for Code Quality and Linting",
+        "How to Use HTMX for Code Formatting and Style Guides",
+        "How to Use HTMX for Code Refactoring and Maintenance",
+        "How to Use HTMX for Code Review and Feedback",
+        "How to Use HTMX for Codebase Architecture and Design",
+        "How to Use HTMX for Codebase Scalability and Sustainability", ]
+    # tutorials = Tutorial.objects.filter(hashtags=None)
+    # for t in tutorials:
+    #     print(t.hashtags)
+    #     while True:
+    #         try:
+    #             title = str(t.title)
+    #             hashtags = str(get_ai_text('Give me 8 hashtags for my blog post with title: {0}.'.format(title), 512))
+    #             t.hashtags = hashtags
+    #             print(t.hashtags)
+    #             t.save()
+    #
+    #         except ServiceUnavailableError:
+    #             continue
+    #         break
     for title in titles:
 
         try:
             Tutorial.objects.get(title=title.replace('?', ''))
             print('Tutorial already exists')
         except:
-            c_tut(title.replace('?', '  '), 'DevOps')
+            print(title)
+            c_tut(title.replace('?', '  '), 'Web development')
 
     # consumer_key = "9kVtqWzkL6YN2vBHpRGzgYRDF"
     # consumer_secret = "foNH1CuPH7OJZPjpmlWGkK88XTPYJmLiXwQoTpmnwha0rUFjg4"

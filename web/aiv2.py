@@ -1,23 +1,28 @@
 import openai
 from ast import literal_eval
 from . import models
-
-openai.api_key = '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'
+from openai.error import ServiceUnavailableError, InvalidRequestError
 
 
 def get_ai_text(prompt, max_tokens):
-    response = openai.Completion.create(
-        model="text-davinci-003",
-        prompt=prompt,
-        temperature=0.2,
-        max_tokens=max_tokens,
-        top_p=0.1,
-        frequency_penalty=0,
-        presence_penalty=0,
-    )
+    openai.api_key = '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'
+    while True:
+        try:
 
-    response_data = response['choices'][0]['text']
-    return response_data
+            response = openai.Completion.create(
+                model="text-davinci-003",
+                prompt=prompt,
+                temperature=0.2,
+                max_tokens=max_tokens,
+                top_p=0.1,
+                frequency_penalty=0,
+                presence_penalty=0,
+            )
+            response_data = response['choices'][0]['text']
+            return response_data
+        except ServiceUnavailableError or InvalidRequestError:
+            print("An error occurred. Restarting the job.")
+            continue
 
 
 def create_tutorial(title, category):
@@ -56,7 +61,7 @@ def create_tutorial(title, category):
         content = ''
 
         for step in python_step_list:
-            content_query = 'Write <p> tutorial part of maximum of 400 words in the context of: ' + str(
+            content_query = 'Write <p> tutorial part of minimum of 300  words in the context of: ' + str(
                 title) + '. The parts of the tutorial are: ' + str(
                 python_step_list) + '. You are writing for the part: ' + str(
                 step) + '. The h2 title is {0}'.format(

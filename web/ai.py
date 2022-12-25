@@ -2,7 +2,7 @@ import openai
 from ast import literal_eval
 from . import models
 
-openai.api_key = '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'
+openai.api_key = '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'
 
 
 def get_ai_text(prompt, max_tokens):
