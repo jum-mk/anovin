@@ -7,7 +7,7 @@ class TutorialSitemap(Sitemap):
         return Tutorial.objects.all()
 
     def location(self, obj):
-        return '/tutorial/' + str(obj.slug)
+        return '/tutorial/' + str(obj.slug) + '/'
 
 
 class TagSitemap(Sitemap):
@@ -15,7 +15,7 @@ class TagSitemap(Sitemap):
         return Tag.objects.all()
 
     def location(self, obj):
-        return str(obj.get_absolute_url())
+        return str(obj.get_absolute_url()) + '/'
 
 
 class CategorySitemap(Sitemap):
@@ -23,4 +23,4 @@ class CategorySitemap(Sitemap):
         return Category.objects.all()
 
     def location(self, obj):
-        return str(obj.get_absolute_url())
+        return str(obj.get_absolute_url()) + '/'
