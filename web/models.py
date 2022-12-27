@@ -107,7 +107,7 @@ class Tutorial(models.Model):
     img = models.ImageField(upload_to='tutorials/images/', null=True, blank=True)
     category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True, blank=True)
     hashtags = models.CharField(max_length=300, null=True, blank=True)
-
+    like_score = models.IntegerField(default=0)
     def __str__(self):
         return self.title
 
@@ -122,3 +122,8 @@ class Subscriber(models.Model):
 
     def __str__(self):
         return str(self.email)
+
+
+class Feedback(models.Model):
+    text = models.TextField(null=True, blank=True)
+    tutorial = models.ForeignKey(Tutorial, null=True, blank=True, on_delete=models.SET_NULL)

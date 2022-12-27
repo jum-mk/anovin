@@ -26,7 +26,7 @@
     }
 
     pre {
-        background: #e8e8e8;
+        background: #f1f6fe;
         color: black;
         padding: 3px;
         border-radius: 3px;
@@ -88,34 +88,67 @@
         box-shadow: 0 .125rem .25rem rgba(0, 0, 0, .075) !important;
         padding: 15px;
     }
+
+    pre {
+        position: relative;
+    }
+
+
+    .tag-button {
+        background: #e9eff7;
+        border: 1px solid #cecece;
+        transition: 300ms;
+    }
+
+    .tag-button:hover {
+        background: #d0d1d5;
+        border: 1px solid #eaeaea;
+    }
+
+    .related-tutorials {
+        color: black;
+    }
+
+    .related-tutorials:hover {
+        color: blue;
+    }
+
 </style>
 <body>
 {% include 'menu.html' %}
 <div class="container ">
-    <div class="d-flex justify-content-center p-0 mt-3 mb-3">
+    <div class="row justify-content-center p-0 mt-3 mb-3">
         <div class="col-12 col-md-9">
-            <div class="p-1 pe-lg-4">
+            <div class="p-1 pe-lg-4 d-flex flex-column">
                 <div style="height: 1px; background: #106ee9; width: 100%; margin-top:4px; margin-bottom: 20px;"
-                     class="d-none"></div>
+                     class="d-none">
+
+                </div>
+
                 {{tutorial.content|safe}}
             </div>
         </div>
-        <div class="col-3 p-2 d-flex justify-content-end d-none d-md-block">
+        <div class="col-12 col-md-3 p-2 d-flex flex-column justify-content-end  d-md-block">
 
 
             <div class="d-flex flex-column p-2 shadow-sm border" style="border-radius: 8px; background: #f1f6fe;">
+
+                <div id="feedback-widget">
+
+                </div>
                 {% if request.user.is_superuser %}
-                <a href="http://127.0.0.1:8002/admin/web/tutorial/{{tutorial.id}}/change/" target="_blank" class="mb-4 ">
-                    <button class="btn btn-success w-100 mb">
+                <a href="http://127.0.0.1:8002/admin/web/tutorial/{{tutorial.id}}/change/" target="_blank"
+                   class="mb-4 ">
+                    <button class="btn btn-success w-100 d-none">
                         <h4 class="text-light" style="font-weight:300;">Edit tutorial</h4>
                     </button>
                 </a>
                 {% else %}
                 {% endif %}
                 <a href="{{tutorial.category.get_absolute_url}}">
-                    <button class="btn btn-sm btn-light d-flex p-3 shadow-sm mb-3 w-100 d-flex flex-column border"
-                            style="background: #106ee9; color: black; font-weight: 100; border-radius: 8px;">
-                        <h3 class="w-100 pt-1 pb-1 text-light"
+                    <button class="btn btn-sm btn-light d-flex p-3 shadow-sm mb-3 w-100 d-flex flex-column border tag-button"
+                            style=" color: black; font-weight: 100; border-radius: 8px;">
+                        <h3 class="w-100 pt-1 pb-1 text-dark"
                             style="font-size:15px;border-radius: 4px; font-weight: 800;">
                             {{ tutorial.category }}
                         </h3>
@@ -123,8 +156,8 @@
                 </a>
                 <div class="d-flex flex-wrap justify-content-end align-items-center">{% for tag in tutorial.tags.all %}
                     <a href="{{tag.get_absolute_url}}">
-                        <button class="btn-sm btn-primary m-1 text-bg-primary" style="font-size:13px;">
-                            <h4 style="color: whitesmoke;">{{tag}}</h4>
+                        <button class="btn-sm btn-primary m-1 shadow-sm tag-button" style="">
+                            <h6 style="color: black;">{{tag}}</h6>
                         </button>
                     </a>
                     {%endfor%}
@@ -134,9 +167,9 @@
             <div class="d-flex flex-column p-2 shadow-sm mt-3 border" style="border-radius: 8px; background: #f1f6fe;">
 
                 <div>
-                    <button class="btn btn-sm btn-light d-flex p-3 shadow-sm mb-3 w-100 d-flex flex-column border"
-                            style="background: #106ee9; color: black; font-weight: 100; border-radius: 8px;">
-                        <h3 class="w-100 pt-1 pb-1 text-light"
+                    <button class="btn btn-sm d-flex p-3 shadow-sm mb-3 w-100 d-flex flex-column border tag-button"
+                            style="font-weight: 100; border-radius: 8px;">
+                        <h3 class="w-100 pt-1 pb-1 "
                             style="font-size:15px;border-radius: 4px; font-weight: 800;">
                             Related tutorials
                         </h3>
@@ -144,8 +177,8 @@
                 </div>
                 <div class="d-flex flex-column  ">{% for tut in related_tutorials %}
                     <a href="{{tut.get_absolute_url}}">
-                        <p class=" m-1 " style="font-size:13px; color: black;">
-                        <h6 class=" ps-2 pe-2">{{tut.title}}</h6>
+                        <p class=" m-1 related-tutorials " style="font-size:13px;">
+                            {{tut.title}}
                         </p>
                     </a>
                     {%endfor%}
@@ -158,28 +191,181 @@
 
 {% include 'tutorials/footer.html' %}
 
-{% include 'main_scripts.html' %}
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" >
+        <div class="modal-content" >
+            <div class="modal-header"  style="background: #f1f6fe; border-radius:15px;" >
+                <h1 class="modal-title mb-1" id="exampleModalLabel" style="font-size: 14px;">Thank you for your
+                    contribution</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body"  style="background: #f1f6fe; border-radius:15px;" >
+                <form action="/feedback/" method="post" id="feedbackForm">
+                    <div class="form-group">
+                        <label for="feedbackText" class="d-none">Feedback</label>
+                        {% csrf_token %}
+                        <input type="hidden" value="{{tutorial.id}}" id="tutorial_id" name="tutorial_id">
+                        <textarea class="form-control shadow-sm p-1" id="feedbackText" rows="3" name="feedback-text"
+                                  style="border-radius: 8px;"></textarea>
+
+                    </div>
+                    <button type="submit" id="SubmitFeedbackButton" class="btn  btn-light border shadow mt-3 float-end "
+                            style="border-radius: 8px; font-size:13px; font-family: 'Josefin Sans', sans-serif">
+                        Submit
+                    </button>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+
 <script>
 
+    const preElements = document.querySelectorAll('pre');
 
-    document.addEventListener('DOMContentLoaded', (event) => {
+    preElements.forEach(preElement => {
+        preElement.style.overflowX = 'scroll';
+
+        const button = document.createElement('button');
+        button.textContent = 'Copy';
+        button.style.borderRadius = '3px 8px 0px 0px';
+        button.style.background = 'transparent';
+        button.style.border = '1px solid rgba(0, 0, 0, 0.07)';
+        button.style.position = 'absolute';
+        button.style.top = '0';
+        button.style.right = '0';
+
+        button.addEventListener('click', () => {
+            button.innerText = '';
+            navigator.clipboard.writeText(preElement.textContent).then(function () {
+                // Fade out the button
+                button.innerText = 'Copied';
+
+                setTimeout(() => {
+                    // Update the inner text and fade the button back in
+                    // Change the inner text again after a short delay
+                    setTimeout(() => {
+                        button.innerText = 'Copy';
+                    }, 2000);
+                }, 500);
+            }, function (err) {
+                console.error('Failed to copy: ', err);
+            });
+        });
+
+        preElement.appendChild(button);
+    });
+
+</script>
+<script>
+    async function submitFeedback(form) {
+        // Get the form action and method attributes
+        const action = form.getAttribute('action');
+        const method = form.getAttribute('method');
+
+        // Get the CSRF token and feedback text input
+        const csrfInput = form.querySelector('input[name="csrfmiddlewaretoken"]');
+        const feedbackInput = form.querySelector('textarea[name="feedback-text"]');
+        const tutorialIdInput = form.querySelector('input[name="tutorial_id"]');
+
+        // Validate the form input
+        if (!csrfInput || !tutorialIdInput || !feedbackInput.value) {
+            console.error('Invalid form input');
+            alert('Invalid feedback input.')
+            return;
+        }
+
+        if (feedbackInput.value.length < 20){
+            console.error('Invalid form input');
+            alert('Invalid feedback input text length.')
+            return;
+        }
+
+        // Create a FormData object with the form data and CSRF token
+        const formData = new FormData();
+        formData.append('csrfmiddlewaretoken', csrfInput.value);
+        formData.append('feedback-text', feedbackInput.value);
+        formData.append('tutorial_id', tutorialIdInput.value);
+
+        // Send a POST request to the form action URL
+        const response = await fetch(action, {
+            method: method,
+            body: formData
+        });
+
+        // Process the response
+        if (response.ok) {
+            // The request was successful
+            const data = await response.json();
+            form.innerHTML = '<div class="d-flex justify-content-center align-items-center p-2"><h6>Your feedback was delivered.</h6></div>'
+            console.log(data);
+
+        } else {
+            // There was an error
+            console.error(response.statusText);
+        }
+    }
+
+
+    const SubmitFeedbackButton = document.getElementById('SubmitFeedbackButton')
+
+    SubmitFeedbackButton.addEventListener('click', (event) => {
         event.preventDefault();
-
-        let img = document.querySelector('img')
-        img.className = 'd-none'
-
-
-        let copyButton = document.createElement('button')
-        copyButton.className = 'pt-2 pb-2 text-light bg-dark'
-        copyButton.innerText = 'Copy code'
-
-
-        const codeTags = document.querySelectorAll('code')
-
-        codeTags.forEach(element => console.log(element))
-
+        const feedbackForm = document.getElementById('feedbackForm')
+        submitFeedback(feedbackForm)
     })
+
+
+</script>
+<script>
+
+    const rootDiv = document.createElement('div');
+
+    // Create the first child node (a dislike bootstrap icon button)
+    const dislikeButton = document.createElement('button');
+    dislikeButton.classList.add('btn', 'btn-secondary', 'btn-lg');
+    dislikeButton.innerHTML = '<i class="bi bi-hand-thumbs-down-fill"></i>';
+    dislikeButton.style.width = '100%'
+    dislikeButton.style.background = 'transparent'
+    dislikeButton.style.border = 0
+    dislikeButton.style.color = '#000'
+    dislikeButton.setAttribute('data-bs-toggle', 'modal');
+    dislikeButton.setAttribute('data-bs-target', '#exampleModal');
+
+    // Create the second child node (a bootstrap icon button)
+    const likeButton = document.createElement('button');
+    likeButton.classList.add('btn', 'btn-secondary', 'btn-lg');
+    likeButton.innerHTML = '<i class="bi bi-hand-thumbs-up-fill"></i>';
+    likeButton.setAttribute('data-bs-toggle', 'modal');
+    likeButton.setAttribute('data-bs-target', '#exampleModal');
+    likeButton.style.width = '100%'
+    likeButton.style.background = 'transparent'
+    likeButton.style.border = 0
+    likeButton.style.color = '#000'
+    likeButton.addEventListener('click', (event) => {
+    });
+
+    rootDiv.appendChild(likeButton)
+    rootDiv.appendChild(dislikeButton)
+    rootDiv.style.display = 'flex'
+    rootDiv.style.justifyContent = 'center'
+    rootDiv.style.fontWeight = '300'
+
+    const feedbackWidget = document.getElementById('feedback-widget')
+    feedbackWidget.appendChild(rootDiv)
+    feedbackWidget.style.padding = '0px 10px'
+    feedbackWidget.style.fontWeight = '300'
+
+    let hr = document.createElement('div')
+    hr.innerText = 'We use AI to deliver in depth tutorials and solutions. Please provide feedback so we can improve the model.'
+    hr.style.fontSize = '13px'
+    feedbackWidget.appendChild(hr)
+
 </script>
 
+
+{% include 'main_scripts.html' %}
 </body>
 </html>

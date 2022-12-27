@@ -7,6 +7,10 @@ admin.site.register(Tutorial)
 admin.site.register(Category)
 
 admin.site.register(Subscriber)
+
+
 admin.site.register(Item)
+
+admin.site.register(Feedback)
 
 

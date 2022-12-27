@@ -1,4 +1,12 @@
 <!-- ======= Top Bar ======= -->
+
+<style>
+    .form-check-input:checked {
+        background-color: #21324a;
+        border-color: #111f33;
+    }
+
+</style>
 <section id="topbar" class="d-flex align-items-center" style="height: 38px;">
     <div class="container d-flex justify-content-center justify-content-md-between">
         <div class="contact-info d-flex align-items-center" style="font-size:20px;">
@@ -11,10 +19,9 @@
         </div>
         <div class="social-links d-none d-md-flex align-items-center">
             <a href="{% url 'index' %}#contact">
-                <i class="bi bi-envelope" style="font-size: 20px;">
+                <i class="bi bi-envelope-fill" style="font-size: 20px;">
                 </i>
             </a>
-            <a href="{% url 'index' %}#contact" style="font-size: 13px;">anovindooel@gmail.com</a>
         </div>
     </div>
 </section>
@@ -25,12 +32,12 @@
     <div class="container d-flex align-items-center justify-content-between">
         <a href="{% url 'index' %}" class="logo">
             <div style="color:black; font-size: 1.6rem; margin-top:5px;">ANO<span
-                    style="color:#106eea;">V</span>IN
+                    style="color:#263f62;">V</span>IN
             </div>
         </a>
         <nav id="navbar" class="navbar">
             <ul>
-                <li><a class="nav-link scrollto active" href="{% url 'index' %}#hero">Home</a></li>
+                <li><a class="nav-link scrollto" href="{% url 'index' %}#hero">Home</a></li>
                 <li><a class="nav-link scrollto" href="{% url 'tutorials' %}">Tutorials</a></li>
 
                 <li><a class="nav-link scrollto" href="{% url 'index' %}#services">Stack</a></li>
@@ -38,9 +45,10 @@
                 <li><a class="nav-link scrollto" href="{% url 'index' %}#contact">Contact</a></li>
 
                 <li class="ms-4">
-                    <div class="nav-link form-check form-switch m-0 ms-3 ms-md-0">
+                    <div class="nav-link form-check form-switch m-0 ms-3 ms-md-0" style="cursor: pointer;">
                         <input class="form-check-input" type="checkbox" role="switch" id="mode">
-                        <label class="form-check-label" for="mode">dark-light</label>
+                        <label class="form-check-label" for="mode"
+                               style="font-family: 'Josefin Sans', sans-serif; color: #263f62; margin-top:3px;">Dark/Light</label>
                     </div>
                     <script>
                         let mode = document.getElementById('mode')

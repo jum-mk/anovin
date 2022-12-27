@@ -86,5 +86,6 @@ urlpatterns = [
 
     path('delete_duplicates/', views.delete_duplicates, name='delete_duplicates'),
     path('get_social_media_posts/', get_social_media_posts, name='get_social_media_posts'),
+    path('feedback/', views.feedback, name='feedback')
 
 ]

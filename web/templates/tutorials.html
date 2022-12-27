@@ -38,7 +38,7 @@
 
         label {
             display: block;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0rem;
             font-weight: 600;
             font-size: 0.9rem;
         }
@@ -75,6 +75,7 @@
 
         h1, h5, .search-button {
             font-family: "Josefin Sans", sans-serif;
+
         }
 
         .cat-text {
@@ -97,8 +98,8 @@
                 <input id='instantSearch' type="text" class="form-control  w-100 shadow-sm  mt-3 mb-1 mb-md-0"
                        style="border-radius: 8px; height: 40px; "
                        placeholder="Search" name="instant_search">
-                <button type="submit" class="btn mt-3 shadow-sm btn-outline-primary search-button float-end ms-md-3"
-                        style="border-radius: 8px;">Search
+                <button type="submit" class="btn mt-3 shadow-sm border search-button float-end ms-md-3"
+                        style="border-radius: 8px;color: #253f62; background: transparent;">Search
                 </button>
             </form>
 
@@ -113,11 +114,11 @@
                 <div class="">
                     <h5 class="mb-3 ms-1">{{ t.title }}</h5>
                     <div class="d-inline-flex flex-wrap align-items-center">
-                        <span class="shadow-sm  p-1 pe-2 ps-2  me-2 mb-1 mt-1 cat-text "
+                        <span class="shadow-sm  p-1 pe-2 ps-2  me-2 mb-1 mt-1 cat-text border"
                               style="border-radius: 8px; font-size: 16px; ">{{ t.category }}</span>
                         {% for tag in t.tags.all %}
-                        <span class="shadow-sm p-2 bg-primary me-2 mb-1 mt-1"
-                              style="border-radius: 8px; font-size: 10px; font-weight: 800; color:white;"> {{ tag.name }}</span>
+                        <span class="shadow-sm p-2 me-2 mb-1 mt-1 border"
+                              style="border-radius: 8px; font-size: 10px; font-weight: 800; color:#263f62; "> {{ tag.name }}</span>
                         {% endfor %}
                     </div>
 
@@ -128,7 +129,7 @@
         <div class="d-flex flex-wrap align-items-center justify-content-center d-none">
             {% for tag in tags %}
 
-            <span class="badge text-bg-primary m-1 p-1"
+            <span class="badge m-1 p-1"
                   style="cursor: pointer; font-size:10px;">{{ tag.name }}</span>
             {% endfor %}
         </div>

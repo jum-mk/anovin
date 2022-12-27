@@ -86,6 +86,7 @@
          style="border-radius:10px;">
 
         <h1 class="mt-4 mb-3" align="center">Explore our tutorial database</h1>
+        <h2 style="font-family: 'Josefin Sans', sans-serif;">Tag: {{tag}}</h2>
 
         <div class="w-100" style="margin-bottom:30px;">
             <form method="get" action="{% url 'tutorials' %}" class="d-flex  flex-column flex-md-row">
@@ -109,9 +110,9 @@
                     <h5 class="mb-3">{{ t.title }}</h5>
                     <div class="d-inline-flex flex-wrap align-items-center">
                         <span class="shadow-sm  p-1 pe-2 ps-2  me-2 mb-1 mt-1 cat-text "
-                              style="border-radius: 8px; font-size: 16px; ">{{ t.category }}</span>
+                              style="border-radius: 8px; font-size: 14px; ">{{ t.category }}</span>
                         {% for tag in t.tags.all %}
-                        <span class="shadow-sm p-2 bg-primary me-2 mb-1 mt-1"
+                        <span class="shadow-sm p-2 text-dark  me-2 mb-1 mt-1"
                               style="border-radius: 8px; font-size: 10px; font-weight: 800; color:white;"> {{ tag.name }}</span>
                         {% endfor %}
                     </div>
