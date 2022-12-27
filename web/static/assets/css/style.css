@@ -111,7 +111,7 @@ h1, h2, h3, h4, h5, h6 {
 --------------------------------------------------------------*/
 @media screen and (max-width: 768px) {
     [data-aos-delay] {
-        transition-delay: 0 !important;
+        transition-delay: 0s;
     }
 }
 
@@ -667,7 +667,7 @@ section {
 
 @media (max-width: 768px) {
     .breadcrumbs .d-flex {
-        display: block !important;
+        display: block;
     }
 
     .breadcrumbs ol {
