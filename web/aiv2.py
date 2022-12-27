@@ -5,7 +5,7 @@ from openai.error import ServiceUnavailableError, InvalidRequestError
 
 
 def get_ai_text(prompt, max_tokens):
-    openai.api_key = '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'
+    openai.api_key = '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'
     while True:
         try:
 

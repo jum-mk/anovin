@@ -73,6 +73,7 @@ class Contact(models.Model):
 class Category(models.Model):
     name = models.CharField(max_length=250)
     slug = models.CharField(max_length=250)
+    icon = models.ImageField(upload_to='categories/icons', null=True, blank=True)
 
     def __str__(self):
         return self.name

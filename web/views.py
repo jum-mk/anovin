@@ -16,6 +16,122 @@ import json
 from .aiv2 import create_tutorial as c_tut
 from openai.error import ServiceUnavailableError
 
+tutorials_dict = {
+    'Golang': [
+        "How to Install and Set Up Go on Your Development Machine",
+        "How to Write Your First Go Program",
+        "How to Use Go's Built-in Concurrency Features",
+        "How to Build and Deploy a Go Web Server",
+        "How to Use Go's Testing Framework",
+        "How to Use Go's JSON Support to Work with APIs",
+        "How to Use Go's Database Support to Store Data",
+        "How to Use Go's Goroutines and Channels for Parallelism",
+        "How to Use Go's Reflect Package to Inspect Types at Runtime",
+        "How to Use Go's Text and Template Packages to Generate Text Output",
+        "How to Use Go's Built-in Cryptography Libraries",
+        "How to Use Go's Profiling Tools to Improve Performance"
+    ],
+    'Computational biology': ["How to Install and Set Up MEGA on Your Computer",
+                              "How to Use MEGA for DNA and Protein Sequence Alignment",
+                              "How to Use MEGA for Phylogenetic Tree Reconstruction",
+                              "How to Use MEGA for Molecular Evolution Analysis",
+                              "How to Use MEGA for Molecular Clock Analysis",
+                              "How to Use MEGA for Protein Structure Prediction",
+                              "How to Use MEGA for Population Genetic Analysis",
+                              "How to Use MEGA for Molecular Functional Analysis",
+                              "How to Use MEGA for Gene Expression Analysis",
+                              "How to Use MEGA for Comparative Genomics Analysis",
+                              "How to Use MEGA for Molecular Sequence Data Management",
+                              "How to Use MEGA for Biomedical Research"
+                              ],
+    'Video editing': [
+        "How to Install and Set Up Vegas Pro on Your Computer",
+        "How to Use Vegas Pro for Video Editing and Production",
+        "How to Use Vegas Pro's Audio Editing and Mixing Features",
+        "How to Use Vegas Pro's Special Effects and Compositing Tools",
+        "How to Use Vegas Pro's Color Correction and Grading Features",
+        "How to Use Vegas Pro's 3D Modeling and Animation Tools",
+        "How to Use Vegas Pro's Titling and Text Animation Features",
+        "How to Use Vegas Pro's Video Stabilization and Motion Tracking Tools",
+        "How to Use Vegas Pro's Audio Syncing and Lip Sync Tools",
+        "How to Use Vegas Pro's DVD and Blu-ray Authoring Features",
+        "How to Use Vegas Pro's Advanced Editing Techniques",
+        "How to Use Vegas Pro's Collaboration and Teamwork Features"
+    ],
+    'React': ["How to Set Up a React Development Environment",
+              "How to Create a React App from Scratch",
+              "How to Use React Components and Props",
+              "How to Use React State and Lifecycle Methods",
+              "How to Use React Forms and Events",
+              "How to Use React Routing and Navigation",
+              "How to Use React Hooks and Context",
+              "How to Use React Fragments and Portals",
+              "How to Use React Lazy Loading and Suspense",
+              "How to Use React for Server-Side Rendering",
+              "How to Use React for Mobile Development with React Native",
+              "How to Use React for Animations and Transitions"],
+    'Next.js': ["How to Set Up a Next.js Development Environment",
+                "How to Create a Next.js App from Scratch",
+                "How to Use Next.js for Server-Rendered React Apps",
+                "How to Use Next.js for Static Site Generation",
+                "How to Use Next.js for Serverless Functions",
+                "How to Use Next.js for Routing and Navigation",
+                "How to Use Next.js for Data Fetching and SSR",
+                "How to Use Next.js for Code Splitting and Optimization",
+                "How to Use Next.js for Server-Side Rendering in a Microservices Architecture",
+                "How to Use Next.js for Serverless APIs and Microservices",
+                "How to Use Next.js for Server-Rendered React Apps with TypeScript",
+                "How to Use Next.js for Server-Rendered React Apps with GraphQL"],
+    'Headless CMS': ["How to Choose the Right Headless CMS for Your Project",
+                     "How to Set Up and Configure a Headless CMS",
+                     "How to Use a Headless CMS for Content Management and Editing",
+                     "How to Use a Headless CMS for Digital Asset Management",
+                     "How to Use a Headless CMS for Multi-Language and Localization",
+                     "How to Use a Headless CMS for User Management and Access Control",
+                     "How to Use a Headless CMS for Version Control and Workflow",
+                     "How to Use a Headless CMS for SEO Optimization",
+                     "How to Use a Headless CMS for Personalization and Targeting",
+                     "How to Use a Headless CMS for Integration with External Systems",
+                     "How to Use a Headless CMS for Webhooks and Event Triggers",
+                     "How to Use a Headless CMS for Scalability and Performance"],
+    'AJAX': ["How to Use AJAX for Asynchronous Web Applications",
+             "How to Use AJAX with jQuery for Easier Web Development",
+             "How to Use AJAX with PHP for Server-Side Interaction",
+             "How to Use AJAX with ASP.NET for Server-Side Interaction",
+             "How to Use AJAX with Ruby on Rails for Server-Side Interaction",
+             "How to Use AJAX with Python for Server-Side Interaction",
+             "How to Use AJAX with Java for Server-Side Interaction",
+             "How to Use AJAX with Node.js for Server-Side Interaction",
+             "How to Use AJAX with AngularJS for Single-Page Applications",
+             "How to Use AJAX with React for Single-Page Applications",
+             "How to Use AJAX with Vue.js for Single-Page Applications",
+             "How to Use AJAX with Webpack and Babel for Modern JavaScript Applications"],
+    'tweepy': ["How to Use Tweepy for Twitter API Access in Python",
+               "How to Use Tweepy for Twitter Streaming API in Python",
+               "How to Use Tweepy for Twitter Search and Filtering in Python",
+               "How to Use Tweepy for Twitter User Lookup and Information in Python",
+               "How to Use Tweepy for Twitter Status Update and Tweeting in Python",
+               "How to Use Tweepy for Twitter Direct Messages in Python",
+               "How to Use Tweepy for Twitter Friendship and Follow Management in Python",
+               "How to Use Tweepy for Twitter List Management in Python",
+               "How to Use Tweepy for Twitter Favorites and Likes in Python",
+               "How to Use Tweepy for Twitter Retweet and Quote Tweet in Python",
+               "How to Use Tweepy for Twitter User Block and Mute Management in Python",
+               "How to Use Tweepy for Twitter OAuth and Authentication in Python"],
+    'OpenAI': ["How to Use OpenAI's GPT-3 for Natural Language Processing",
+               "How to Use OpenAI's GPT-3 for Text Generation and Summarization",
+               "How to Use OpenAI's GPT-3 for Translation and Language Modelling",
+               "How to Use OpenAI's DALL-E for Image Generation and Style Transfer",
+               "How to Use OpenAI's DALL-E for Text-to-Image Generation",
+               "How to Use OpenAI's DALL-E for Audio Generation",
+               "How to Use OpenAI's RoboSumo for Robot Control and Reinforcement Learning",
+               "How to Use OpenAI's RoboSumo for Robotics Simulation and Training",
+               "How to Use OpenAI's Gym for Reinforcement Learning and Control",
+               "How to Use OpenAI's Gym for Robotics Simulation and Training",
+               "How to Use OpenAI's Spinning Up for Deep Reinforcement Learning",
+               "How to Use OpenAI's API for NLP, Computer Vision, and Robotics"]
+}
+
 
 class CustomUserViewSet(viewsets.ModelViewSet):
     queryset = CustomUser.objects.all()
@@ -148,26 +264,23 @@ def single_tutorial(request, slug=None):
 
 
 def create(request):
-    titles = ["How to Install and Set Up Redis on a VPS",
-              "How to Use Redis for Data Caching in Python",
-              "How to Implement a Redis Leaderboard in Python",
-              "How to Implement a Redis Task Queue in Python",
-              "How to Use Redis for Pub/Sub Messaging in Python",
-              "How to Set Up Redis Cluster for High Availability",
-              "How to Use Redis for Distributed Locks in Python",
-              "How to Use Redis to Store and Query Geospatial Data in Python",
-              "How to Implement a Redis Full-Text Search Engine in Python",
-              "How to Use Redis for Time Series Data Analysis in Python",
-              "How to Use Redis for Distributed Rate Limiting in Python",
-              "How to Securely Connect to Redis from Python"]
-    for title in titles:
-
-        try:
-            Tutorial.objects.get(title=title.replace('?', ''))
-            print('Tutorial already exists')
-        except:
-            print(title)
-            c_tut(title.replace('?', '  '), 'Redis')
+    for t in Tutorial.objects.all():
+        print(t.slug)
+        t.slug = t.slug.replace(',', '')
+        print(t.slug)
+        t.save()
+    # from .tests import tutorials_dict
+    # for x in tutorials_dict:
+    #     category = x
+    #     print(category)
+    #     title_list = tutorials_dict[x]
+    #     for title in title_list:
+    #         try:
+    #             Tutorial.objects.get(title=title.replace('?', ''))
+    #             print('Tutorial already exists')
+    #         except:
+    #             print('Trying to create a new tutorial.')
+    #             c_tut(title.replace('?', ''), category)
 
     # consumer_key = "9kVtqWzkL6YN2vBHpRGzgYRDF"
     # consumer_secret = "foNH1CuPH7OJZPjpmlWGkK88XTPYJmLiXwQoTpmnwha0rUFjg4"
