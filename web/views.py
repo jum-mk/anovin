@@ -264,11 +264,34 @@ def single_tutorial(request, slug=None):
 
 
 def create(request):
-    for t in Tutorial.objects.all():
-        print(t.slug)
-        t.slug = t.slug.replace(',', '')
-        print(t.slug)
-        t.save()
+    import requests
+    import xml.etree.ElementTree as ET
+
+    # def check_sitemap_links(sitemap_url):
+    #     # Download the sitemap XML
+    #     sitemap_response = requests.get(sitemap_url)
+    #     sitemap_xml = sitemap_response.text
+    #
+    #     # Parse the XML
+    #     sitemap = ET.fromstring(sitemap_xml)
+    #
+    #     # Iterate over each link in the sitemap
+    #     for link in sitemap.findall('{http://www.sitemaps.org/schemas/sitemap/0.9}url'):
+    #         url = link.find('{http://www.sitemaps.org/schemas/sitemap/0.9}loc').text
+    #
+    #         url.replace()
+    #         print(url)
+    #         # Check the HTTP status code for the link
+    #         response = requests.get(url)
+    #         if response.status_code == 404:
+    #             print(f'{url} returned a 404 status code')
+    # check_sitemap_links('http://127.0.0.1:8333/sitemap.xml')
+
+    # for t in Tutorial.objects.all():
+    #     print(t.slug)
+    #     t.slug = str(t.slug).replace(')', '')
+    #     print(t.slug)
+    #     t.save()
     # from .tests import tutorials_dict
     # for x in tutorials_dict:
     #     category = x
