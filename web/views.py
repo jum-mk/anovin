@@ -287,11 +287,12 @@ def create(request):
     #             print(f'{url} returned a 404 status code')
     # check_sitemap_links('http://127.0.0.1:8333/sitemap.xml')
 
-    # for t in Tutorial.objects.all():
-    #     print(t.slug)
-    #     t.slug = str(t.slug).replace(')', '')
-    #     print(t.slug)
-    #     t.save()
+    for t in Category.objects.all():
+        print(t.slug)
+        t.slug = str(t.slug).replace("(", '')
+        print(t.slug)
+        t.save()
+        print(t.slug)
     # from .tests import tutorials_dict
     # for x in tutorials_dict:
     #     category = x
