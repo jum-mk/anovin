@@ -5,7 +5,7 @@ from openai.error import ServiceUnavailableError, InvalidRequestError
 
 
 def get_ai_text(prompt, max_tokens):
-    openai.api_key = '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'
+    openai.api_key = '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'
     while True:
         try:
 
@@ -85,8 +85,19 @@ def create_tutorial(title, category):
         tut.meta_description = str(meta_description).strip(' ').replace('\n', '')
         tut.content = content
 
-        tut.slug = str(tut.title).strip(' ').replace(' ', '-').lower()
+        slug = str(tut.title).strip(' ').replace(' ', '-').lower()
+
+        slug = slug.replace('(', '')
+        slug = slug.replace(')', '')
+        slug = slug.replace('.', '')
+        slug = slug.replace("'", '')
+        slug = slug.replace('"', '')
+        slug = slug.replace('%3F', '')
+        slug = slug.replace('?', '')
+        tut.slug = slug
         tut.save()
+
+        hashtags = ''
         for item in python_tag_list:
             try:
                 tag = models.Tag.objects.get(name=item)
@@ -97,6 +108,15 @@ def create_tutorial(title, category):
                 tag.slug = str(tag.name).strip(' ').replace('\n', '').replace(' ', '-').lower()
                 tag.save()
                 tut.tags.add(tag)
+        print(hashtags)
+
+        for tag in tut.tags.all():
+            print(tag)
+            hashtags += str('#') + str(tag.name) + ' '
+
+
+        tut.hashtags = hashtags
+        print(tut.hashtags)
 
         try:
             category = models.Category.objects.get(name=category)

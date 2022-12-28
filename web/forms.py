@@ -17,3 +17,10 @@ class ContactForm(ModelForm):
             {'placeholder': 'Content', 'class': 'form-control', 'style': 'border-radius:8px;'})
         self.fields['email'].widget.attrs.update(
             {'placeholder': 'E-mail', 'class': 'form-control', 'style': 'border-radius:8px;'})
+
+    def clean(self):
+        cleaned_data = super().clean()
+        honeypot = cleaned_data.get("honeypot")
+        if honeypot:
+            raise forms.ValidationError("This form appears to be a spam submission, so it will not be accepted.")
+        return cleaned_data

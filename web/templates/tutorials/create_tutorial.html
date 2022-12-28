@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Create Tutorial</title>
+    {% include 'head.html' %}
+
+    <style>
+        label {
+            font-size: 13px;
+            margin-bottom: 4px;
+        }
+
+        input::placeholder {
+            font-size: 14px;
+        }
+         textarea::placeholder {
+            font-size: 14px;
+        }
+         form {
+             width: 600px;
+         }
+    </style>
+</head>
+<body>
+{% include 'menu.html' %}
+
+<div class="d-flex pt-4 pb-4 align-content-center flex-column justify-content-center align-items-center border">
+    <form style="max-width: 700px; min-width: 300px; border-radius: 8px;" class="shadow-sm p-3 border">
+        <div class="form-group">
+            <label for="title">Title</label>
+            <input type="text" class="form-control mb-3" id="title" placeholder="Enter title">
+        </div>
+        <div class="form-group">
+            <label for="category">Category</label>
+            <input class="form-control mb-3" id="category" name="category">
+
+        </div>
+        <div class="form-group">
+            <label for="additional-data">Additional Data</label>
+            <textarea class="form-control mb-3" id="additional-data" rows="3" placeholder="Maximum of 30 characters." maxlength="30"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary btn-sm" >Submit</button>
+    </form>
+
+</div>
+</body>
+</html>

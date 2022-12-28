@@ -77,6 +77,9 @@ urlpatterns = [
     path('cats/<int:pk>/', cat_detail, name='cat-detail'),
 
     path('ai/create/', views.create, name='create'),
+    path('create_tutorial/', views.create_tutorial, name='create_tutorial'),
+    path('register/', views.register, name='register'),
+    path('login_view/', views.login_view, name='login_view'),
 
     path('subscribe/', views.subscribe, name='subscribe'),
 

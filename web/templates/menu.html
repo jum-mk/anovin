@@ -6,6 +6,20 @@
         border-color: #111f33;
     }
 
+    .beta {
+        position: relative;
+    }
+
+    .beta::after {
+        content: "BETA";
+        position: absolute;
+        top: -25px;
+        right: -5px;
+        font-weight: 100;
+        font-size: 10px;
+
+    }
+
 </style>
 <section id="topbar" class="d-flex align-items-center" style="height: 38px;">
     <div class="container d-flex justify-content-center justify-content-md-between">
@@ -38,12 +52,16 @@
         <nav id="navbar" class="navbar">
             <ul>
                 <li><a class="nav-link scrollto" href="{% url 'index' %}#hero">Home</a></li>
+                <li><a class="nav-link scrollto" data-bs-toggle="modal" style="cursor:pointer;"
+                       data-bs-target="#createModal">Create tutorial
+                    <div class="beta"></div>
+                </a></li>
+
                 <li><a class="nav-link scrollto" href="{% url 'tutorials' %}">Tutorials</a></li>
 
                 <li><a class="nav-link scrollto" href="{% url 'index' %}#services">Stack</a></li>
 
                 <li><a class="nav-link scrollto" href="{% url 'index' %}#contact">Contact</a></li>
-
                 <li class="ms-4">
                     <div class="nav-link form-check form-switch m-0 ms-3 ms-md-0" style="cursor: pointer;">
                         <input class="form-check-input" type="checkbox" role="switch" id="mode">
@@ -75,4 +93,243 @@
 </header><!-- End Header -->
 
 
+<div class="modal fade" id="createModal" aria-hidden="true" aria-labelledby="createModalLabel"
+     tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header" style="padding: 15px 18px; align-items: center;">
+                <p class="m-0"><small>We will never share your information.</small></p>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="loginForm" class="d-flex justify-content-end flex-column">
 
+                    <input type="text" name="username" class="form-control mb-3 w-100" placeholder="username">
+                    <input type="password" name="password" class="form-control mb-3 w-100" placeholder="password">
+                    <button class="btn btn-light float-end shadow-sm border mb-1">
+                        Log in
+                    </button>
+                    <hr>
+
+
+                </form>
+                <button class="btn float-end shadow-sm border" style="background: #253f62; color: white"
+                        data-bs-target="#registerModal" data-bs-toggle="modal" data-bs-dismiss="modal">
+                    <small style="margin-top: -5px;">Register</small>
+                </button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="registerModal" tabindex="-1" role="dialog" aria-labelledby="registerModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <p class="m-0"><small>We will never share your information.</small></p>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+
+            </div>
+            <div class="modal-body">
+                <form method="post" id="registerForm">
+                    {% csrf_token %}
+                    <div class="form-group mb-2">
+                        <label for="username">Username</label>
+                        <input type="text" class="form-control" id="username" name="username" required>
+                    </div>
+                    <div class="form-group mb-2">
+                        <label for="email">Email</label>
+                        <input type="email" class="form-control" id="email" name="email" required>
+                    </div>
+                    <div class="form-group mb-2">
+                        <label for="password">Password</label>
+                        <input type="password" class="form-control" id="password" name="password" required>
+                    </div>
+                    <div class="form-group mb-3">
+                        <label for="password2">Confirm Password</label>
+                        <input type="password" class="form-control" id="password2" name="password2" required>
+                    </div>
+                    <div class="form-group mb-3 d-flex justify-content-between pe-1 ps-1">
+                        <label for="consent"><small>I agree to give the above info, so I can use create tutorial app
+                            functions.</small>
+                        </label>
+                        <input type="checkbox" id="consent" checked style="width: 25px; height: 25px" disabled>
+                    </div>
+                    <button id="registerButton" class="btn btn-primary" style="width: 100%; background: #253f62;">
+                        Register
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+
+
+    function removeAllChildNodes(parent) {
+        while (parent.firstChild) {
+            parent.removeChild(parent.firstChild);
+        }
+    }
+
+    function register() {
+
+        const username = document.getElementById('username').value;
+        const email = document.getElementById('email').value;
+        const password = document.getElementById('password').value;
+        const password2 = document.getElementById('password2').value;
+
+        // Validate form
+        if (password !== password2) {
+            alert('Passwords do not match');
+            return;
+        }
+
+        // Validate form
+        if (username.trim() === '') {
+            // show an error message or highlight the field as invalid
+            alert('Invalid username');
+            return;
+        }
+
+        // Validate form
+        if (username.length < 5 || username.length > 15) {
+            // show an error message or highlight the field as invalid
+            alert('Invalid username. The username should be between 6 and 15 alphanumeric characters.');
+            return;
+        }
+
+        // Validate form
+        if (/^[a-zA-Z0-9]+$/.test(username) === false) {
+            // show an error message or highlight the field as invalid
+            alert('Invalid username. The username should be between 6 and 15 alphanumeric characters.');
+            return;
+        }
+        // Send POST request to Django endpoint
+        fetch('/register/', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken': getCookie('csrftoken'),
+            },
+            body: JSON.stringify({
+                username: username,
+                email: email,
+                password: password,
+                password2: password2,
+            }),
+        }).then(response => {
+            if (response.ok) {
+                return response.json();
+            } else {
+                throw new Error(`Error: ${response.status}`);
+            }
+        })
+            .then(data => {
+                if (data && data.success) {
+                    console.log(data);
+                    // Redirect to success page
+                    let form = document.getElementById('registerForm');
+                    removeAllChildNodes(form);
+                    let successText = 'You have successfully created your account. Please log in to continue.';
+                    let message = document.createElement('div');
+                    message.style.fontSize = '13px'
+                    let logButton = document.createElement('button');
+                    logButton.className = 'btn btn-light border shadow-sm w-100 mt-2'
+                    logButton.innerHTML = 'Log in'
+                    l
+                    message.innerHTML = successText;
+                    form.appendChild(message);
+                    form.appendChild(logButton);
+
+                } else {
+                    let errorMessage = data.error || 'An unknown error occurred';
+                    // Display error message
+                    alert('Username or email already exists');
+                }
+            })
+            .catch(error => {
+                console.error(error);
+                alert('Username or email already exists');
+            });
+
+    }
+
+    function getCookie(name) {
+        const value = `; ${document.cookie}`;
+        const parts = value.split(`; ${name}=`);
+        if (parts.length === 2) {
+            return parts.pop().split(';').shift();
+        }
+    }
+
+    const registerButton = document.getElementById('registerButton')
+    registerButton.addEventListener('click', (event) => {
+        event.preventDefault();
+        event.stopImmediatePropagation();
+        register();
+    });
+</script>
+
+<script>
+    function login(event) {
+        event.preventDefault();  // prevent the form from being submitted
+
+        // get the form data
+        let form = event.target;
+        let formData = new FormData(form);
+        let username = formData.get('username');
+        let password = formData.get('password');
+
+        console.log(getCookie('csrftoken'))
+
+        // validate the form data
+        if (!username || !password) {
+            alert('Please enter a username and password');
+            return;
+        }
+
+        // send the request to the server
+        fetch('/login_view/', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken': getCookie('csrftoken'),
+            },
+            body: JSON.stringify(Object.fromEntries(formData))
+
+        })
+            .then(response => {
+                if (response.ok) {
+                    return response.json();
+                } else {
+                    throw new Error(`Error: ${response.status}`);
+                }
+            })
+            .then(data => {
+                if (data && data.success) {
+                    console.log(data);
+                    window.location.assign('/create_tutorial/');
+
+                    // redirect to success page
+                } else {
+                    let errorMessage = 'Invalid credentials.'
+                    // display error message
+                    alert(errorMessage);
+                }
+            })
+            .catch(error => {
+                let errorMessage = 'Invalid credentials.'
+                alert(errorMessage);
+            });
+    }
+
+    // attach the function to the form's submit event
+    let form = document.getElementById('loginForm');
+    form.addEventListener('submit', login);
+</script>

@@ -33,6 +33,7 @@ def get_social_media_posts(request):
 
                 snippet = title + str(t.hashtags) + '\n' + 'https://anovin.mk' + url + '\n' + '------------------------------------------------------------------' + '\n'
                 print(snippet)
+
                 f.write(snippet)
 
             except ServiceUnavailableError:
