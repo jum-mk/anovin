@@ -5,7 +5,7 @@ from openai.error import ServiceUnavailableError, InvalidRequestError
 
 
 def get_ai_text(prompt, max_tokens):
-    openai.api_key = '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'
+    openai.api_key = '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'
     while True:
         try:
 
@@ -65,7 +65,7 @@ def create_tutorial(title, category):
                 title) + '. The parts of the tutorial are: ' + str(
                 python_step_list) + '. You are writing for the part: ' + str(
                 step) + '. The h2 title is {0}'.format(
-                step) + 'The tutorial belongs to the category: ' + category + '.' + ' Do it in HTML5, write an SEO friendly paragraph.' + ' Write code inside <pre> tags. Write commands inside <pre> tags. Format the code in the HTML.' + ' Always add <br> before and after <pre> and <code> tags.' + ' Format the code inside <pre> tag lines appropriately, like in IDE according to the programming language' + ' . Use <a> tags to link to external websites in the context of the step.' + ' When using <a> tags make sure the href (url) is accessible and striped.' + ' Try to use <a> as much as you can, seo wise.' + ' Output only the HTML! Use the <pre> tag whenever you can. ' + ' Write in UTF-8 all the time. ' + ' Write code examples inside <pre> tag. ' + 'Do not style the HTML inline!' + ' Do not repeat sentences from the previous step!.'
+                step) + 'The tutorial belongs to the category: ' + category + '.' + ' Do it in HTML5, write an SEO friendly paragraph.' + ' Write code inside <pre> tags. Write commands inside <pre> tags. Format the code in the HTML.' + ' Always add <br> before and after <pre> and <code> tags.' + ' Format the code inside <pre> tag lines appropriately, like in IDE according to the programming language' + ' . Use <a> tags to link to external websites in the context of the step.' + ' When using <a> tags make sure the href (url) is accessible and striped.' + ' Try to use <a> as much as you can, seo wise.' + ' Output only the HTML! Use the <pre> tag whenever you can. ' + ' Write in UTF-8 all the time. ' + ' Write code examples inside <pre> tag. ' + 'Do not style the HTML inline!' + ' Do not repeat sentences from the previous step!. Do not write code if the topic is not related to software.'
             print(len(content_query))
 
             content += get_ai_text(content_query, 2600)
@@ -113,7 +113,6 @@ def create_tutorial(title, category):
         for tag in tut.tags.all():
             print(tag)
             hashtags += str('#') + str(tag.name) + ' '
-
 
         tut.hashtags = hashtags
         print(tut.hashtags)

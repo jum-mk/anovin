@@ -13,11 +13,15 @@
     .beta::after {
         content: "BETA";
         position: absolute;
-        top: -25px;
+        top: -22px;
         right: -5px;
         font-weight: 100;
         font-size: 10px;
 
+    }
+
+    label {
+        font-size: 13px;
     }
 
 </style>
@@ -102,10 +106,10 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form id="loginForm" class="d-flex justify-content-end flex-column">
+                <form id="loginForm" class="d-flex justify-content-end flex-column" style="width: auto;">
 
-                    <input type="text" name="username" class="form-control mb-3 w-100" placeholder="username">
-                    <input type="password" name="password" class="form-control mb-3 w-100" placeholder="password">
+                    <input type="text" name="username" class="form-control mb-3 " placeholder="username">
+                    <input type="password" name="password" class="form-control mb-3 " placeholder="password">
                     <button class="btn btn-light float-end shadow-sm border mb-1">
                         Log in
                     </button>
@@ -134,7 +138,7 @@
 
             </div>
             <div class="modal-body">
-                <form method="post" id="registerForm">
+                <form method="post" id="registerForm" style="width: auto;">
                     {% csrf_token %}
                     <div class="form-group mb-2">
                         <label for="username">Username</label>
@@ -153,8 +157,7 @@
                         <input type="password" class="form-control" id="password2" name="password2" required>
                     </div>
                     <div class="form-group mb-3 d-flex justify-content-between pe-1 ps-1">
-                        <label for="consent"><small>I agree to give the above info, so I can use create tutorial app
-                            functions.</small>
+                        <label for="consent"><small>I agree to give the above info, to use this web app.</small>
                         </label>
                         <input type="checkbox" id="consent" checked style="width: 25px; height: 25px" disabled>
                     </div>
@@ -242,15 +245,22 @@
                     let logButton = document.createElement('button');
                     logButton.className = 'btn btn-light border shadow-sm w-100 mt-2'
                     logButton.innerHTML = 'Log in'
-                    l
                     message.innerHTML = successText;
+                    // Create the button element
+
+                    // Set the attributes
+                    logButton.setAttribute("data-bs-target", "#createModal");
+                    logButton.setAttribute("data-bs-toggle", "modal");
+                    logButton.setAttribute("data-bs-dismiss", "modal");
+
+
                     form.appendChild(message);
                     form.appendChild(logButton);
 
                 } else {
                     let errorMessage = data.error || 'An unknown error occurred';
                     // Display error message
-                    alert('Username or email already exists');
+                    alert(errorMessage);
                 }
             })
             .catch(error => {

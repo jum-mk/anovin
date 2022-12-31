@@ -15,7 +15,6 @@
     <meta property="og:image" content="https://anovin.mk{% static 'img/anovin-og.png' %}"/>
     <meta property="og:type" content="website"/>
 
-
     {% include 'tutorials/g_tag.html' %}
 </head>
 
@@ -122,9 +121,7 @@
             <div class="p-1 pe-lg-4 d-flex flex-column">
                 <div style="height: 1px; background: #106ee9; width: 100%; margin-top:4px; margin-bottom: 20px;"
                      class="d-none">
-
                 </div>
-
                 {{tutorial.content|safe}}
             </div>
         </div>
@@ -193,14 +190,14 @@
 
 
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" >
-        <div class="modal-content" >
-            <div class="modal-header"  style="background: #f1f6fe; border-radius:15px;" >
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header" style="background: #f1f6fe; border-radius:15px;">
                 <h1 class="modal-title mb-1" id="exampleModalLabel" style="font-size: 14px;">Thank you for your
                     contribution</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-body"  style="background: #f1f6fe; border-radius:15px;" >
+            <div class="modal-body" style="background: #f1f6fe; border-radius:15px;">
                 <form action="/feedback/" method="post" id="feedbackForm">
                     <div class="form-group">
                         <label for="feedbackText" class="d-none">Feedback</label>
@@ -277,7 +274,7 @@
             return;
         }
 
-        if (feedbackInput.value.length < 20){
+        if (feedbackInput.value.length < 20) {
             console.error('Invalid form input');
             alert('Invalid feedback input text length.')
             return;

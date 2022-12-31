@@ -1,3 +1,4 @@
+import celery
 from django.shortcuts import render, redirect
 from .models import *
 from django.contrib.auth.models import User as CustomUser
@@ -10,7 +11,7 @@ from rest_framework.response import Response
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404
 from django.db.models import Count
-from rest_framework.permissions import IsAuthenticated
+from rest_framework.permissions import IsAuthenticated, IsAdminUser
 from django.http import JsonResponse
 import json
 from .aiv2 import create_tutorial as c_tut
@@ -22,11 +23,24 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import status
 
+from django.http import HttpResponse
+from django.views.decorators.http import require_GET
+
+
+@require_GET
+def robots_txt(request):
+    lines = [
+        "User-Agent: *",
+        "Disallow: /private/",
+        "Disallow: /junk/",
+    ]
+    return HttpResponse("\n".join(lines), content_type="text/plain")
+
 
 class CustomUserViewSet(viewsets.ModelViewSet):
     queryset = CustomUser.objects.all()
     serializer_class = CustomUserSerializer
-    permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticated, IsAdminUser]
 
     def create(self, request, **kwargs):
         serializer = CustomUserSerializer(data=request.data)
@@ -121,7 +135,7 @@ def tutorials(request):
         return render(request, 'tutorials.html', context={'tuts': tuts})
     # Get all Tutorial objects with duplicate titles
     else:
-        tuts = Tutorial.objects.all()[:50:-5]
+        tuts = Tutorial.objects.all()[::-1]
         return render(request, 'tutorials.html', context={'tuts': tuts})
 
 
@@ -250,16 +264,45 @@ def feedback(request):
         return JsonResponse({'error': 'Invalid request method'}, status=400)
 
 
-def create_tutorial(request):
-    if request.user.is_authenticated:
-        # Process the form submission and create a new tutorial
-        tutorial_title = request.POST.get('tutorial_title')
+# Create tutorial feature feedback
+def ct_feedback(request):
+    if request.method == 'POST':
+        # Get the like value from the POST request body
+        data = request.POST
+        print(data)
         user = request.user
-        context = {
-            'user_email': request.user.email,
-            'tutorial_title': tutorial_title,
-        }
-        return render(request, 'tutorials/create_tutorial.html', context)
+        instance = Feedback.objects.create(user=user, )
+        feedback_text = data['feedback-text']
+
+        # Process the like value and return a response
+        return JsonResponse({'error': 'Invalid request method'})
+
+
+@api_view(('GET', 'POST'))
+def create_tutorial(request):
+    if request.method == 'POST':
+        data = request.data
+
+        print(data)
+
+        # Get the form data
+        title = data['title']
+        category = data['category']
+        additional_data = data['additional_data']
+        user = request.user
+
+        created_instance = c_tut(title, category)
+        # # Save the form data to the database
+        tutorial = UserTutorials.objects.create(title=title, category=category, additional_data=additional_data,
+                                                user=user, tutorial=created_instance)
+        tutorial.save()
+
+        # # Redirect to a success page
+        return Response({'created': created_instance.get_absolute_url()}, status.HTTP_201_CREATED)
+
+    else:
+        # Render the form template
+        return render(request, 'tutorials/create_tutorial.html')
 
 
 @api_view(['POST'])

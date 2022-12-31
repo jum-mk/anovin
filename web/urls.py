@@ -17,7 +17,7 @@ from . import views
 from django.urls import path
 from .views import TutorialViewSet, TagViewSet, CategoryViewSet
 from django.contrib.sitemaps.views import sitemap
-from .sitemap import TutorialSitemap, CategorySitemap, TagSitemap
+from .sitemap import TutorialSitemap, CategorySitemap
 from .social_post_ai import get_social_media_posts
 
 sitemaps_dict = {
@@ -60,6 +60,8 @@ cat_detail = CategoryViewSet.as_view({
 
 urlpatterns = [
     path('', views.index, name='index'),
+    path('robots.txt', views.robots_txt, name='robots'),
+
     path('tutorials/', views.tutorials, name='tutorials'),
     path('tutorial/<str:slug>/', views.single_tutorial, name='single_tutorial'),
 
@@ -89,6 +91,7 @@ urlpatterns = [
 
     path('delete_duplicates/', views.delete_duplicates, name='delete_duplicates'),
     path('get_social_media_posts/', get_social_media_posts, name='get_social_media_posts'),
-    path('feedback/', views.feedback, name='feedback')
+    path('feedback/', views.feedback, name='feedback'),
+    path('ct_feedback/', views.ct_feedback, name='ct_feedback'),
 
 ]

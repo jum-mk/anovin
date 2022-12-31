@@ -15,35 +15,265 @@
         input::placeholder {
             font-size: 14px;
         }
-         textarea::placeholder {
+
+        textarea::placeholder {
             font-size: 14px;
         }
-         form {
-             width: 600px;
-         }
+
+        form {
+            width: 600px;
+        }
+
+        .text-box {
+            font-size: 13px;
+        }
+
+        .feedback-box {
+            width: 600px;
+            display: flex;
+            flex-direction: row;
+            max-width: 600px;
+        }
+
+        @media only screen and (max-width: 478px) {
+            .feedback-box {
+                width: auto;
+                display: flex;
+                flex-direction: row;
+                max-width: 600px;
+            }
+
+            #submitCreateTutorialForm {
+                width: 100%;
+                max-width: 600px;
+                display: flex;
+                flex-direction: row;
+            }
+        }
+
+        #infoTop {
+            max-width: 800px;
+        }
     </style>
 </head>
 <body>
 {% include 'menu.html' %}
+<div class="container p-2 d-flex justify-content-center">
+    <div style="font-size: 13px; border-radius: 8px; max-width: 600px;" id="infoTop"
+         class="p-2  d-flex justify-content-start align-items-start w-100 h-100 border mb-4 mt-4"> Our BETA feature
+        "Create Tutorial" is a powerful tool that allows users to create their own tutorials
+        and share them with the community. We are constantly working to improve the functionality and
+        reliability
+        of this feature, but it is possible that you may encounter bugs or other issues while using it. Please
+        provide feedback.
+    </div>
+</div>
+<div class="d-flex pt-4 pb-4 ps-2 pe-2 align-content-center shadow-sm flex-column justify-content-center align-items-center border">
 
-<div class="d-flex pt-4 pb-4 align-content-center flex-column justify-content-center align-items-center border">
-    <form style="max-width: 700px; min-width: 300px; border-radius: 8px;" class="shadow-sm p-3 border">
+    <div style=" border-radius: 8px;" class="shadow-sm p-3 feedback-box border w-100 mb-3">
+    </div>
+    <form style=" border-radius: 8px;" class="shadow-sm p-3 border d-flex flex-column" id="submitCreateTutorialForm"
+          method="post">
+
+        {% csrf_token %}
         <div class="form-group">
             <label for="title">Title</label>
-            <input type="text" class="form-control mb-3" id="title" placeholder="Enter title">
+            <input type="text" class="form-control mb-3" id="title" placeholder="Enter title" maxlength="60" value="">
         </div>
         <div class="form-group">
             <label for="category">Category</label>
-            <input class="form-control mb-3" id="category" name="category">
+            <input class="form-control mb-4" id="category" name="category" maxlength="20" value="">
+        </div>
+        <div class="form-group d-none">
+            <label for="additional_data">Additional Data</label>
+            <input class="form-control mb-5" id="additional_data" placeholder="Maximum of 30 characters."
+                   maxlength="30">
+        </div>
 
-        </div>
-        <div class="form-group">
-            <label for="additional-data">Additional Data</label>
-            <textarea class="form-control mb-3" id="additional-data" rows="3" placeholder="Maximum of 30 characters." maxlength="30"></textarea>
-        </div>
-        <button type="submit" class="btn btn-primary btn-sm" >Submit</button>
+        <button type="submit" class="btn btn-primary btn-sm" id="submitCreateTutorial">Submit</button>
     </form>
 
 </div>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content p-1" style="border-radius:8px;">
+            <div class="modal-header bg-light" style="border-radius:8px;">
+                <h6 class="modal-title mb-1" id="exampleModalLabel">We really appreciate your thoughts.</h6>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body bg-light mt-2" style=" border-radius:8px;">
+                <form action="/ct_feedback/" method="post" id="feedbackForm" style="width: auto;">
+                    <div class="form-group">
+                        <label for="feedbackText" class="d-none">Feedback</label>
+                        {% csrf_token %}
+                        <input type="hidden" value="{{tutorial.id}}" id="tutorial_id" name="tutorial_id">
+                        <textarea class="form-control shadow-sm p-1" id="feedbackText" rows="3" name="feedback-text"
+                                  style="border-radius: 8px;"></textarea>
+
+                    </div>
+                    <button type="submit" id="SubmitFeedbackButton"
+                            class="btn  btn-light border shadow mt-3 float-end pe-3 ps-3"
+                            style="border-radius: 8px; font-size:12px;">
+                        Submit
+                    </button>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+{% include 'main_scripts.html' %}
+<script>
+    const token = document.querySelector('input[name="csrfmiddlewaretoken"]').value;
+
+    const submitCreateTutorial = document.getElementById('submitCreateTutorial');
+    submitCreateTutorial.addEventListener('click', handleCreateTutorial);
+
+    function handleCreateTutorial(event) {
+        event.preventDefault();
+        let title = document.getElementById('title').value
+        let category = document.getElementById('category').value
+        let additional_data = document.getElementById('additional_data').value
+
+        const submitCreateTutorialForm = document.getElementById('submitCreateTutorialForm')
+        submitCreateTutorialForm.className += ' d-flex justify-content-center align-items-center p-2 flex-column'
+        // show the loader
+        submitCreateTutorialForm.innerHTML = `<div style="font-size: 16px; margin-bottom: 5px;">Loading...</div> <div style="width: 20px;
+    height: 20px;" class="spinner-grow text-primary" role="status">
+</div>`;
+        console.log(title)
+        console.log(category)
+        console.log(additional_data)
+        try {
+            fetch('/create_tutorial/', {
+                headers: {'X-CSRFToken': token, 'Content-Type': 'application/json'},
+                method: 'POST',
+                body: JSON.stringify({
+                    'title': title,
+                    'category': category,
+                    'additional_data': additional_data
+                })
+            }).then(response => response.json())
+                .then(data => {
+                    console.log(data)
+                    window.open(data.created, '_self')
+                })
+                .catch(err => {
+                    // handle the error here
+                    console.log(err);
+
+                });
+
+        } catch (err) {
+            console.log(err)
+        }
+    }
+
+</script>
+
+
+<script>
+
+
+    window.addEventListener('DOMContentLoaded', () => {
+        let feedbackBox = document.querySelector('.feedback-box')
+        // Create the first child node (a dislike bootstrap icon button)
+        const dislikeButton = document.createElement('button');
+        dislikeButton.id = 'dislikeButton'
+        dislikeButton.classList.add('btn', 'btn-secondary', 'btn-lg', 'border');
+        dislikeButton.innerHTML = '<i class="bi bi-hand-thumbs-down-fill "></i>';
+        dislikeButton.style.width = '100%'
+        dislikeButton.style.background = 'transparent'
+        dislikeButton.style.border = '0'
+        dislikeButton.style.color = '#000'
+        dislikeButton.setAttribute('data-bs-toggle', 'modal');
+        dislikeButton.setAttribute('data-bs-target', '#exampleModal');
+
+        // Create the second child node (a bootstrap icon button)
+        const likeButton = document.createElement('button');
+        likeButton.id = 'likeButton'
+
+        likeButton.classList.add('btn', 'btn-secondary', 'btn-lg', 'border');
+        likeButton.innerHTML = '<i class="bi bi-hand-thumbs-up-fill"></i>';
+        likeButton.setAttribute('data-bs-toggle', 'modal');
+        likeButton.setAttribute('data-bs-target', '#exampleModal');
+        likeButton.style.width = '100%'
+        likeButton.style.background = 'transparent'
+        likeButton.style.border = 0
+        likeButton.style.color = '#000'
+
+        console.log(feedbackBox)
+        feedbackBox.appendChild(likeButton)
+        feedbackBox.appendChild(dislikeButton)
+    });
+
+</script>
+
+<script>
+    async function submitCTFeedback(form) {
+        // Get the form action and method attributes
+        const action = form.getAttribute('action');
+        const method = form.getAttribute('method');
+
+        // Get the CSRF token and feedback text input
+        const csrfInput = form.querySelector('input[name="csrfmiddlewaretoken"]');
+        const feedbackInput = form.querySelector('textarea[name="feedback-text"]');
+
+        // Validate the form input
+        if (!csrfInput || !feedbackInput.value) {
+            console.error('Invalid form input');
+            alert('Invalid feedback input.')
+            return;
+        }
+
+        if (feedbackInput.value.length < 20) {
+            console.error('Invalid form input');
+            alert('Invalid feedback input text length.')
+            return;
+        }
+
+        // Create a FormData object with the form data and CSRF token
+        const formData = new FormData();
+        formData.append('csrfmiddlewaretoken', csrfInput.value);
+        formData.append('feedback-text', feedbackInput.value);
+
+        // Send a POST request to the form action URL
+        const response = await fetch(action, {
+            method: method,
+            headers: {'X-CSRFToken': document.querySelector("input[name='csrfmiddlewaretoken']").value},
+            body: formData
+        });
+
+        // Process the response
+        if (response.ok) {
+            // The request was successful
+            const data = await response.json();
+            form.innerHTML = '<div class="d-flex justify-content-center align-items-center p-2"><h6>Your feedback was delivered.</h6></div>'
+            console.log(data);
+            let likeButton = document.getElementById('likeButton');
+            let dislikeButton = document.querySelector('#dislikeButton');
+            console.log(likeButton)
+            likeButton.setAttribute('disabled', '')
+            dislikeButton.setAttribute('disabled', '')
+
+
+        } else {
+            // There was an error
+            console.error(response.statusText);
+        }
+    }
+
+
+    const SubmitFeedbackButton = document.getElementById('SubmitFeedbackButton')
+
+    SubmitFeedbackButton.addEventListener('click', (event) => {
+        event.preventDefault();
+        const feedbackForm = document.getElementById('feedbackForm')
+        submitCTFeedback(feedbackForm)
+    })
+
+
+</script>
 </body>
 </html>

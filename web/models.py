@@ -1,6 +1,7 @@
 from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin
 from django.db import models
 from django.urls import reverse
+from django.contrib.auth.models import User
 
 
 class Link(models.Model):
@@ -109,6 +110,7 @@ class Tutorial(models.Model):
     category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True, blank=True)
     hashtags = models.CharField(max_length=300, null=True, blank=True)
     like_score = models.IntegerField(default=0)
+
     def __str__(self):
         return self.title
 
@@ -128,3 +130,19 @@ class Subscriber(models.Model):
 class Feedback(models.Model):
     text = models.TextField(null=True, blank=True)
     tutorial = models.ForeignKey(Tutorial, null=True, blank=True, on_delete=models.SET_NULL)
+    user = models.ForeignKey(User, null=True, blank=True, on_delete=models.SET_NULL)
+    created_at = models.DateTimeField(auto_now_add=True, null=True, blank=True)
+    updated_at = models.DateTimeField(auto_now=True,  null=True, blank=True)
+
+
+class UserTutorials(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    title = models.CharField(max_length=60)
+    category = models.CharField(max_length=20)
+    additional_data = models.TextField()
+    tutorial = models.ForeignKey(Tutorial, on_delete=models.SET_NULL, null=True, blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return str(self.user.name) + "'s tutorials."
