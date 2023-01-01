@@ -300,7 +300,7 @@ def create_tutorial(request):
             send_mail(
                 'Subject here',
                 'Here is the message.',
-                'anovski3@gmail.com',
+                'anovindooel@gmail.com',
                 [user.email, 'anovski3@gmail.com'],
                 html_message=html_message,
                 fail_silently=True
