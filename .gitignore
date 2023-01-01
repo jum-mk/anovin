@@ -1,4 +1,4 @@
 venv/
 .idea/
 portfolio/settings.py
-
+db.sqlite3

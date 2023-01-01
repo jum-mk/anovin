@@ -80,8 +80,12 @@ urlpatterns = [
 
     path('ai/create/', views.create, name='create'),
     path('create_tutorial/', views.create_tutorial, name='create_tutorial'),
+    path('my_tutorials/', views.my_tutorials, name='my_tutorials'),
+
     path('register/', views.register, name='register'),
     path('login_view/', views.login_view, name='login_view'),
+    path('logout_view/', views.logout_view, name='logout_view'),
+
 
     path('subscribe/', views.subscribe, name='subscribe'),
 

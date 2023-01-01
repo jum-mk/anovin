@@ -23,6 +23,7 @@ from rest_framework.response import Response
 from rest_framework import status
 from django.http import HttpResponse
 from django.views.decorators.http import require_GET
+from django.contrib.auth import logout
 
 
 @require_GET
@@ -294,6 +295,18 @@ def create_tutorial(request):
         tutorial = UserTutorials.objects.create(title=title, category=category, additional_data=additional_data,
                                                 user=user, tutorial=created_instance)
         tutorial.save()
+        html_message = '<h3>Your tutorial is ready. Please provide feedback.</h3>'.format(str(tutorial.title))
+        try:
+            send_mail(
+                'Subject here',
+                'Here is the message.',
+                'anovski3@gmail.com',
+                [user.email, 'anovski3@gmail.com'],
+                html_message=html_message,
+                fail_silently=True
+            )
+        except:
+            pass
 
         # # Redirect to a success page
         return Response({'created': created_instance.get_absolute_url()}, status.HTTP_201_CREATED)
@@ -339,3 +352,20 @@ def login_view(request):
             return Response({'error': 'Invalid login credentials'}, status=401)
     else:
         return Response({'error': 'Invalid request method'}, status=405)
+
+
+def logout_view(request):
+    if request.user.is_authenticated:
+        logout(request)
+        return redirect('index')
+
+
+def my_tutorials(request):
+    if request.user.is_authenticated:
+        if request.method == 'GET' and 'instant_search' in request.GET:
+            tuts = UserTutorials.objects.filter(title__contains=request.GET['instant_search'])
+            return render(request, 'tutorials/my_tutorials.html', context={'tuts': tuts})
+        else:
+            tuts = UserTutorials.objects.filter(user=request.user)
+            context = {'tuts': tuts}
+            return render(request, 'tutorials/my_tutorials.html', context)

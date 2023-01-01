@@ -7,6 +7,22 @@
     {% include 'head.html' %}
 
     <style>
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.01);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        .pulsating-text {
+            animation: pulse 10s infinite;
+        }
+
         label {
             font-size: 13px;
             margin-bottom: 4px;
@@ -68,7 +84,7 @@
         provide feedback.
     </div>
 </div>
-<div class="d-flex pt-4 pb-4 ps-2 pe-2 align-content-center shadow-sm flex-column justify-content-center align-items-center border">
+<div class="d-flex pt-4 pb-4 ps-2 pe-2 align-content-center shadow-sm flex-column justify-content-center align-items-center border vh-75">
 
     <div style=" border-radius: 8px;" class="shadow-sm p-3 feedback-box border w-100 mb-3">
     </div>
@@ -123,6 +139,10 @@
         </div>
     </div>
 </div>
+
+
+{% include 'tutorials/footer.html' %}
+
 {% include 'main_scripts.html' %}
 <script>
     const token = document.querySelector('input[name="csrfmiddlewaretoken"]').value;
@@ -139,9 +159,9 @@
         const submitCreateTutorialForm = document.getElementById('submitCreateTutorialForm')
         submitCreateTutorialForm.className += ' d-flex justify-content-center align-items-center p-2 flex-column'
         // show the loader
-        submitCreateTutorialForm.innerHTML = `<div style="font-size: 16px; margin-bottom: 5px;">Loading...</div> <div style="width: 20px;
-    height: 20px;" class="spinner-grow text-primary" role="status">
-</div>`;
+        submitCreateTutorialForm.innerHTML = `<div class="loading-bar mb-2"></div>
+<div class="pulsating-text " style="font-size: 16px; margin-bottom: 5px;">This process takes around 2-3 minutes. You will receive an email with the link, or you can check your <a href="/my_tutorials/" style="cursor:pointer; color:blue;">Profile</a> in a few minutes.</div>
+</>`;
         console.log(title)
         console.log(category)
         console.log(additional_data)
