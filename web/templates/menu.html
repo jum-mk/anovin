@@ -23,11 +23,12 @@
     label {
         font-size: 13px;
     }
-    .link-light{
+
+    .link-light {
         background: #0c63e4;
         border-radius: 8px;
-        margin:0 5px;
-        border: 1px solid blue;
+        margin: 0 5px;
+        border: 1px solid #065ad5;
     }
 
 </style>
@@ -54,10 +55,12 @@
                 Logout
             </a>
             {% else %}
-            <a data-bs-target="#createModal" data-bs-toggle="modal" style="cursor: pointer;" class="nav-link link-light ">
+            <a data-bs-target="#createModal" data-bs-toggle="modal" style="cursor: pointer;"
+               class="nav-link link-light ">
                 Login
             </a>
-            <a data-bs-target="#registerModal" data-bs-toggle="modal" style="cursor: pointer;" class="nav-link link-light ">
+            <a data-bs-target="#registerModal" data-bs-toggle="modal" style="cursor: pointer;"
+               class="nav-link link-light ">
                 Register
             </a>
             {% endif %}
