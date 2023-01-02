@@ -82,7 +82,9 @@
             font-family: "Josefin Sans", sans-serif;
         }
 
-        .
+        .like-box {
+            height: 120px;
+        }
 
     </style>
 <body class="">
@@ -91,15 +93,15 @@
     <div class="tag-cloud d-flex align-items-center justify-content-center flex-column w-100 h-auto p-2"
          style="border-radius:10px;">
 
-        <h1 class="mt-4 mb-3" align="center">Explore our tutorial database</h1>
+        <h1 class="mt-4 mb-3" align="center" style="font-size: 24px;">Explore our tutorial database</h1>
 
         <div class="w-100" style="margin-bottom:30px;">
             <form method="get" action="{% url 'tutorials' %}" class="d-flex  flex-column flex-md-row mb-4">
                 <input id='instantSearch' type="text" class="form-control  w-100 shadow-sm  mt-3 mb-1 mb-md-0"
-                       style="border-radius: 8px; height: 40px; "
+                       style="border-radius: 8px; height: 34px; "
                        placeholder="Search" name="instant_search">
                 <button type="submit" class="btn mt-3 shadow-sm border search-button float-end ms-md-3"
-                        style="border-radius: 8px;color: #253f62; background: transparent;">Search
+                        style="border-radius: 8px;color: #253f62; background: transparent; height: 34px;">Search
                 </button>
             </form>
 
@@ -107,7 +109,7 @@
 
         {% for t in tuts %}
         <a href="{{t.get_absolute_url}}" class="text-white" style="text-decoration: none;">
-            <div class="shadow-sm d-flex align-items-center hover-bg p-3 mb-3"
+            <div class="shadow-sm d-flex justify-content-between align-items-center hover-bg p-2 pt-3 mb-3"
                  style="color:black; border-radius: 8px; border: 1px solid #d2d2d2; cursor:pointer;">
 
 
@@ -123,7 +125,16 @@
                     </div>
 
                 </div>
+                <div class="like-box d-flex flex-column justify-content-between align-items-center ">
+
+                    <button class="btn bi bi-hand-thumbs-up-fill " style="font-size: 20px; color: #b6b1b1;">
+                    </button>
+                    <button class="btn btn-sm bi bi-hand-thumbs-down-fill " style="font-size: 20px;">
+                    </button>
+                </div>
             </div>
+
+
         </a>
         {% endfor %}
         <div class="d-flex flex-wrap align-items-center justify-content-center d-none">

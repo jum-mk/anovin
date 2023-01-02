@@ -81,7 +81,18 @@
             font-family: "Josefin Sans", sans-serif;
         }
 
-        .
+        .push {
+            animation: push 0.5s;
+        }
+
+        @keyframes push {
+            from {
+                transform: translateY(0);
+            }
+            to {
+                transform: translateY(5px);
+            }
+        }
 
     </style>
 <body class="">
@@ -89,7 +100,7 @@
 <div class="container">
     <div class="tag-cloud d-flex align-items-center justify-content-center flex-column w-100 h-auto p-2"
          style="border-radius:10px;">
-        <h1 class="mt-4 mb-3" align="center">Search through your tutorials</h1>
+        <h1 class="mt-4 mb-3" align="center" style="font-size: 20px;">Search through your tutorials</h1>
         <div class="w-100" style="margin-bottom:30px;">
             <form method="get" action="{% url 'my_tutorials' %}" class="d-flex  flex-column flex-md-row mb-4">
                 <input id='instantSearch' type="text" class="form-control  w-100 shadow-sm  mt-3 mb-1 mb-md-0"
@@ -104,7 +115,7 @@
 
         {% for t in tuts %}
         <a href="{{t.tutorial.get_absolute_url}}" class="text-white" style="text-decoration: none;">
-            <div class="shadow-sm d-flex align-items-center hover-bg p-3 mb-3"
+            <div class="shadow-sm d-flex align-items-center hover-bg p-2 pt-3 mb-3"
                  style="color:black; border-radius: 8px; border: 1px solid #d2d2d2; cursor:pointer;">
                 <div class="">
                     <h5 class="mb-3 ms-1">{{ t.title }}</h5>
@@ -122,7 +133,6 @@
         {% endfor %}
         <div class="d-flex flex-wrap align-items-center justify-content-center d-none">
             {% for tag in tags %}
-
             <span class="badge m-1 p-1"
                   style="cursor: pointer; font-size:10px;">{{ tag.name }}</span>
             {% endfor %}
@@ -137,6 +147,19 @@
 
 {% include 'main_scripts.html' %}
 
+<script>
+    let button = document.querySelector('button');
+
+    button.addEventListener('click', () => {
+        button.classList.add('push');
+    });
+
+    button.addEventListener('animationend', () => {
+        button.classList.remove('push');
+    });
+
+
+</script>
 
 </body>
 </html>

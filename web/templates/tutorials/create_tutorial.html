@@ -49,6 +49,7 @@
             display: flex;
             flex-direction: row;
             max-width: 600px;
+            padding: 0;
         }
 
         @media only screen and (max-width: 478px) {
@@ -76,7 +77,7 @@
 {% include 'menu.html' %}
 <div class="container p-2 d-flex justify-content-center">
     <div style="font-size: 13px; border-radius: 8px; max-width: 600px;" id="infoTop"
-         class="p-2  d-flex justify-content-start align-items-start w-100 h-100 border mb-4 mt-4"> Our BETA feature
+         class="p-2  d-flex justify-content-start align-items-start w-100 h-100 border mb-2 mt-2"> Our BETA feature
         "Create Tutorial" is a powerful tool that allows users to create their own tutorials
         and share them with the community. We are constantly working to improve the functionality and
         reliability
@@ -86,7 +87,7 @@
 </div>
 <div class="d-flex pt-4 pb-4 ps-2 pe-2 align-content-center shadow-sm flex-column justify-content-center align-items-center border vh-75">
 
-    <div style=" border-radius: 8px;" class="shadow-sm p-3 feedback-box border w-100 mb-3">
+    <div style=" border-radius: 8px; height: 65px;" class="shadow-sm feedback-box border w-100 mb-3">
     </div>
     <form style=" border-radius: 8px;" class="shadow-sm p-3 border d-flex flex-column" id="submitCreateTutorialForm"
           method="post">
@@ -106,7 +107,7 @@
                    maxlength="30">
         </div>
 
-        <button type="submit" class="btn btn-primary btn-sm" id="submitCreateTutorial">Submit</button>
+        <button type="submit" class="btn btn-primary " id="submitCreateTutorial">Submit</button>
     </form>
 
 </div>
@@ -160,7 +161,7 @@
         submitCreateTutorialForm.className += ' d-flex justify-content-center align-items-center p-2 flex-column'
         // show the loader
         submitCreateTutorialForm.innerHTML = `<div class="loading-bar mb-2"></div>
-<div class="pulsating-text " style="font-size: 16px; margin-bottom: 5px;">This process takes around 2-3 minutes. You will receive an email with the link, or you can check your <a href="/my_tutorials/" style="cursor:pointer; color:blue;">Profile</a> in a few minutes.</div>
+<div class="pulsating-text " style="font-size: 16px; margin-bottom: 5px;">This process takes around 2-3 minutes. You will receive an email with the link, or you can check your <a href="/my_tutorials/" style="cursor:pointer; color:blue;">My tutorials section</a> in a few minutes.</div>
 </>`;
         console.log(title)
         console.log(category)
@@ -201,27 +202,32 @@
         // Create the first child node (a dislike bootstrap icon button)
         const dislikeButton = document.createElement('button');
         dislikeButton.id = 'dislikeButton'
-        dislikeButton.classList.add('btn', 'btn-secondary', 'btn-lg', 'border');
-        dislikeButton.innerHTML = '<i class="bi bi-hand-thumbs-down-fill "></i>';
+        dislikeButton.classList.add('btn', 'btn-secondary', 'btn-lg', 'w-100', 'h-100',);
+        dislikeButton.innerHTML = '<i class="bi bi-hand-thumbs-down-fill " style="color: #ff00008a;"></i>';
         dislikeButton.style.width = '100%'
         dislikeButton.style.background = 'transparent'
         dislikeButton.style.border = '0'
         dislikeButton.style.color = '#000'
         dislikeButton.setAttribute('data-bs-toggle', 'modal');
         dislikeButton.setAttribute('data-bs-target', '#exampleModal');
+        dislikeButton.style.borderLeft = 'solid 1px #0d6efd42';
+        dislikeButton.style.borderRadius = '0'
+
 
         // Create the second child node (a bootstrap icon button)
         const likeButton = document.createElement('button');
         likeButton.id = 'likeButton'
 
-        likeButton.classList.add('btn', 'btn-secondary', 'btn-lg', 'border');
-        likeButton.innerHTML = '<i class="bi bi-hand-thumbs-up-fill"></i>';
+        likeButton.classList.add('btn', 'btn-secondary', 'btn-lg', 'w-100', 'h-100',);
+        likeButton.innerHTML = '<i class="bi bi-hand-thumbs-up-fill" style="color: lightskyblue;"></i>';
         likeButton.setAttribute('data-bs-toggle', 'modal');
         likeButton.setAttribute('data-bs-target', '#exampleModal');
         likeButton.style.width = '100%'
         likeButton.style.background = 'transparent'
-        likeButton.style.border = 0
+        likeButton.style.border = '0'
         likeButton.style.color = '#000'
+        likeButton.style.borderRight = 'solid 1px #0d6efd42';
+        likeButton.style.borderRadius = '0'
 
         console.log(feedbackBox)
         feedbackBox.appendChild(likeButton)

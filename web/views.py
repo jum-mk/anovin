@@ -306,6 +306,7 @@ def create_tutorial(request):
                 fail_silently=True
             )
         except:
+            print()
             pass
 
         # # Redirect to a success page
