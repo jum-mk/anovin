@@ -295,11 +295,11 @@ def create_tutorial(request):
         tutorial = UserTutorials.objects.create(title=title, category=category, additional_data=additional_data,
                                                 user=user, tutorial=created_instance)
         tutorial.save()
-        html_message = '<h3>Your tutorial is ready. Please provide feedback.</h3>'.format(str(tutorial.title))
+        html_message = '<h3>Your tutorial "{0}"is ready. Please provide feedback.</h3>'.format(str(tutorial.title))
         try:
             send_mail(
-                'Subject here',
-                'Your tutorial is ready!',
+                'Your tutorial is ready.',
+                '',
                 'anovindooel@gmail.com',
                 [user.email, 'anovski3@gmail.com'],
                 html_message=html_message,
