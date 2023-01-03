@@ -2,3 +2,8 @@ venv/
 .idea/
 portfolio/settings.py
 db.sqlite3
+web/aiv2.py
+portfolio/__pycache__/
+web/__pycache__/
+portfolio/migrations/
+web/migrations/
