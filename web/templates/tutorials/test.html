@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<style>
+  #text {
+    transition: all 2s;
+    opacity: 0;
+  }
+  .visible {
+    opacity: 1;
+  }
+</style>
+
+<p id="text">ANOVIN</p>
+
+<script>
+function animateText() {
+  var text = document.getElementById("text");
+  text.innerHTML = text.innerHTML.replace(/[^AI]/g, '');
+  text.classList.toggle("visible");
+}
+
+setInterval(animateText, 1000);
+</script>
+
+</body>
+</html>

@@ -115,11 +115,11 @@
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content p-1" style="border-radius:8px;">
-            <div class="modal-header bg-light" style="border-radius:8px;">
+            <div class="modal-header " >
                 <h6 class="modal-title mb-1" id="exampleModalLabel">We really appreciate your thoughts.</h6>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-body bg-light mt-2" style=" border-radius:8px;">
+            <div class="modal-body  mt-2" style="">
                 <form action="/ct_feedback/" method="post" id="feedbackForm" style="width: auto;">
                     <div class="form-group">
                         <label for="feedbackText" class="d-none">Feedback</label>
@@ -255,7 +255,7 @@
 
         if (feedbackInput.value.length < 20) {
             console.error('Invalid form input');
-            alert('Invalid feedback input text length.')
+            alert('Write at least one descriptive sentence.')
             return;
         }
 

@@ -299,14 +299,14 @@ def create_tutorial(request):
         try:
             send_mail(
                 'Subject here',
-                'Here is the message.',
+                'Your tutorial is ready!',
                 'anovindooel@gmail.com',
                 [user.email, 'anovski3@gmail.com'],
                 html_message=html_message,
                 fail_silently=True
             )
         except:
-            print()
+            print('Mail not sent _createtutorial view')
             pass
 
         # # Redirect to a success page

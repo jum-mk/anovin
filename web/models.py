@@ -145,4 +145,4 @@ class UserTutorials(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return str(self.user.name) + "'s tutorials."
+        return str(self.user.username) + "'s tutorials."
