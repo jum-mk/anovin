@@ -7,3 +7,4 @@ portfolio/__pycache__/
 web/__pycache__/
 portfolio/migrations/
 web/migrations/
+web/tests.py

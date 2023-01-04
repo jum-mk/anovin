@@ -30,8 +30,18 @@ from django.contrib.auth import logout
 def robots_txt(request):
     lines = [
         "User-Agent: *",
-        "Disallow: /private/",
-        "Disallow: /junk/",
+        "Disallow: /subscribe/",
+        "Disallow: /register/",
+        "Disallow: /login_view/",
+        "Disallow: /logout_view/",
+        "Disallow: /sitemap.xml",
+        "Disallow: /delete_duplicates/",
+        "Disallow: /ct_feedback/",
+        "Disallow: /feedback/",
+        "Disallow: /my_tutorials/",
+        "Disallow: /my_tutorials/",
+        "Disallow: /create_tutorial/",
+        "Disallow: /get_social_media_posts/",
     ]
     return HttpResponse("\n".join(lines), content_type="text/plain")
 
@@ -226,19 +236,20 @@ def create(request):
     return HttpResponse(request, 'Done')
 
 
-def delete_duplicates(request):
-    tutorials = Tutorial.objects.values('slug').annotate(Count('slug')).order_by().filter(slug__count__gt=1)
+def delete_duplicatesdelete_duplicates(request):
+    if request.user.is_authenticated and request.user.is_superuser:
+        tutorials = Tutorial.objects.values('slug').annotate(Count('slug')).order_by().filter(slug__count__gt=1)
 
-    # Loop through the Tutorial objects and delete the ones that are duplicates
-    for tutorial in tutorials:
-        title = tutorial['slug']
-        tutorials_with_title = Tutorial.objects.filter(slug=title)
-        # Keep the first Tutorial object and delete the others
-        first_tutorial = tutorials_with_title.first()
-        tutorials_to_delete = tutorials_with_title.exclude(pk=first_tutorial.pk)
-        tutorials_to_delete.delete()
+        # Loop through the Tutorial objects and delete the ones that are duplicates
+        for tutorial in tutorials:
+            title = tutorial['slug']
+            tutorials_with_title = Tutorial.objects.filter(slug=title)
+            # Keep the first Tutorial object and delete the others
+            first_tutorial = tutorials_with_title.first()
+            tutorials_to_delete = tutorials_with_title.exclude(pk=first_tutorial.pk)
+            tutorials_to_delete.delete()
 
-    return HttpResponse('ok')
+        return HttpResponse('ok')
 
 
 def feedback(request):
@@ -295,11 +306,12 @@ def create_tutorial(request):
         tutorial = UserTutorials.objects.create(title=title, category=category, additional_data=additional_data,
                                                 user=user, tutorial=created_instance)
         tutorial.save()
-        html_message = '<h3>Your tutorial "{0}"is ready. Please provide feedback.</h3>'.format(str(tutorial.title))
+        html_message = '<h3>Your tutorial `<a> href="{1}">{0}</a>`is ready. Please provide feedback.</h3>'.format(
+            str(tutorial.title), str(tutorial.get_absolute_url()))
         try:
             send_mail(
-                'Your tutorial is ready.',
-                '',
+                'Subject here',
+                'Your tutorial is ready!',
                 'anovindooel@gmail.com',
                 [user.email, 'anovski3@gmail.com'],
                 html_message=html_message,

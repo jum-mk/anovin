@@ -78,7 +78,6 @@ urlpatterns = [
     path('cats/', cat_list, name='cat_list'),
     path('cats/<int:pk>/', cat_detail, name='cat-detail'),
 
-    path('ai/create/', views.create, name='create'),
     path('create_tutorial/', views.create_tutorial, name='create_tutorial'),
     path('my_tutorials/', views.my_tutorials, name='my_tutorials'),
 
