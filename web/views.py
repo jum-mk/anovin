@@ -236,7 +236,7 @@ def create(request):
     return HttpResponse(request, 'Done')
 
 
-def delete_duplicatesdelete_duplicates(request):
+def delete_duplicates(request):
     if request.user.is_authenticated and request.user.is_superuser:
         tutorials = Tutorial.objects.values('slug').annotate(Count('slug')).order_by().filter(slug__count__gt=1)
 
