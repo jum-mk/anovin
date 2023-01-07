@@ -307,7 +307,7 @@ def create_tutorial(request):
                                                 user=user, tutorial=created_instance)
         tutorial.save()
         html_message = '<h3>Your tutorial `<a> href="{1}">{0}</a>`is ready. Please provide feedback.</h3>'.format(
-            str(tutorial.title), str(tutorial.get_absolute_url()))
+            str(tutorial.title), str(created_instance.get_absolute_url()))
         try:
             send_mail(
                 'Subject here',
