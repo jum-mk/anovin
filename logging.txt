@@ -12860,3 +12860,640 @@ DEBUG 2023-01-07 01:36:54,610 autoreload 79427 8304387328 File /Users/yellowflas
 DEBUG 2023-01-07 01:36:54,610 autoreload 79427 8304387328 File /Users/yellowflash/PycharmProjects/anovin/venv/lib/python3.10/site-packages/rest_framework/locale/th/LC_MESSAGES/django.mo first seen with mtime 1670854589.4775176
 DEBUG 2023-01-07 01:36:54,610 autoreload 79427 8304387328 File /Users/yellowflash/PycharmProjects/anovin/venv/lib/python3.10/site-packages/rest_framework/locale/tr/LC_MESSAGES/django.mo first seen with mtime 1670854589.477732
 DEBUG 2023-01-07 01:36:54,610 autoreload 79427 8304387328 File /Users/yellowflash/PycharmProjects/anovin/venv/lib/python3.10/site-packages/rest_framework/locale/tr_TR/LC_MESSAGES/django.mo first seen with mtime 1670854589.4779472
+DEBUG 2023-01-07 01:41:10,126 utils 79427 6131216384 (0.006) SELECT "django_session"."session_key", "django_session"."session_data", "django_session"."expire_date" FROM "django_session" WHERE ("django_session"."expire_date" > '2023-01-07 01:41:10.094541' AND "django_session"."session_key" = 'rc540mvdzs2mtd6kaxwytrzs5ttopju3') LIMIT 21; args=('2023-01-07 01:41:10.094541', 'rc540mvdzs2mtd6kaxwytrzs5ttopju3'); alias=default
+DEBUG 2023-01-07 01:41:10,190 utils 79427 6131216384 (0.006) SELECT "auth_user"."id", "auth_user"."password", "auth_user"."last_login", "auth_user"."is_superuser", "auth_user"."username", "auth_user"."first_name", "auth_user"."last_name", "auth_user"."email", "auth_user"."is_staff", "auth_user"."is_active", "auth_user"."date_joined" FROM "auth_user" WHERE "auth_user"."id" = 1 LIMIT 21; args=(1,); alias=default
+DEBUG 2023-01-07 01:41:10,237 utils 79427 6131216384 (0.007) SELECT "web_item"."id", "web_item"."name", "web_item"."image", "web_item"."name_2", "web_item"."link" FROM "web_item" ORDER BY "web_item"."id" ASC; args=(); alias=default
+INFO 2023-01-07 01:41:10,281 basehttp 79427 6131216384 "GET / HTTP/1.1" 200 40916
+DEBUG 2023-01-07 01:41:10,450 autoreload 79427 8304387328 File /Users/yellowflash/PycharmProjects/anovin/venv/lib/python3.10/site-packages/django/contrib/sessions/serializers.py first seen with mtime 1670854588.7462738
+DEBUG 2023-01-07 01:41:10,455 autoreload 79427 8304387328 File /Users/yellowflash/PycharmProjects/anovin/venv/lib/python3.10/site-packages/django/contrib/auth/context_processors.py first seen with mtime 1670854588.5105143
+DEBUG 2023-01-07 01:41:10,458 autoreload 79427 8304387328 File /Users/yellowflash/PycharmProjects/anovin/venv/lib/python3.10/site-packages/django/contrib/messages/storage/fallback.py first seen with mtime 1670854588.686843
+DEBUG 2023-01-07 01:41:10,461 autoreload 79427 8304387328 File /Users/yellowflash/PycharmProjects/anovin/venv/lib/python3.10/site-packages/django/contrib/messages/storage/cookie.py first seen with mtime 1670854588.6867244
+DEBUG 2023-01-07 01:41:10,463 autoreload 79427 8304387328 File /Users/yellowflash/PycharmProjects/anovin/venv/lib/python3.10/site-packages/django/contrib/staticfiles/storage.py first seen with mtime 1670854588.8101788
+DEBUG 2023-01-07 01:41:10,464 autoreload 79427 8304387328 File /Users/yellowflash/PycharmProjects/anovin/venv/lib/python3.10/site-packages/django/contrib/messages/context_processors.py first seen with mtime 1670854588.68599
+DEBUG 2023-01-07 01:41:10,464 autoreload 79427 8304387328 File /Users/yellowflash/PycharmProjects/anovin/venv/lib/python3.10/site-packages/django/contrib/messages/storage/session.py first seen with mtime 1670854588.6869586
+DEBUG 2023-01-07 01:41:10,465 autoreload 79427 8304387328 File /Users/yellowflash/PycharmProjects/anovin/venv/lib/python3.10/site-packages/django/template/context_processors.py first seen with mtime 1670854588.8574927
+INFO 2023-01-07 01:41:10,470 basehttp 79427 6131216384 "GET /static/assets/css/style.css HTTP/1.1" 304 0
+INFO 2023-01-07 01:41:10,699 basehttp 79427 6148042752 "GET /media/technology_icons/knl.png HTTP/1.1" 304 0
+INFO 2023-01-07 01:41:10,703 basehttp 79427 6131216384 "GET /media/technology_icons/sag.png HTTP/1.1" 304 0
+INFO 2023-01-07 01:41:10,706 basehttp 79427 6181695488 "GET /media/technology_icons/euronatur.png HTTP/1.1" 304 0
+INFO 2023-01-07 01:41:10,711 basehttp 79427 6131216384 "GET /media/technology_icons/walkiie.png HTTP/1.1" 304 0
+INFO 2023-01-07 01:41:10,713 basehttp 79427 6181695488 "GET /media/technology_icons/dominquem.png HTTP/1.1" 304 0
+INFO 2023-01-07 01:41:10,713 basehttp 79427 6198521856 "GET /media/technology_icons/idsb-logo.png HTTP/1.1" 304 0
+INFO 2023-01-07 01:41:10,715 basehttp 79427 6164869120 "GET /media/technology_icons/aptivio.png HTTP/1.1" 304 0
+INFO 2023-01-07 01:41:10,714 basehttp 79427 6215348224 "GET /media/technology_icons/panatek.png HTTP/1.1" 304 0
+INFO 2023-01-07 01:41:11,305 basehttp 79427 6164869120 "GET /static/assets/img/favicon-anovin.png HTTP/1.1" 304 0
+DEBUG 2023-01-07 01:41:12,358 utils 79427 6164869120 (0.001) SELECT "django_session"."session_key", "django_session"."session_data", "django_session"."expire_date" FROM "django_session" WHERE ("django_session"."expire_date" > '2023-01-07 01:41:12.354757' AND "django_session"."session_key" = 'rc540mvdzs2mtd6kaxwytrzs5ttopju3') LIMIT 21; args=('2023-01-07 01:41:12.354757', 'rc540mvdzs2mtd6kaxwytrzs5ttopju3'); alias=default
+DEBUG 2023-01-07 01:41:12,359 utils 79427 6164869120 (0.000) SELECT "auth_user"."id", "auth_user"."password", "auth_user"."last_login", "auth_user"."is_superuser", "auth_user"."username", "auth_user"."first_name", "auth_user"."last_name", "auth_user"."email", "auth_user"."is_staff", "auth_user"."is_active", "auth_user"."date_joined" FROM "auth_user" WHERE "auth_user"."id" = 1 LIMIT 21; args=(1,); alias=default
+DEBUG 2023-01-07 01:41:12,365 base 79427 6164869120 Exception while resolving variable 'tutorial' in template 'tutorials/create_tutorial.html'.
+Traceback (most recent call last):
+  File "/Users/yellowflash/PycharmProjects/anovin/venv/lib/python3.10/site-packages/django/template/base.py", line 880, in _resolve_lookup
+    current = current[bit]
+  File "/Users/yellowflash/PycharmProjects/anovin/venv/lib/python3.10/site-packages/django/template/context.py", line 83, in __getitem__
+    raise KeyError(key)
+KeyError: 'tutorial'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/yellowflash/PycharmProjects/anovin/venv/lib/python3.10/site-packages/django/template/base.py", line 886, in _resolve_lookup
+    if isinstance(current, BaseContext) and getattr(
+AttributeError: type object 'RequestContext' has no attribute 'tutorial'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/yellowflash/PycharmProjects/anovin/venv/lib/python3.10/site-packages/django/template/base.py", line 896, in _resolve_lookup
+    current = current[int(bit)]
+ValueError: invalid literal for int() with base 10: 'tutorial'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/yellowflash/PycharmProjects/anovin/venv/lib/python3.10/site-packages/django/template/base.py", line 903, in _resolve_lookup
+    raise VariableDoesNotExist(
+django.template.base.VariableDoesNotExist: Failed lookup for key [tutorial] in [{'True': True, 'False': False, 'None': None}, {'csrf_token': <SimpleLazyObject: 'qNzJLSMgn7GnuBsEXTHmwWxdmoQ3oVadku76VhusRnMOXS3plFsbbqLEdJXxt0oI'>, 'request': <rest_framework.request.Request: GET '/create_tutorial/'>, 'user': <SimpleLazyObject: <User: root>>, 'perms': PermWrapper(<SimpleLazyObject: <User: root>>), 'messages': <FallbackStorage: request=<WSGIRequest: GET '/create_tutorial/'>>, 'DEFAULT_MESSAGE_LEVELS': {'DEBUG': 10, 'INFO': 20, 'SUCCESS': 25, 'WARNING': 30, 'ERROR': 40}}, {}]
+INFO 2023-01-07 01:41:12,368 basehttp 79427 6164869120 "GET /create_tutorial/ HTTP/1.1" 200 32522
+DEBUG 2023-01-07 01:41:12,654 utils 79427 6164869120 (0.001) SELECT "django_session"."session_key", "django_session"."session_data", "django_session"."expire_date" FROM "django_session" WHERE ("django_session"."expire_date" > '2023-01-07 01:41:12.652277' AND "django_session"."session_key" = 'rc540mvdzs2mtd6kaxwytrzs5ttopju3') LIMIT 21; args=('2023-01-07 01:41:12.652277', 'rc540mvdzs2mtd6kaxwytrzs5ttopju3'); alias=default
+DEBUG 2023-01-07 01:41:12,655 utils 79427 6164869120 (0.000) SELECT "auth_user"."id", "auth_user"."password", "auth_user"."last_login", "auth_user"."is_superuser", "auth_user"."username", "auth_user"."first_name", "auth_user"."last_name", "auth_user"."email", "auth_user"."is_staff", "auth_user"."is_active", "auth_user"."date_joined" FROM "auth_user" WHERE "auth_user"."id" = 1 LIMIT 21; args=(1,); alias=default
+DEBUG 2023-01-07 01:41:12,657 base 79427 6164869120 Exception while resolving variable 'tutorial' in template 'tutorials/create_tutorial.html'.
+Traceback (most recent call last):
+  File "/Users/yellowflash/PycharmProjects/anovin/venv/lib/python3.10/site-packages/django/template/base.py", line 880, in _resolve_lookup
+    current = current[bit]
+  File "/Users/yellowflash/PycharmProjects/anovin/venv/lib/python3.10/site-packages/django/template/context.py", line 83, in __getitem__
+    raise KeyError(key)
+KeyError: 'tutorial'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/yellowflash/PycharmProjects/anovin/venv/lib/python3.10/site-packages/django/template/base.py", line 886, in _resolve_lookup
+    if isinstance(current, BaseContext) and getattr(
+AttributeError: type object 'RequestContext' has no attribute 'tutorial'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/yellowflash/PycharmProjects/anovin/venv/lib/python3.10/site-packages/django/template/base.py", line 896, in _resolve_lookup
+    current = current[int(bit)]
+ValueError: invalid literal for int() with base 10: 'tutorial'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/yellowflash/PycharmProjects/anovin/venv/lib/python3.10/site-packages/django/template/base.py", line 903, in _resolve_lookup
+    raise VariableDoesNotExist(
+django.template.base.VariableDoesNotExist: Failed lookup for key [tutorial] in [{'True': True, 'False': False, 'None': None}, {'csrf_token': <SimpleLazyObject: 'yisU4EKEnfR2uz7hAMOKIUgDJOtjm71dsZ0he3sQRvXtXQI2Yyzznou4A9ANrcfI'>, 'request': <rest_framework.request.Request: GET '/create_tutorial/'>, 'user': <SimpleLazyObject: <User: root>>, 'perms': PermWrapper(<SimpleLazyObject: <User: root>>), 'messages': <FallbackStorage: request=<WSGIRequest: GET '/create_tutorial/'>>, 'DEFAULT_MESSAGE_LEVELS': {'DEBUG': 10, 'INFO': 20, 'SUCCESS': 25, 'WARNING': 30, 'ERROR': 40}}, {}]
+INFO 2023-01-07 01:41:12,659 basehttp 79427 6164869120 "GET /create_tutorial/ HTTP/1.1" 200 32522
+DEBUG 2023-01-07 01:41:53,416 utils 79427 6164869120 (0.003) SELECT "django_session"."session_key", "django_session"."session_data", "django_session"."expire_date" FROM "django_session" WHERE ("django_session"."expire_date" > '2023-01-07 01:41:53.409629' AND "django_session"."session_key" = 'rc540mvdzs2mtd6kaxwytrzs5ttopju3') LIMIT 21; args=('2023-01-07 01:41:53.409629', 'rc540mvdzs2mtd6kaxwytrzs5ttopju3'); alias=default
+DEBUG 2023-01-07 01:41:53,419 utils 79427 6164869120 (0.000) SELECT "auth_user"."id", "auth_user"."password", "auth_user"."last_login", "auth_user"."is_superuser", "auth_user"."username", "auth_user"."first_name", "auth_user"."last_name", "auth_user"."email", "auth_user"."is_staff", "auth_user"."is_active", "auth_user"."date_joined" FROM "auth_user" WHERE "auth_user"."id" = 1 LIMIT 21; args=(1,); alias=default
+DEBUG 2023-01-07 01:41:53,450 utils 79427 6164869120 (0.028) SELECT "web_tutorial"."id", "web_tutorial"."title", "web_tutorial"."slug", "web_tutorial"."meta_description", "web_tutorial"."introduction", "web_tutorial"."steps", "web_tutorial"."content", "web_tutorial"."img", "web_tutorial"."category_id", "web_tutorial"."hashtags", "web_tutorial"."like_score" FROM "web_tutorial" WHERE "web_tutorial"."title" = 'How to create a robot with raspberry pi? ' LIMIT 21; args=('How to create a robot with raspberry pi? ',); alias=default
+DEBUG 2023-01-07 01:41:54,203 utils 79427 6164869120 (0.000) SELECT "web_tutorial"."id", "web_tutorial"."title", "web_tutorial"."slug", "web_tutorial"."meta_description", "web_tutorial"."introduction", "web_tutorial"."steps", "web_tutorial"."content", "web_tutorial"."img", "web_tutorial"."category_id", "web_tutorial"."hashtags", "web_tutorial"."like_score" FROM "web_tutorial" LIMIT 21; args=(); alias=default
+ERROR 2023-01-07 01:41:54,242 log 79427 6164869120 Internal Server Error: /create_tutorial/
+Traceback (most recent call last):
+  File "/Users/yellowflash/PycharmProjects/anovin/anovin/web/aiv2.py", line 30, in create_tutorial
+    models.Tutorial.objects.get(title=title)
+  File "/Users/yellowflash/PycharmProjects/anovin/venv/lib/python3.10/site-packages/django/db/models/manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/Users/yellowflash/PycharmProjects/anovin/venv/lib/python3.10/site-packages/django/db/models/query.py", line 650, in get
+    raise self.model.DoesNotExist(
+web.models.Tutorial.DoesNotExist: Tutorial matching query does not exist.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/yellowflash/PycharmProjects/anovin/venv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/yellowflash/PycharmProjects/anovin/venv/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/yellowflash/PycharmProjects/anovin/venv/lib/python3.10/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/Users/yellowflash/PycharmProjects/anovin/venv/lib/python3.10/site-packages/django/views/generic/base.py", line 103, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Users/yellowflash/PycharmProjects/anovin/venv/lib/python3.10/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "/Users/yellowflash/PycharmProjects/anovin/venv/lib/python3.10/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/Users/yellowflash/PycharmProjects/anovin/venv/lib/python3.10/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/Users/yellowflash/PycharmProjects/anovin/venv/lib/python3.10/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/Users/yellowflash/PycharmProjects/anovin/venv/lib/python3.10/site-packages/rest_framework/decorators.py", line 50, in handler
+    return func(*args, **kwargs)
+  File "/Users/yellowflash/PycharmProjects/anovin/anovin/web/views.py", line 304, in create_tutorial
+    created_instance = c_tut(title, category)
+  File "/Users/yellowflash/PycharmProjects/anovin/anovin/web/aiv2.py", line 39, in create_tutorial
+    meta_description = get_ai_text(meta_description, 356)
+  File "/Users/yellowflash/PycharmProjects/anovin/anovin/web/aiv2.py", line 12, in get_ai_text
+    response = openai.Completion.create(
+  File "/Users/yellowflash/PycharmProjects/anovin/venv/lib/python3.10/site-packages/openai/api_resources/completion.py", line 25, in create
+    return super().create(*args, **kwargs)
+  File "/Users/yellowflash/PycharmProjects/anovin/venv/lib/python3.10/site-packages/openai/api_resources/abstract/engine_api_resource.py", line 115, in create
+    response, _, api_key = requestor.request(
+  File "/Users/yellowflash/PycharmProjects/anovin/venv/lib/python3.10/site-packages/openai/api_requestor.py", line 181, in request
+    resp, got_stream = self._interpret_response(result, stream)
+  File "/Users/yellowflash/PycharmProjects/anovin/venv/lib/python3.10/site-packages/openai/api_requestor.py", line 396, in _interpret_response
+    self._interpret_response_line(
+  File "/Users/yellowflash/PycharmProjects/anovin/venv/lib/python3.10/site-packages/openai/api_requestor.py", line 429, in _interpret_response_line
+    raise self.handle_error_response(
+openai.error.AuthenticationError: Incorrect API key provided: sk-WvfyQ***************************************677N. You can find your API key at https://beta.openai.com.
+ERROR 2023-01-07 01:41:54,244 basehttp 79427 6164869120 "POST /create_tutorial/ HTTP/1.1" 500 144022
+DEBUG 2023-01-07 01:41:54,585 autoreload 79427 8304387328 File /Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/xml/parsers/expat.py first seen with mtime 1648071155.0
+DEBUG 2023-01-07 01:41:54,585 autoreload 79427 8304387328 File /Users/yellowflash/PycharmProjects/anovin/venv/lib/python3.10/site-packages/django/conf/locale/en/formats.py first seen with mtime 1670854588.3370137
+DEBUG 2023-01-07 01:41:54,586 autoreload 79427 8304387328 File /Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/netrc.py first seen with mtime 1648071154.0
+DEBUG 2023-01-07 01:41:54,586 autoreload 79427 8304387328 File /Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/xml/parsers/__init__.py first seen with mtime 1648071155.0
+DEBUG 2023-01-07 01:41:54,587 autoreload 79427 8304387328 File /Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/lib-dynload/pyexpat.cpython-310-darwin.so first seen with mtime 1648071413.0
+DEBUG 2023-01-07 01:41:54,589 autoreload 79427 8304387328 File /Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/shlex.py first seen with mtime 1648071154.0
+DEBUG 2023-01-07 01:41:54,590 autoreload 79427 8304387328 File /Users/yellowflash/PycharmProjects/anovin/venv/lib/python3.10/site-packages/django/conf/locale/en/__init__.py first seen with mtime 1670854588.336909
+DEBUG 2023-01-07 01:41:54,590 autoreload 79427 8304387328 File /Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/plistlib.py first seen with mtime 1648071154.0
+DEBUG 2023-01-07 01:43:00,137 utils 79427 6164869120 (0.002) SELECT "django_session"."session_key", "django_session"."session_data", "django_session"."expire_date" FROM "django_session" WHERE ("django_session"."expire_date" > '2023-01-07 01:43:00.133163' AND "django_session"."session_key" = 'rc540mvdzs2mtd6kaxwytrzs5ttopju3') LIMIT 21; args=('2023-01-07 01:43:00.133163', 'rc540mvdzs2mtd6kaxwytrzs5ttopju3'); alias=default
+DEBUG 2023-01-07 01:43:00,140 utils 79427 6164869120 (0.000) SELECT "auth_user"."id", "auth_user"."password", "auth_user"."last_login", "auth_user"."is_superuser", "auth_user"."username", "auth_user"."first_name", "auth_user"."last_name", "auth_user"."email", "auth_user"."is_staff", "auth_user"."is_active", "auth_user"."date_joined" FROM "auth_user" WHERE "auth_user"."id" = 1 LIMIT 21; args=(1,); alias=default
+DEBUG 2023-01-07 01:43:00,147 utils 79427 6164869120 (0.000) SELECT "web_usertutorials"."id", "web_usertutorials"."user_id", "web_usertutorials"."title", "web_usertutorials"."category", "web_usertutorials"."additional_data", "web_usertutorials"."tutorial_id", "web_usertutorials"."created_at", "web_usertutorials"."updated_at" FROM "web_usertutorials" WHERE "web_usertutorials"."user_id" = 1; args=(1,); alias=default
+DEBUG 2023-01-07 01:43:00,148 base 79427 6164869120 Exception while resolving variable 'get_absolute_url' in template 'tutorials/my_tutorials.html'.
+Traceback (most recent call last):
+  File "/Users/yellowflash/PycharmProjects/anovin/venv/lib/python3.10/site-packages/django/template/base.py", line 880, in _resolve_lookup
+    current = current[bit]
+TypeError: 'NoneType' object is not subscriptable
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/yellowflash/PycharmProjects/anovin/venv/lib/python3.10/site-packages/django/template/base.py", line 890, in _resolve_lookup
+    current = getattr(current, bit)
+AttributeError: 'NoneType' object has no attribute 'get_absolute_url'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/yellowflash/PycharmProjects/anovin/venv/lib/python3.10/site-packages/django/template/base.py", line 896, in _resolve_lookup
+    current = current[int(bit)]
+ValueError: invalid literal for int() with base 10: 'get_absolute_url'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/yellowflash/PycharmProjects/anovin/venv/lib/python3.10/site-packages/django/template/base.py", line 903, in _resolve_lookup
+    raise VariableDoesNotExist(
+django.template.base.VariableDoesNotExist: Failed lookup for key [get_absolute_url] in None
+DEBUG 2023-01-07 01:43:00,149 base 79427 6164869120 Exception while resolving variable 'tags' in template 'tutorials/my_tutorials.html'.
+Traceback (most recent call last):
+  File "/Users/yellowflash/PycharmProjects/anovin/venv/lib/python3.10/site-packages/django/template/base.py", line 880, in _resolve_lookup
+    current = current[bit]
+TypeError: 'NoneType' object is not subscriptable
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/yellowflash/PycharmProjects/anovin/venv/lib/python3.10/site-packages/django/template/base.py", line 890, in _resolve_lookup
+    current = getattr(current, bit)
+AttributeError: 'NoneType' object has no attribute 'tags'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/yellowflash/PycharmProjects/anovin/venv/lib/python3.10/site-packages/django/template/base.py", line 896, in _resolve_lookup
+    current = current[int(bit)]
+ValueError: invalid literal for int() with base 10: 'tags'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/yellowflash/PycharmProjects/anovin/venv/lib/python3.10/site-packages/django/template/base.py", line 903, in _resolve_lookup
+    raise VariableDoesNotExist(
+django.template.base.VariableDoesNotExist: Failed lookup for key [tags] in None
+DEBUG 2023-01-07 01:43:00,149 base 79427 6164869120 Exception while resolving variable 'get_absolute_url' in template 'tutorials/my_tutorials.html'.
+Traceback (most recent call last):
+  File "/Users/yellowflash/PycharmProjects/anovin/venv/lib/python3.10/site-packages/django/template/base.py", line 880, in _resolve_lookup
+    current = current[bit]
+TypeError: 'NoneType' object is not subscriptable
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/yellowflash/PycharmProjects/anovin/venv/lib/python3.10/site-packages/django/template/base.py", line 890, in _resolve_lookup
+    current = getattr(current, bit)
+AttributeError: 'NoneType' object has no attribute 'get_absolute_url'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/yellowflash/PycharmProjects/anovin/venv/lib/python3.10/site-packages/django/template/base.py", line 896, in _resolve_lookup
+    current = current[int(bit)]
+ValueError: invalid literal for int() with base 10: 'get_absolute_url'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/yellowflash/PycharmProjects/anovin/venv/lib/python3.10/site-packages/django/template/base.py", line 903, in _resolve_lookup
+    raise VariableDoesNotExist(
+django.template.base.VariableDoesNotExist: Failed lookup for key [get_absolute_url] in None
+DEBUG 2023-01-07 01:43:00,149 base 79427 6164869120 Exception while resolving variable 'tags' in template 'tutorials/my_tutorials.html'.
+Traceback (most recent call last):
+  File "/Users/yellowflash/PycharmProjects/anovin/venv/lib/python3.10/site-packages/django/template/base.py", line 880, in _resolve_lookup
+    current = current[bit]
+TypeError: 'NoneType' object is not subscriptable
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/yellowflash/PycharmProjects/anovin/venv/lib/python3.10/site-packages/django/template/base.py", line 890, in _resolve_lookup
+    current = getattr(current, bit)
+AttributeError: 'NoneType' object has no attribute 'tags'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/yellowflash/PycharmProjects/anovin/venv/lib/python3.10/site-packages/django/template/base.py", line 896, in _resolve_lookup
+    current = current[int(bit)]
+ValueError: invalid literal for int() with base 10: 'tags'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/yellowflash/PycharmProjects/anovin/venv/lib/python3.10/site-packages/django/template/base.py", line 903, in _resolve_lookup
+    raise VariableDoesNotExist(
+django.template.base.VariableDoesNotExist: Failed lookup for key [tags] in None
+DEBUG 2023-01-07 01:43:00,151 utils 79427 6164869120 (0.001) SELECT "web_tutorial"."id", "web_tutorial"."title", "web_tutorial"."slug", "web_tutorial"."meta_description", "web_tutorial"."introduction", "web_tutorial"."steps", "web_tutorial"."content", "web_tutorial"."img", "web_tutorial"."category_id", "web_tutorial"."hashtags", "web_tutorial"."like_score" FROM "web_tutorial" WHERE "web_tutorial"."id" = 760 LIMIT 21; args=(760,); alias=default
+DEBUG 2023-01-07 01:43:00,153 utils 79427 6164869120 (0.001) SELECT "web_tag"."id", "web_tag"."name", "web_tag"."slug" FROM "web_tag" INNER JOIN "web_tutorial_tags" ON ("web_tag"."id" = "web_tutorial_tags"."tag_id") WHERE "web_tutorial_tags"."tutorial_id" = 760; args=(760,); alias=default
+DEBUG 2023-01-07 01:43:00,153 utils 79427 6164869120 (0.000) SELECT "web_tutorial"."id", "web_tutorial"."title", "web_tutorial"."slug", "web_tutorial"."meta_description", "web_tutorial"."introduction", "web_tutorial"."steps", "web_tutorial"."content", "web_tutorial"."img", "web_tutorial"."category_id", "web_tutorial"."hashtags", "web_tutorial"."like_score" FROM "web_tutorial" WHERE "web_tutorial"."id" = 761 LIMIT 21; args=(761,); alias=default
+DEBUG 2023-01-07 01:43:00,154 utils 79427 6164869120 (0.000) SELECT "web_tag"."id", "web_tag"."name", "web_tag"."slug" FROM "web_tag" INNER JOIN "web_tutorial_tags" ON ("web_tag"."id" = "web_tutorial_tags"."tag_id") WHERE "web_tutorial_tags"."tutorial_id" = 761; args=(761,); alias=default
+DEBUG 2023-01-07 01:43:00,154 utils 79427 6164869120 (0.000) SELECT "web_tutorial"."id", "web_tutorial"."title", "web_tutorial"."slug", "web_tutorial"."meta_description", "web_tutorial"."introduction", "web_tutorial"."steps", "web_tutorial"."content", "web_tutorial"."img", "web_tutorial"."category_id", "web_tutorial"."hashtags", "web_tutorial"."like_score" FROM "web_tutorial" WHERE "web_tutorial"."id" = 762 LIMIT 21; args=(762,); alias=default
+DEBUG 2023-01-07 01:43:00,154 utils 79427 6164869120 (0.000) SELECT "web_tag"."id", "web_tag"."name", "web_tag"."slug" FROM "web_tag" INNER JOIN "web_tutorial_tags" ON ("web_tag"."id" = "web_tutorial_tags"."tag_id") WHERE "web_tutorial_tags"."tutorial_id" = 762; args=(762,); alias=default
+DEBUG 2023-01-07 01:43:00,155 utils 79427 6164869120 (0.000) SELECT "web_tutorial"."id", "web_tutorial"."title", "web_tutorial"."slug", "web_tutorial"."meta_description", "web_tutorial"."introduction", "web_tutorial"."steps", "web_tutorial"."content", "web_tutorial"."img", "web_tutorial"."category_id", "web_tutorial"."hashtags", "web_tutorial"."like_score" FROM "web_tutorial" WHERE "web_tutorial"."id" = 763 LIMIT 21; args=(763,); alias=default
+DEBUG 2023-01-07 01:43:00,155 utils 79427 6164869120 (0.000) SELECT "web_tag"."id", "web_tag"."name", "web_tag"."slug" FROM "web_tag" INNER JOIN "web_tutorial_tags" ON ("web_tag"."id" = "web_tutorial_tags"."tag_id") WHERE "web_tutorial_tags"."tutorial_id" = 763; args=(763,); alias=default
+DEBUG 2023-01-07 01:43:00,157 utils 79427 6164869120 (0.000) SELECT "web_tutorial"."id", "web_tutorial"."title", "web_tutorial"."slug", "web_tutorial"."meta_description", "web_tutorial"."introduction", "web_tutorial"."steps", "web_tutorial"."content", "web_tutorial"."img", "web_tutorial"."category_id", "web_tutorial"."hashtags", "web_tutorial"."like_score" FROM "web_tutorial" WHERE "web_tutorial"."id" = 764 LIMIT 21; args=(764,); alias=default
+DEBUG 2023-01-07 01:43:00,157 utils 79427 6164869120 (0.000) SELECT "web_tag"."id", "web_tag"."name", "web_tag"."slug" FROM "web_tag" INNER JOIN "web_tutorial_tags" ON ("web_tag"."id" = "web_tutorial_tags"."tag_id") WHERE "web_tutorial_tags"."tutorial_id" = 764; args=(764,); alias=default
+DEBUG 2023-01-07 01:43:00,157 utils 79427 6164869120 (0.000) SELECT "web_tutorial"."id", "web_tutorial"."title", "web_tutorial"."slug", "web_tutorial"."meta_description", "web_tutorial"."introduction", "web_tutorial"."steps", "web_tutorial"."content", "web_tutorial"."img", "web_tutorial"."category_id", "web_tutorial"."hashtags", "web_tutorial"."like_score" FROM "web_tutorial" WHERE "web_tutorial"."id" = 765 LIMIT 21; args=(765,); alias=default
+DEBUG 2023-01-07 01:43:00,158 utils 79427 6164869120 (0.000) SELECT "web_tag"."id", "web_tag"."name", "web_tag"."slug" FROM "web_tag" INNER JOIN "web_tutorial_tags" ON ("web_tag"."id" = "web_tutorial_tags"."tag_id") WHERE "web_tutorial_tags"."tutorial_id" = 765; args=(765,); alias=default
+DEBUG 2023-01-07 01:43:00,159 utils 79427 6164869120 (0.000) SELECT "web_tutorial"."id", "web_tutorial"."title", "web_tutorial"."slug", "web_tutorial"."meta_description", "web_tutorial"."introduction", "web_tutorial"."steps", "web_tutorial"."content", "web_tutorial"."img", "web_tutorial"."category_id", "web_tutorial"."hashtags", "web_tutorial"."like_score" FROM "web_tutorial" WHERE "web_tutorial"."id" = 766 LIMIT 21; args=(766,); alias=default
+DEBUG 2023-01-07 01:43:00,159 utils 79427 6164869120 (0.000) SELECT "web_tag"."id", "web_tag"."name", "web_tag"."slug" FROM "web_tag" INNER JOIN "web_tutorial_tags" ON ("web_tag"."id" = "web_tutorial_tags"."tag_id") WHERE "web_tutorial_tags"."tutorial_id" = 766; args=(766,); alias=default
+DEBUG 2023-01-07 01:43:00,159 utils 79427 6164869120 (0.000) SELECT "web_tutorial"."id", "web_tutorial"."title", "web_tutorial"."slug", "web_tutorial"."meta_description", "web_tutorial"."introduction", "web_tutorial"."steps", "web_tutorial"."content", "web_tutorial"."img", "web_tutorial"."category_id", "web_tutorial"."hashtags", "web_tutorial"."like_score" FROM "web_tutorial" WHERE "web_tutorial"."id" = 767 LIMIT 21; args=(767,); alias=default
+DEBUG 2023-01-07 01:43:00,160 utils 79427 6164869120 (0.000) SELECT "web_tag"."id", "web_tag"."name", "web_tag"."slug" FROM "web_tag" INNER JOIN "web_tutorial_tags" ON ("web_tag"."id" = "web_tutorial_tags"."tag_id") WHERE "web_tutorial_tags"."tutorial_id" = 767; args=(767,); alias=default
+DEBUG 2023-01-07 01:43:00,160 utils 79427 6164869120 (0.000) SELECT "web_tutorial"."id", "web_tutorial"."title", "web_tutorial"."slug", "web_tutorial"."meta_description", "web_tutorial"."introduction", "web_tutorial"."steps", "web_tutorial"."content", "web_tutorial"."img", "web_tutorial"."category_id", "web_tutorial"."hashtags", "web_tutorial"."like_score" FROM "web_tutorial" WHERE "web_tutorial"."id" = 768 LIMIT 21; args=(768,); alias=default
+DEBUG 2023-01-07 01:43:00,160 utils 79427 6164869120 (0.000) SELECT "web_tag"."id", "web_tag"."name", "web_tag"."slug" FROM "web_tag" INNER JOIN "web_tutorial_tags" ON ("web_tag"."id" = "web_tutorial_tags"."tag_id") WHERE "web_tutorial_tags"."tutorial_id" = 768; args=(768,); alias=default
+DEBUG 2023-01-07 01:43:00,161 utils 79427 6164869120 (0.000) SELECT "web_tutorial"."id", "web_tutorial"."title", "web_tutorial"."slug", "web_tutorial"."meta_description", "web_tutorial"."introduction", "web_tutorial"."steps", "web_tutorial"."content", "web_tutorial"."img", "web_tutorial"."category_id", "web_tutorial"."hashtags", "web_tutorial"."like_score" FROM "web_tutorial" WHERE "web_tutorial"."id" = 769 LIMIT 21; args=(769,); alias=default
+DEBUG 2023-01-07 01:43:00,161 utils 79427 6164869120 (0.000) SELECT "web_tag"."id", "web_tag"."name", "web_tag"."slug" FROM "web_tag" INNER JOIN "web_tutorial_tags" ON ("web_tag"."id" = "web_tutorial_tags"."tag_id") WHERE "web_tutorial_tags"."tutorial_id" = 769; args=(769,); alias=default
+DEBUG 2023-01-07 01:43:00,161 base 79427 6164869120 Exception while resolving variable 'get_absolute_url' in template 'tutorials/my_tutorials.html'.
+Traceback (most recent call last):
+  File "/Users/yellowflash/PycharmProjects/anovin/venv/lib/python3.10/site-packages/django/template/base.py", line 880, in _resolve_lookup
+    current = current[bit]
+TypeError: 'NoneType' object is not subscriptable
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/yellowflash/PycharmProjects/anovin/venv/lib/python3.10/site-packages/django/template/base.py", line 890, in _resolve_lookup
+    current = getattr(current, bit)
+AttributeError: 'NoneType' object has no attribute 'get_absolute_url'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/yellowflash/PycharmProjects/anovin/venv/lib/python3.10/site-packages/django/template/base.py", line 896, in _resolve_lookup
+    current = current[int(bit)]
+ValueError: invalid literal for int() with base 10: 'get_absolute_url'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/yellowflash/PycharmProjects/anovin/venv/lib/python3.10/site-packages/django/template/base.py", line 903, in _resolve_lookup
+    raise VariableDoesNotExist(
+django.template.base.VariableDoesNotExist: Failed lookup for key [get_absolute_url] in None
+DEBUG 2023-01-07 01:43:00,161 base 79427 6164869120 Exception while resolving variable 'tags' in template 'tutorials/my_tutorials.html'.
+Traceback (most recent call last):
+  File "/Users/yellowflash/PycharmProjects/anovin/venv/lib/python3.10/site-packages/django/template/base.py", line 880, in _resolve_lookup
+    current = current[bit]
+TypeError: 'NoneType' object is not subscriptable
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/yellowflash/PycharmProjects/anovin/venv/lib/python3.10/site-packages/django/template/base.py", line 890, in _resolve_lookup
+    current = getattr(current, bit)
+AttributeError: 'NoneType' object has no attribute 'tags'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/yellowflash/PycharmProjects/anovin/venv/lib/python3.10/site-packages/django/template/base.py", line 896, in _resolve_lookup
+    current = current[int(bit)]
+ValueError: invalid literal for int() with base 10: 'tags'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/yellowflash/PycharmProjects/anovin/venv/lib/python3.10/site-packages/django/template/base.py", line 903, in _resolve_lookup
+    raise VariableDoesNotExist(
+django.template.base.VariableDoesNotExist: Failed lookup for key [tags] in None
+DEBUG 2023-01-07 01:43:00,162 utils 79427 6164869120 (0.000) SELECT "web_tutorial"."id", "web_tutorial"."title", "web_tutorial"."slug", "web_tutorial"."meta_description", "web_tutorial"."introduction", "web_tutorial"."steps", "web_tutorial"."content", "web_tutorial"."img", "web_tutorial"."category_id", "web_tutorial"."hashtags", "web_tutorial"."like_score" FROM "web_tutorial" WHERE "web_tutorial"."id" = 770 LIMIT 21; args=(770,); alias=default
+DEBUG 2023-01-07 01:43:00,162 utils 79427 6164869120 (0.000) SELECT "web_tag"."id", "web_tag"."name", "web_tag"."slug" FROM "web_tag" INNER JOIN "web_tutorial_tags" ON ("web_tag"."id" = "web_tutorial_tags"."tag_id") WHERE "web_tutorial_tags"."tutorial_id" = 770; args=(770,); alias=default
+DEBUG 2023-01-07 01:43:00,162 base 79427 6164869120 Exception while resolving variable 'get_absolute_url' in template 'tutorials/my_tutorials.html'.
+Traceback (most recent call last):
+  File "/Users/yellowflash/PycharmProjects/anovin/venv/lib/python3.10/site-packages/django/template/base.py", line 880, in _resolve_lookup
+    current = current[bit]
+TypeError: 'NoneType' object is not subscriptable
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/yellowflash/PycharmProjects/anovin/venv/lib/python3.10/site-packages/django/template/base.py", line 890, in _resolve_lookup
+    current = getattr(current, bit)
+AttributeError: 'NoneType' object has no attribute 'get_absolute_url'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/yellowflash/PycharmProjects/anovin/venv/lib/python3.10/site-packages/django/template/base.py", line 896, in _resolve_lookup
+    current = current[int(bit)]
+ValueError: invalid literal for int() with base 10: 'get_absolute_url'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/yellowflash/PycharmProjects/anovin/venv/lib/python3.10/site-packages/django/template/base.py", line 903, in _resolve_lookup
+    raise VariableDoesNotExist(
+django.template.base.VariableDoesNotExist: Failed lookup for key [get_absolute_url] in None
+DEBUG 2023-01-07 01:43:00,162 base 79427 6164869120 Exception while resolving variable 'tags' in template 'tutorials/my_tutorials.html'.
+Traceback (most recent call last):
+  File "/Users/yellowflash/PycharmProjects/anovin/venv/lib/python3.10/site-packages/django/template/base.py", line 880, in _resolve_lookup
+    current = current[bit]
+TypeError: 'NoneType' object is not subscriptable
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/yellowflash/PycharmProjects/anovin/venv/lib/python3.10/site-packages/django/template/base.py", line 890, in _resolve_lookup
+    current = getattr(current, bit)
+AttributeError: 'NoneType' object has no attribute 'tags'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/yellowflash/PycharmProjects/anovin/venv/lib/python3.10/site-packages/django/template/base.py", line 896, in _resolve_lookup
+    current = current[int(bit)]
+ValueError: invalid literal for int() with base 10: 'tags'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/yellowflash/PycharmProjects/anovin/venv/lib/python3.10/site-packages/django/template/base.py", line 903, in _resolve_lookup
+    raise VariableDoesNotExist(
+django.template.base.VariableDoesNotExist: Failed lookup for key [tags] in None
+DEBUG 2023-01-07 01:43:00,162 base 79427 6164869120 Exception while resolving variable 'get_absolute_url' in template 'tutorials/my_tutorials.html'.
+Traceback (most recent call last):
+  File "/Users/yellowflash/PycharmProjects/anovin/venv/lib/python3.10/site-packages/django/template/base.py", line 880, in _resolve_lookup
+    current = current[bit]
+TypeError: 'NoneType' object is not subscriptable
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/yellowflash/PycharmProjects/anovin/venv/lib/python3.10/site-packages/django/template/base.py", line 890, in _resolve_lookup
+    current = getattr(current, bit)
+AttributeError: 'NoneType' object has no attribute 'get_absolute_url'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/yellowflash/PycharmProjects/anovin/venv/lib/python3.10/site-packages/django/template/base.py", line 896, in _resolve_lookup
+    current = current[int(bit)]
+ValueError: invalid literal for int() with base 10: 'get_absolute_url'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/yellowflash/PycharmProjects/anovin/venv/lib/python3.10/site-packages/django/template/base.py", line 903, in _resolve_lookup
+    raise VariableDoesNotExist(
+django.template.base.VariableDoesNotExist: Failed lookup for key [get_absolute_url] in None
+DEBUG 2023-01-07 01:43:00,163 base 79427 6164869120 Exception while resolving variable 'tags' in template 'tutorials/my_tutorials.html'.
+Traceback (most recent call last):
+  File "/Users/yellowflash/PycharmProjects/anovin/venv/lib/python3.10/site-packages/django/template/base.py", line 880, in _resolve_lookup
+    current = current[bit]
+TypeError: 'NoneType' object is not subscriptable
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/yellowflash/PycharmProjects/anovin/venv/lib/python3.10/site-packages/django/template/base.py", line 890, in _resolve_lookup
+    current = getattr(current, bit)
+AttributeError: 'NoneType' object has no attribute 'tags'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/yellowflash/PycharmProjects/anovin/venv/lib/python3.10/site-packages/django/template/base.py", line 896, in _resolve_lookup
+    current = current[int(bit)]
+ValueError: invalid literal for int() with base 10: 'tags'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/yellowflash/PycharmProjects/anovin/venv/lib/python3.10/site-packages/django/template/base.py", line 903, in _resolve_lookup
+    raise VariableDoesNotExist(
+django.template.base.VariableDoesNotExist: Failed lookup for key [tags] in None
+DEBUG 2023-01-07 01:43:00,163 base 79427 6164869120 Exception while resolving variable 'get_absolute_url' in template 'tutorials/my_tutorials.html'.
+Traceback (most recent call last):
+  File "/Users/yellowflash/PycharmProjects/anovin/venv/lib/python3.10/site-packages/django/template/base.py", line 880, in _resolve_lookup
+    current = current[bit]
+TypeError: 'NoneType' object is not subscriptable
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/yellowflash/PycharmProjects/anovin/venv/lib/python3.10/site-packages/django/template/base.py", line 890, in _resolve_lookup
+    current = getattr(current, bit)
+AttributeError: 'NoneType' object has no attribute 'get_absolute_url'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/yellowflash/PycharmProjects/anovin/venv/lib/python3.10/site-packages/django/template/base.py", line 896, in _resolve_lookup
+    current = current[int(bit)]
+ValueError: invalid literal for int() with base 10: 'get_absolute_url'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/yellowflash/PycharmProjects/anovin/venv/lib/python3.10/site-packages/django/template/base.py", line 903, in _resolve_lookup
+    raise VariableDoesNotExist(
+django.template.base.VariableDoesNotExist: Failed lookup for key [get_absolute_url] in None
+DEBUG 2023-01-07 01:43:00,163 base 79427 6164869120 Exception while resolving variable 'tags' in template 'tutorials/my_tutorials.html'.
+Traceback (most recent call last):
+  File "/Users/yellowflash/PycharmProjects/anovin/venv/lib/python3.10/site-packages/django/template/base.py", line 880, in _resolve_lookup
+    current = current[bit]
+TypeError: 'NoneType' object is not subscriptable
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/yellowflash/PycharmProjects/anovin/venv/lib/python3.10/site-packages/django/template/base.py", line 890, in _resolve_lookup
+    current = getattr(current, bit)
+AttributeError: 'NoneType' object has no attribute 'tags'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/yellowflash/PycharmProjects/anovin/venv/lib/python3.10/site-packages/django/template/base.py", line 896, in _resolve_lookup
+    current = current[int(bit)]
+ValueError: invalid literal for int() with base 10: 'tags'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/yellowflash/PycharmProjects/anovin/venv/lib/python3.10/site-packages/django/template/base.py", line 903, in _resolve_lookup
+    raise VariableDoesNotExist(
+django.template.base.VariableDoesNotExist: Failed lookup for key [tags] in None
+DEBUG 2023-01-07 01:43:00,163 base 79427 6164869120 Exception while resolving variable 'get_absolute_url' in template 'tutorials/my_tutorials.html'.
+Traceback (most recent call last):
+  File "/Users/yellowflash/PycharmProjects/anovin/venv/lib/python3.10/site-packages/django/template/base.py", line 880, in _resolve_lookup
+    current = current[bit]
+TypeError: 'NoneType' object is not subscriptable
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/yellowflash/PycharmProjects/anovin/venv/lib/python3.10/site-packages/django/template/base.py", line 890, in _resolve_lookup
+    current = getattr(current, bit)
+AttributeError: 'NoneType' object has no attribute 'get_absolute_url'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/yellowflash/PycharmProjects/anovin/venv/lib/python3.10/site-packages/django/template/base.py", line 896, in _resolve_lookup
+    current = current[int(bit)]
+ValueError: invalid literal for int() with base 10: 'get_absolute_url'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/yellowflash/PycharmProjects/anovin/venv/lib/python3.10/site-packages/django/template/base.py", line 903, in _resolve_lookup
+    raise VariableDoesNotExist(
+django.template.base.VariableDoesNotExist: Failed lookup for key [get_absolute_url] in None
+DEBUG 2023-01-07 01:43:00,163 base 79427 6164869120 Exception while resolving variable 'tags' in template 'tutorials/my_tutorials.html'.
+Traceback (most recent call last):
+  File "/Users/yellowflash/PycharmProjects/anovin/venv/lib/python3.10/site-packages/django/template/base.py", line 880, in _resolve_lookup
+    current = current[bit]
+TypeError: 'NoneType' object is not subscriptable
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/yellowflash/PycharmProjects/anovin/venv/lib/python3.10/site-packages/django/template/base.py", line 890, in _resolve_lookup
+    current = getattr(current, bit)
+AttributeError: 'NoneType' object has no attribute 'tags'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/yellowflash/PycharmProjects/anovin/venv/lib/python3.10/site-packages/django/template/base.py", line 896, in _resolve_lookup
+    current = current[int(bit)]
+ValueError: invalid literal for int() with base 10: 'tags'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/yellowflash/PycharmProjects/anovin/venv/lib/python3.10/site-packages/django/template/base.py", line 903, in _resolve_lookup
+    raise VariableDoesNotExist(
+django.template.base.VariableDoesNotExist: Failed lookup for key [tags] in None
+DEBUG 2023-01-07 01:43:00,163 base 79427 6164869120 Exception while resolving variable 'get_absolute_url' in template 'tutorials/my_tutorials.html'.
+Traceback (most recent call last):
+  File "/Users/yellowflash/PycharmProjects/anovin/venv/lib/python3.10/site-packages/django/template/base.py", line 880, in _resolve_lookup
+    current = current[bit]
+TypeError: 'NoneType' object is not subscriptable
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/yellowflash/PycharmProjects/anovin/venv/lib/python3.10/site-packages/django/template/base.py", line 890, in _resolve_lookup
+    current = getattr(current, bit)
+AttributeError: 'NoneType' object has no attribute 'get_absolute_url'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/yellowflash/PycharmProjects/anovin/venv/lib/python3.10/site-packages/django/template/base.py", line 896, in _resolve_lookup
+    current = current[int(bit)]
+ValueError: invalid literal for int() with base 10: 'get_absolute_url'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/yellowflash/PycharmProjects/anovin/venv/lib/python3.10/site-packages/django/template/base.py", line 903, in _resolve_lookup
+    raise VariableDoesNotExist(
+django.template.base.VariableDoesNotExist: Failed lookup for key [get_absolute_url] in None
+DEBUG 2023-01-07 01:43:00,163 base 79427 6164869120 Exception while resolving variable 'tags' in template 'tutorials/my_tutorials.html'.
+Traceback (most recent call last):
+  File "/Users/yellowflash/PycharmProjects/anovin/venv/lib/python3.10/site-packages/django/template/base.py", line 880, in _resolve_lookup
+    current = current[bit]
+TypeError: 'NoneType' object is not subscriptable
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/yellowflash/PycharmProjects/anovin/venv/lib/python3.10/site-packages/django/template/base.py", line 890, in _resolve_lookup
+    current = getattr(current, bit)
+AttributeError: 'NoneType' object has no attribute 'tags'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/yellowflash/PycharmProjects/anovin/venv/lib/python3.10/site-packages/django/template/base.py", line 896, in _resolve_lookup
+    current = current[int(bit)]
+ValueError: invalid literal for int() with base 10: 'tags'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/yellowflash/PycharmProjects/anovin/venv/lib/python3.10/site-packages/django/template/base.py", line 903, in _resolve_lookup
+    raise VariableDoesNotExist(
+django.template.base.VariableDoesNotExist: Failed lookup for key [tags] in None
+DEBUG 2023-01-07 01:43:00,164 utils 79427 6164869120 (0.000) SELECT "auth_user"."id", "auth_user"."password", "auth_user"."last_login", "auth_user"."is_superuser", "auth_user"."username", "auth_user"."first_name", "auth_user"."last_name", "auth_user"."email", "auth_user"."is_staff", "auth_user"."is_active", "auth_user"."date_joined" FROM "auth_user" WHERE "auth_user"."id" = 1 LIMIT 21; args=(1,); alias=default
+DEBUG 2023-01-07 01:43:00,164 utils 79427 6164869120 (0.000) SELECT "auth_user"."id", "auth_user"."password", "auth_user"."last_login", "auth_user"."is_superuser", "auth_user"."username", "auth_user"."first_name", "auth_user"."last_name", "auth_user"."email", "auth_user"."is_staff", "auth_user"."is_active", "auth_user"."date_joined" FROM "auth_user" WHERE "auth_user"."id" = 1 LIMIT 21; args=(1,); alias=default
+DEBUG 2023-01-07 01:43:00,164 utils 79427 6164869120 (0.000) SELECT "auth_user"."id", "auth_user"."password", "auth_user"."last_login", "auth_user"."is_superuser", "auth_user"."username", "auth_user"."first_name", "auth_user"."last_name", "auth_user"."email", "auth_user"."is_staff", "auth_user"."is_active", "auth_user"."date_joined" FROM "auth_user" WHERE "auth_user"."id" = 1 LIMIT 21; args=(1,); alias=default
+DEBUG 2023-01-07 01:43:00,165 utils 79427 6164869120 (0.000) SELECT "auth_user"."id", "auth_user"."password", "auth_user"."last_login", "auth_user"."is_superuser", "auth_user"."username", "auth_user"."first_name", "auth_user"."last_name", "auth_user"."email", "auth_user"."is_staff", "auth_user"."is_active", "auth_user"."date_joined" FROM "auth_user" WHERE "auth_user"."id" = 1 LIMIT 21; args=(1,); alias=default
+DEBUG 2023-01-07 01:43:00,165 utils 79427 6164869120 (0.000) SELECT "auth_user"."id", "auth_user"."password", "auth_user"."last_login", "auth_user"."is_superuser", "auth_user"."username", "auth_user"."first_name", "auth_user"."last_name", "auth_user"."email", "auth_user"."is_staff", "auth_user"."is_active", "auth_user"."date_joined" FROM "auth_user" WHERE "auth_user"."id" = 1 LIMIT 21; args=(1,); alias=default
+DEBUG 2023-01-07 01:43:00,165 utils 79427 6164869120 (0.000) SELECT "auth_user"."id", "auth_user"."password", "auth_user"."last_login", "auth_user"."is_superuser", "auth_user"."username", "auth_user"."first_name", "auth_user"."last_name", "auth_user"."email", "auth_user"."is_staff", "auth_user"."is_active", "auth_user"."date_joined" FROM "auth_user" WHERE "auth_user"."id" = 1 LIMIT 21; args=(1,); alias=default
+DEBUG 2023-01-07 01:43:00,165 utils 79427 6164869120 (0.000) SELECT "auth_user"."id", "auth_user"."password", "auth_user"."last_login", "auth_user"."is_superuser", "auth_user"."username", "auth_user"."first_name", "auth_user"."last_name", "auth_user"."email", "auth_user"."is_staff", "auth_user"."is_active", "auth_user"."date_joined" FROM "auth_user" WHERE "auth_user"."id" = 1 LIMIT 21; args=(1,); alias=default
+DEBUG 2023-01-07 01:43:00,165 utils 79427 6164869120 (0.000) SELECT "auth_user"."id", "auth_user"."password", "auth_user"."last_login", "auth_user"."is_superuser", "auth_user"."username", "auth_user"."first_name", "auth_user"."last_name", "auth_user"."email", "auth_user"."is_staff", "auth_user"."is_active", "auth_user"."date_joined" FROM "auth_user" WHERE "auth_user"."id" = 1 LIMIT 21; args=(1,); alias=default
+DEBUG 2023-01-07 01:43:00,166 utils 79427 6164869120 (0.000) SELECT "auth_user"."id", "auth_user"."password", "auth_user"."last_login", "auth_user"."is_superuser", "auth_user"."username", "auth_user"."first_name", "auth_user"."last_name", "auth_user"."email", "auth_user"."is_staff", "auth_user"."is_active", "auth_user"."date_joined" FROM "auth_user" WHERE "auth_user"."id" = 1 LIMIT 21; args=(1,); alias=default
+DEBUG 2023-01-07 01:43:00,166 utils 79427 6164869120 (0.000) SELECT "auth_user"."id", "auth_user"."password", "auth_user"."last_login", "auth_user"."is_superuser", "auth_user"."username", "auth_user"."first_name", "auth_user"."last_name", "auth_user"."email", "auth_user"."is_staff", "auth_user"."is_active", "auth_user"."date_joined" FROM "auth_user" WHERE "auth_user"."id" = 1 LIMIT 21; args=(1,); alias=default
+DEBUG 2023-01-07 01:43:00,166 utils 79427 6164869120 (0.000) SELECT "auth_user"."id", "auth_user"."password", "auth_user"."last_login", "auth_user"."is_superuser", "auth_user"."username", "auth_user"."first_name", "auth_user"."last_name", "auth_user"."email", "auth_user"."is_staff", "auth_user"."is_active", "auth_user"."date_joined" FROM "auth_user" WHERE "auth_user"."id" = 1 LIMIT 21; args=(1,); alias=default
+DEBUG 2023-01-07 01:43:00,166 utils 79427 6164869120 (0.000) SELECT "auth_user"."id", "auth_user"."password", "auth_user"."last_login", "auth_user"."is_superuser", "auth_user"."username", "auth_user"."first_name", "auth_user"."last_name", "auth_user"."email", "auth_user"."is_staff", "auth_user"."is_active", "auth_user"."date_joined" FROM "auth_user" WHERE "auth_user"."id" = 1 LIMIT 21; args=(1,); alias=default
+DEBUG 2023-01-07 01:43:00,166 utils 79427 6164869120 (0.000) SELECT "auth_user"."id", "auth_user"."password", "auth_user"."last_login", "auth_user"."is_superuser", "auth_user"."username", "auth_user"."first_name", "auth_user"."last_name", "auth_user"."email", "auth_user"."is_staff", "auth_user"."is_active", "auth_user"."date_joined" FROM "auth_user" WHERE "auth_user"."id" = 1 LIMIT 21; args=(1,); alias=default
+DEBUG 2023-01-07 01:43:00,167 utils 79427 6164869120 (0.000) SELECT "auth_user"."id", "auth_user"."password", "auth_user"."last_login", "auth_user"."is_superuser", "auth_user"."username", "auth_user"."first_name", "auth_user"."last_name", "auth_user"."email", "auth_user"."is_staff", "auth_user"."is_active", "auth_user"."date_joined" FROM "auth_user" WHERE "auth_user"."id" = 1 LIMIT 21; args=(1,); alias=default
+DEBUG 2023-01-07 01:43:00,167 utils 79427 6164869120 (0.000) SELECT "auth_user"."id", "auth_user"."password", "auth_user"."last_login", "auth_user"."is_superuser", "auth_user"."username", "auth_user"."first_name", "auth_user"."last_name", "auth_user"."email", "auth_user"."is_staff", "auth_user"."is_active", "auth_user"."date_joined" FROM "auth_user" WHERE "auth_user"."id" = 1 LIMIT 21; args=(1,); alias=default
+DEBUG 2023-01-07 01:43:00,167 utils 79427 6164869120 (0.000) SELECT "auth_user"."id", "auth_user"."password", "auth_user"."last_login", "auth_user"."is_superuser", "auth_user"."username", "auth_user"."first_name", "auth_user"."last_name", "auth_user"."email", "auth_user"."is_staff", "auth_user"."is_active", "auth_user"."date_joined" FROM "auth_user" WHERE "auth_user"."id" = 1 LIMIT 21; args=(1,); alias=default
+DEBUG 2023-01-07 01:43:00,167 utils 79427 6164869120 (0.000) SELECT "auth_user"."id", "auth_user"."password", "auth_user"."last_login", "auth_user"."is_superuser", "auth_user"."username", "auth_user"."first_name", "auth_user"."last_name", "auth_user"."email", "auth_user"."is_staff", "auth_user"."is_active", "auth_user"."date_joined" FROM "auth_user" WHERE "auth_user"."id" = 1 LIMIT 21; args=(1,); alias=default
+DEBUG 2023-01-07 01:43:00,167 utils 79427 6164869120 (0.000) SELECT "auth_user"."id", "auth_user"."password", "auth_user"."last_login", "auth_user"."is_superuser", "auth_user"."username", "auth_user"."first_name", "auth_user"."last_name", "auth_user"."email", "auth_user"."is_staff", "auth_user"."is_active", "auth_user"."date_joined" FROM "auth_user" WHERE "auth_user"."id" = 1 LIMIT 21; args=(1,); alias=default
+DEBUG 2023-01-07 01:43:00,168 utils 79427 6164869120 (0.000) SELECT "auth_user"."id", "auth_user"."password", "auth_user"."last_login", "auth_user"."is_superuser", "auth_user"."username", "auth_user"."first_name", "auth_user"."last_name", "auth_user"."email", "auth_user"."is_staff", "auth_user"."is_active", "auth_user"."date_joined" FROM "auth_user" WHERE "auth_user"."id" = 1 LIMIT 21; args=(1,); alias=default
+DEBUG 2023-01-07 01:43:00,163 base 79427 6164869120 Exception while resolving variable 'tags' in template 'tutorials/my_tutorials.html'.
+Traceback (most recent call last):
+  File "/Users/yellowflash/PycharmProjects/anovin/venv/lib/python3.10/site-packages/django/template/base.py", line 880, in _resolve_lookup
+    current = current[bit]
+  File "/Users/yellowflash/PycharmProjects/anovin/venv/lib/python3.10/site-packages/django/template/context.py", line 83, in __getitem__
+    raise KeyError(key)
+KeyError: 'tags'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/yellowflash/PycharmProjects/anovin/venv/lib/python3.10/site-packages/django/template/base.py", line 886, in _resolve_lookup
+    if isinstance(current, BaseContext) and getattr(
+AttributeError: type object 'RequestContext' has no attribute 'tags'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/yellowflash/PycharmProjects/anovin/venv/lib/python3.10/site-packages/django/template/base.py", line 896, in _resolve_lookup
+    current = current[int(bit)]
+ValueError: invalid literal for int() with base 10: 'tags'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/yellowflash/PycharmProjects/anovin/venv/lib/python3.10/site-packages/django/template/base.py", line 903, in _resolve_lookup
+    raise VariableDoesNotExist(
+django.template.base.VariableDoesNotExist: Failed lookup for key [tags] in [{'True': True, 'False': False, 'None': None}, {'csrf_token': <SimpleLazyObject: 'syBSsqsJsej76sJBr8TzMyiFi18RUXcgmf9fCPaVWupyzJkmPUEor2w69mflZ2qL'>, 'request': <WSGIRequest: GET '/my_tutorials/'>, 'user': <SimpleLazyObject: <User: root>>, 'perms': PermWrapper(<SimpleLazyObject: <User: root>>), 'messages': <FallbackStorage: request=<WSGIRequest: GET '/my_tutorials/'>>, 'DEFAULT_MESSAGE_LEVELS': {'DEBUG': 10, 'INFO': 20, 'SUCCESS': 25, 'WARNING': 30, 'ERROR': 40}}, {}, {'tuts': <QuerySet [<UserTutorials: root's tutorials.>, <UserTutorials: root's tutorials.>, <UserTutorials: root's tutorials.>, <UserTutorials: root's tutorials.>, <UserTutorials: root's tutorials.>, <UserTutorials: root's tutorials.>, <UserTutorials: root's tutorials.>, <UserTutorials: root's tutorials.>, <UserTutorials: root's tutorials.>, <UserTutorials: root's tutorials.>, <UserTutorials: root's tutorials.>, <UserTutorials: root's tutorials.>, <UserTutorials: root's tutorials.>, <UserTutorials: root's tutorials.>, <UserTutorials: root's tutorials.>, <UserTutorials: root's tutorials.>, <UserTutorials: root's tutorials.>, <UserTutorials: root's tutorials.>, <UserTutorials: root's tutorials.>]>}, {}]
+INFO 2023-01-07 01:43:00,169 basehttp 79427 6164869120 "GET /my_tutorials/ HTTP/1.1" 200 60242
+DEBUG 2023-01-07 01:43:44,856 autoreload 79427 8304387328 File /Users/yellowflash/PycharmProjects/anovin/anovin/portfolio/settings.py previous mtime: 1673051988.254522, current mtime: 1673055823.870904
+DEBUG 2023-01-07 01:43:44,860 autoreload 79427 8304387328 /Users/yellowflash/PycharmProjects/anovin/anovin/portfolio/settings.py notified as changed. Signal results: [(<function template_changed at 0x10616f0a0>, None), (<function translation_file_changed at 0x106bd12d0>, None)].
+INFO 2023-01-07 01:43:44,860 autoreload 79427 8304387328 /Users/yellowflash/PycharmProjects/anovin/anovin/portfolio/settings.py changed, reloading.
