@@ -24,7 +24,7 @@ from rest_framework import status
 from django.http import HttpResponse
 from django.views.decorators.http import require_GET
 from django.contrib.auth import logout
-
+import logging
 
 @require_GET
 def robots_txt(request):
@@ -313,12 +313,14 @@ def create_tutorial(request):
                 'Subject here',
                 'Your tutorial is ready!',
                 'anovindooel@gmail.com',
-                [user.email, 'anovski3@gmail.com'],
+                [str(user.email), 'anovski3@gmail.com'],
                 html_message=html_message,
                 fail_silently=True
             )
+            logging.info('Mail delivered to {0}'.format(str(user.email)))
         except:
             print('Mail not sent _createtutorial view')
+            logging.info('Mail not sent to {0}'.format(str(user.email)))
             pass
 
         # # Redirect to a success page
